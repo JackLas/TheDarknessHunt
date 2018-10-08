@@ -7,8 +7,4 @@ bin/*
 cocos2d/cocos/platform/android/libcocos2dx/build/*
 Classes/HelloWorldScene.cpp
 Classes/HelloWorldScene.h
-Resources/fonts/*
-Resources/res/*
-Resources/CloseNormal.png
-Resources/CloseSelected.png
-Resources/HelloWorld.png
+Resources/*
