@@ -1,0 +1,7 @@
+Classes/HelloWorldScene.cpp
+Classes/HelloWorldScene.h
+Resources/fonts/*
+Resources/res/*
+Resources/CloseNormal.png
+Resources/CloseSelected.png
+Resources/HelloWorld.png
