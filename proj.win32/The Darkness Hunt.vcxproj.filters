@@ -10,6 +10,15 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scenes">
+      <UniqueIdentifier>{e3e0ff10-5feb-4fbf-97fa-b59bfb82458b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scenes\MainMenuScene">
+      <UniqueIdentifier>{57dc663b-057d-4f1a-a135-cba9865bf558}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\DataManager">
+      <UniqueIdentifier>{cd5378fb-ac66-45d6-bc70-8b35b57e88c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -21,6 +30,12 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\MainMenuScene.cpp">
+      <Filter>src\scenes\MainMenuScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\DataManager.cpp">
+      <Filter>src\DataManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -31,6 +46,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainMenuScene.h">
+      <Filter>src\scenes\MainMenuScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\dataTypes.h">
+      <Filter>src\DataManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\DataManager.h">
+      <Filter>src\DataManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
