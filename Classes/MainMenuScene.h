@@ -8,11 +8,11 @@ class MainMenuScene : public cocos2d::Layer
 private:
 	typedef cocos2d::Layer Parent;
 
-
 	MainMenuScene();
+	CREATE_FUNC(MainMenuScene);
 protected:
 	virtual bool init();
 public:
-	CREATE_FUNC(MainMenuScene);
+	static cocos2d::Scene* createScene();
 };
 #endif //MAINMENUSCENE_H

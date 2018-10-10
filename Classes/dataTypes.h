@@ -10,6 +10,7 @@ struct sData
 	std::map<std::string, std::string> images;
 	std::map<std::string, std::string> fonts;
 	std::map<std::string, std::string> strings;
+	std::map<std::string, std::string> views;
 	cocos2d::Size designResolution;
 	cocos2d::Size desktopResolution;
 };

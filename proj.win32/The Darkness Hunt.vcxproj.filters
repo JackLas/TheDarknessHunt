@@ -36,6 +36,9 @@
     <ClCompile Include="..\Classes\DataManager.cpp">
       <Filter>src\DataManager</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ViewBuilder.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -55,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\DataManager.h">
       <Filter>src\DataManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ViewBuilder.h">
+      <Filter>src\scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -16,6 +16,7 @@ private:
 	void loadImages(const std::string& aPath);
 	void loadFonts(const std::string& aPath);
 	void loadStrings(const std::string& aPath);
+	void loadViews(const std::string& aPath);
 
 public:
 	static DataManager* getInstance();

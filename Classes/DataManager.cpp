@@ -10,6 +10,7 @@ DataManager::DataManager()
 	loadImages("db/images.json");
 	loadFonts("db/fonts.json");
 	loadStrings("locale/" + mSettings.locale + ".json");
+	loadViews("db/views.json");
 }
 
 DataManager* DataManager::getInstance()
@@ -161,6 +162,25 @@ void DataManager::loadStrings(const std::string& aPath)
 	{
 		CCLOG("'%s' parsing error, locale set 'en'", aPath.c_str());
 		loadStrings("locale/en.json");
+	}
+}
+
+void DataManager::loadViews(const std::string& aPath)
+{
+	rapidjson::Document config;
+	std::string configContent = cocos2d::FileUtils::getInstance()->getStringFromFile(aPath);
+	config.Parse(configContent.c_str());
+	if (!config.HasParseError())
+	{
+		auto& views = mData.views;
+		for (auto it = config.MemberBegin(); it != config.MemberEnd(); ++it)
+		{
+			views[it->name.GetString()] = it->value.GetString();
+		}
+	}
+	else
+	{
+		CCLOG("'%s' parsing error", aPath.c_str());
 	}
 }
 
