@@ -15,7 +15,10 @@ LOCAL_SRC_FILES := $(LOCAL_PATH)/hellocpp/main.cpp \
                    $(LOCAL_PATH)/../../../Classes/AppDelegate.cpp \
                    $(LOCAL_PATH)/../../../Classes/DataManager.cpp \
 				   $(LOCAL_PATH)/../../../Classes/MainMenuScene.cpp \
-				   $(LOCAL_PATH)/../../../Classes/ViewBuilder.cpp 
+				   $(LOCAL_PATH)/../../../Classes/ViewBuilder.cpp \
+				   $(LOCAL_PATH)/../../../Classes/BMButton.cpp \
+				   $(LOCAL_PATH)/../../../Classes/PopUpLayer.cpp \
+				   $(LOCAL_PATH)/../../../Classes/PopUpOptions.cpp   
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../Classes
 
