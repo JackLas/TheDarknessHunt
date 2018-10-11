@@ -3,11 +3,14 @@
 
 #include "cocos2d.h"
 #include "ui/UIButton.h"
+#include "PopUpOptions.h"
 
 class MainMenuScene : public cocos2d::Layer
 {
 private:
 	typedef cocos2d::Layer Parent;
+
+	PopUpOptions* mOptions;
 
 	MainMenuScene();
 	CREATE_FUNC(MainMenuScene);

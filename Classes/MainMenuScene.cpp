@@ -3,6 +3,7 @@
 #include "ViewBuilder.h"
 
 MainMenuScene::MainMenuScene()
+	: mOptions(nullptr)
 {
 }
 
@@ -33,6 +34,9 @@ bool MainMenuScene::init()
 		{
 			result &= ViewBuilder::loadFromJson(this, viewIt->second);
 		}
+		
+		mOptions = PopUpOptions::create();
+		addChild(mOptions);
 
 		initButtons();
 	}
@@ -42,10 +46,10 @@ bool MainMenuScene::init()
 
 void MainMenuScene::initButtons()
 {
-	std::vector<BMButton*> buttons;
-	buttons.push_back(getChildByName<BMButton*>("btnPlay"));
-	buttons.push_back(getChildByName<BMButton*>("btnOptions"));
-	buttons.push_back(getChildByName<BMButton*>("btnExit"));
+	std::vector<cocos2d::ui::Button*> buttons;
+	buttons.push_back(getChildByName<cocos2d::ui::Button*>("btnPlay"));
+	buttons.push_back(getChildByName<cocos2d::ui::Button*>("btnOptions"));
+	buttons.push_back(getChildByName<cocos2d::ui::Button*>("btnExit"));
 
 	for (auto& button : buttons)
 	{
@@ -58,13 +62,12 @@ void MainMenuScene::initButtons()
 
 void MainMenuScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent)
 {
-	if ((aEvent == cocos2d::ui::Widget::TouchEventType::ENDED) /*&& (!mOptionsPopUp->isActive())*/)
+	if ((aEvent == cocos2d::ui::Widget::TouchEventType::ENDED) &&(!mOptions->isActive()))
 	{
 		cocos2d::Node* btn = static_cast<cocos2d::Node*>(aSender);
 		const std::string& btnName = btn->getName();
 		if (btnName == "btnPlay")
 		{
-
 			//cocos2d::Director::getInstance()->pushScene(MapScene::createScene());
 			//test
 			//if (mLogo->getNumberOfRunningActions() == 0)
@@ -75,10 +78,10 @@ void MainMenuScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::
 		}
 		else if (btnName == "btnOptions")
 		{
-			/*if (mOptionsPopUp != nullptr)
+			if (mOptions != nullptr)
 			{
-				mOptionsPopUp->show();
-			}*/
+				mOptions->show();
+			}
 		}
 		else if (btnName == "btnExit")
 		{

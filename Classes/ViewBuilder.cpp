@@ -11,13 +11,22 @@ bool ViewBuilder::loadFromJson(cocos2d::Node* aParent, const std::string& aJson)
 
 	if (!json.HasParseError())
 	{
+		std::string type;
+		if (json.HasMember("type"))
+		{
+			type = json["type"].GetString();
+		}
+
 		for (auto it = json.MemberBegin(); it != json.MemberEnd(); ++it)
 		{
-			const std::string itName = it->name.GetString();
-			if (itName == "children")
+			if (!type.empty())
 			{
-				loadChildren(aParent, it->value);
+				if (type == "popUpLayer")
+				{
+					initPopUpLayer(nullptr, static_cast<PopUpLayer*>(aParent), it);
+				}
 			}
+			initNode(nullptr, aParent, it);
 		}
 		result = true;
 	}
@@ -69,7 +78,12 @@ void ViewBuilder::loadChildren(cocos2d::Node* aParent, rapidjson::Value& aChildr
 
 bool ViewBuilder::initNode(const cocos2d::Node* aParent, cocos2d::Node* aObject, rapidjson::Value::MemberIterator aAttrIt)
 {
-	const cocos2d::Size& contentSize = aParent->getContentSize();
+	cocos2d::Size contentSize;
+	if (aParent != nullptr)
+	{
+		contentSize = aParent->getContentSize();
+	}
+	
 	const std::string attrName = aAttrIt->name.GetString();
 	bool result = false;
 	
@@ -146,4 +160,16 @@ BMButton* ViewBuilder::createBMButton(rapidjson::Value& aAttr)
 	}
 
 	return btn;
+}
+
+bool ViewBuilder::initPopUpLayer(const cocos2d::Node* aParent, PopUpLayer* aObject, rapidjson::Value::MemberIterator aAttrIt)
+{
+	const std::string attrName = aAttrIt->name.GetString();
+
+	if (attrName == "appearingTime")
+	{
+		aObject->setAppeatingTime(static_cast<float>(aAttrIt->value.GetDouble()));
+	}
+
+	return true;
 }
