@@ -41,12 +41,28 @@ void ViewBuilder::loadChildren(cocos2d::Node* aParent, rapidjson::Value& aChildr
 		{
 			rapidjson::Value& attributes = it->value;
 			cocos2d::Sprite* sprite = cocos2d::Sprite::create();
-			for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
+			if (sprite)
 			{
-				if (initNode(aParent, sprite, attrIt));
-				else if (initSprite(aParent, sprite, attrIt));
+				for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
+				{
+					if (initNode(aParent, sprite, attrIt));
+					else if (initSprite(aParent, sprite, attrIt));
+				}
+				aParent->addChild(sprite);
 			}
-			aParent->addChild(sprite);
+		}
+		else if (childType == "BMButton")
+		{
+			BMButton* btn = createBMButton(it->value);
+			rapidjson::Value& attributes = it->value;
+			if (btn)
+			{
+				for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
+				{
+					initNode(aParent, btn, attrIt);
+				}
+				aParent->addChild(btn);
+			}
 		}
 	}
 }
@@ -100,4 +116,34 @@ bool ViewBuilder::initSprite(const cocos2d::Node* aParent, cocos2d::Sprite* aObj
 	}
 
 	return result;
+}
+
+BMButton* ViewBuilder::createBMButton(rapidjson::Value& aAttr)
+{
+	std::string normalFrameNameID;
+	if (aAttr.HasMember("normal_image_frame_name"))
+	{
+		normalFrameNameID = aAttr["normal_image_frame_name"].GetString();
+	}
+	std::string selectedFrameNameID;
+	if (aAttr.HasMember("selected_image_frame_name"))
+	{
+		selectedFrameNameID = aAttr["selected_image_frame_name"].GetString();
+	}
+	std::string disabledFrameNameID;
+	if (aAttr.HasMember("disabled_image_frame_name"))
+	{
+		disabledFrameNameID = aAttr["disabled_image_frame_name"].GetString();
+	}
+
+	BMButton* btn = BMButton::create(normalFrameNameID, selectedFrameNameID, disabledFrameNameID);
+
+	if (btn && aAttr.HasMember("font") && aAttr.HasMember("title"))
+	{
+		const std::string fontID = aAttr["font"].GetString();
+		const std::string titleID = aAttr["title"].GetString();
+		btn->setTitle(titleID, fontID);
+	}
+
+	return btn;
 }

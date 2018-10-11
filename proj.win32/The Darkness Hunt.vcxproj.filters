@@ -19,6 +19,12 @@
     <Filter Include="src\DataManager">
       <UniqueIdentifier>{cd5378fb-ac66-45d6-bc70-8b35b57e88c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\UI">
+      <UniqueIdentifier>{39b89886-2e99-4636-8388-153110ede87e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\UI\BMButton">
+      <UniqueIdentifier>{82dbe5da-24ca-40e8-afd7-6c785161b696}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -35,6 +41,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\ViewBuilder.cpp">
       <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BMButton.cpp">
+      <Filter>src\UI\BMButton</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +64,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\ViewBuilder.h">
       <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BMButton.h">
+      <Filter>src\UI\BMButton</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
