@@ -32,8 +32,57 @@ bool MainMenuScene::init()
 		if (viewIt != data.views.end())
 		{
 			result &= ViewBuilder::loadFromJson(this, viewIt->second);
-		}	
+		}
+
+		initButtons();
 	}
 
 	return result;
+}
+
+void MainMenuScene::initButtons()
+{
+	std::vector<BMButton*> buttons;
+	buttons.push_back(getChildByName<BMButton*>("btnPlay"));
+	buttons.push_back(getChildByName<BMButton*>("btnOptions"));
+	buttons.push_back(getChildByName<BMButton*>("btnExit"));
+
+	for (auto& button : buttons)
+	{
+		if (button != nullptr)
+		{
+			button->addTouchEventListener(CC_CALLBACK_2(MainMenuScene::onButtonTouched, this));
+		}
+	}
+}
+
+void MainMenuScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent)
+{
+	if ((aEvent == cocos2d::ui::Widget::TouchEventType::ENDED) /*&& (!mOptionsPopUp->isActive())*/)
+	{
+		cocos2d::Node* btn = static_cast<cocos2d::Node*>(aSender);
+		const std::string& btnName = btn->getName();
+		if (btnName == "btnPlay")
+		{
+
+			//cocos2d::Director::getInstance()->pushScene(MapScene::createScene());
+			//test
+			//if (mLogo->getNumberOfRunningActions() == 0)
+			//{
+			//	mLogo->runAction(cocos2d::RotateBy::create(0.5f, 360));
+			//}
+
+		}
+		else if (btnName == "btnOptions")
+		{
+			/*if (mOptionsPopUp != nullptr)
+			{
+				mOptionsPopUp->show();
+			}*/
+		}
+		else if (btnName == "btnExit")
+		{
+			cocos2d::Director::getInstance()->end();
+		}
+	}
 }
