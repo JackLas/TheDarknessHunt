@@ -10,7 +10,10 @@ cocos2d::Scene* MainMenuScene::createScene()
 {
 	cocos2d::Scene* scene = cocos2d::Scene::create();
 	cocos2d::Layer* layer = MainMenuScene::create();
-	scene->addChild(layer);
+	if (layer != nullptr)
+	{
+		scene->addChild(layer);
+	}
 	return scene;
 }
 
@@ -20,7 +23,7 @@ bool MainMenuScene::init()
 	
 	if (Parent::init())
 	{
-		//factory::loadFormJson(this, "VIEW_MAINMENU");
+		result = true;
 		const sData& data = DM->getData();
 		cocos2d::SpriteFrameCache* cache = cocos2d::SpriteFrameCache::getInstance();
 		cache->addSpriteFramesWithFile("images/images.plist");
@@ -28,11 +31,8 @@ bool MainMenuScene::init()
 		const auto viewIt = data.views.find("MAIN_MENU");
 		if (viewIt != data.views.end())
 		{
-			ViewBuilder::loadFromJson(this, viewIt->second);
-		}
-
-		//ViewBuilder::loadFromJson(this, )
-		result = true;
+			result &= ViewBuilder::loadFromJson(this, viewIt->second);
+		}	
 	}
 
 	return result;
