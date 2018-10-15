@@ -26,6 +26,7 @@ bool ViewBuilder::loadFromJson(cocos2d::Node* aParent, const std::string& aJson)
 					initPopUpLayer(nullptr, static_cast<PopUpLayer*>(aParent), it);
 				}
 			}
+
 			initNode(nullptr, aParent, it);
 		}
 		result = true;
@@ -62,8 +63,9 @@ void ViewBuilder::loadChildren(cocos2d::Node* aParent, rapidjson::Value& aChildr
 		}
 		else if (childType == "BMButton")
 		{
-			BMButton* btn = createBMButton(it->value);
 			rapidjson::Value& attributes = it->value;
+			BMButton* btn = createBMButton(attributes);
+			
 			if (btn)
 			{
 				for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
@@ -71,6 +73,32 @@ void ViewBuilder::loadChildren(cocos2d::Node* aParent, rapidjson::Value& aChildr
 					initNode(aParent, btn, attrIt);
 				}
 				aParent->addChild(btn);
+			}
+		}
+		else if (childType == "button")
+		{
+			rapidjson::Value& attributes = it->value;
+			cocos2d::ui::Button* btn = createButton(attributes);
+			if (btn)
+			{
+				for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
+				{
+					initNode(aParent, btn, attrIt);
+				}
+				aParent->addChild(btn);
+			}
+		}
+		else if (childType == "label")
+		{
+			rapidjson::Value& attributes = it->value;
+			cocos2d::Label* label = createLabel(attributes);
+			if (label != nullptr)
+			{
+				for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
+				{
+					initNode(aParent, label , attrIt);
+				}
+				aParent->addChild(label);
 			}
 		}
 	}
@@ -132,6 +160,58 @@ bool ViewBuilder::initSprite(const cocos2d::Node* aParent, cocos2d::Sprite* aObj
 	return result;
 }
 
+bool ViewBuilder::initPopUpLayer(const cocos2d::Node* aParent, PopUpLayer* aObject, rapidjson::Value::MemberIterator aAttrIt)
+{
+	const std::string attrName = aAttrIt->name.GetString();
+
+	if (attrName == "appearingTime")
+	{
+		aObject->setAppeatingTime(static_cast<float>(aAttrIt->value.GetDouble()));
+	}
+
+	return true;
+}
+
+cocos2d::ui::Button* ViewBuilder::createButton(rapidjson::Value& aAttr)
+{
+	const sData& data = DM->getData();
+
+	std::string normalFrameName;
+	if (aAttr.HasMember("normal_image_frame_name"))
+	{
+		const auto imageIt = data.images.find(aAttr["normal_image_frame_name"].GetString());
+		if (imageIt != data.images.end())
+		{
+			normalFrameName = imageIt->second;
+		}
+	}
+
+	std::string selectedFrameName;
+	if (aAttr.HasMember("selected_image_frame_name"))
+	{
+		const auto imageIt = data.images.find(aAttr["selected_image_frame_name"].GetString());
+		if (imageIt != data.images.end())
+		{
+			selectedFrameName = imageIt->second;
+		}
+	}
+	std::string disabledFrameName;
+	if (aAttr.HasMember("disabled_image_frame_name"))
+	{
+		const auto imageIt = data.images.find(aAttr["disabled_image_frame_name"].GetString());
+		if (imageIt != data.images.end())
+		{
+			disabledFrameName = imageIt->second;
+		}
+	}
+
+	return cocos2d::ui::Button::create(normalFrameName,
+		selectedFrameName,
+		disabledFrameName,
+		cocos2d::ui::Widget::TextureResType::PLIST);
+
+}
+
 BMButton* ViewBuilder::createBMButton(rapidjson::Value& aAttr)
 {
 	std::string normalFrameNameID;
@@ -162,14 +242,29 @@ BMButton* ViewBuilder::createBMButton(rapidjson::Value& aAttr)
 	return btn;
 }
 
-bool ViewBuilder::initPopUpLayer(const cocos2d::Node* aParent, PopUpLayer* aObject, rapidjson::Value::MemberIterator aAttrIt)
+cocos2d::Label* ViewBuilder::createLabel(rapidjson::Value& aAttr)
 {
-	const std::string attrName = aAttrIt->name.GetString();
+	cocos2d::Label* label = nullptr;
 
-	if (attrName == "appearingTime")
+	if (aAttr.HasMember("font") && aAttr.HasMember("text"))
 	{
-		aObject->setAppeatingTime(static_cast<float>(aAttrIt->value.GetDouble()));
+		const sData& data = DM->getData();
+
+		std::string fontID = aAttr["font"].GetString();
+		const auto fontIt = data.fonts.find(fontID);
+
+		std::string stringID = aAttr["text"].GetString();
+		const auto stringIt = data.strings.find(stringID);
+
+		if ((fontIt != data.fonts.end()) && (stringIt != data.strings.end()))
+		{
+			label = cocos2d::Label::createWithBMFont(fontIt->second, stringIt->second);
+			if (label != nullptr)
+			{
+				label->setColor(cocos2d::Color3B::BLACK);
+			}
+		}
 	}
 
-	return true;
+	return label;
 }

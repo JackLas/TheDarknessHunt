@@ -2,6 +2,7 @@
 #define VIEWBUILDER_H
 
 #include "cocos2d.h"
+#include "ui/UIButton.h"
 #include "json/document.h"
 
 #include "BMButton.h"
@@ -14,7 +15,9 @@ private:
 	static bool initNode(const cocos2d::Node* aParent, cocos2d::Node* aObject, rapidjson::Value::MemberIterator aAttrIt);
 	static bool initSprite(const cocos2d::Node* aParent, cocos2d::Sprite* aObject, rapidjson::Value::MemberIterator aAttrIt);
 	static bool initPopUpLayer(const cocos2d::Node* aParent, PopUpLayer* aObject, rapidjson::Value::MemberIterator aAttrIt);
+	static cocos2d::ui::Button* createButton(rapidjson::Value& aAttr);
 	static BMButton* createBMButton(rapidjson::Value& aAttr);
+	static cocos2d::Label* createLabel(rapidjson::Value& aAttr);
 public:
 	static bool loadFromJson(cocos2d::Node* aParent, const std::string& aJson);
 };

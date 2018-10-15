@@ -22,6 +22,7 @@ public:
 	static DataManager* getInstance();
 	const sData& getData() const;
 	sSettings& getSettings();
+	void saveSettings();
 };
 
 #define DM DataManager::getInstance()

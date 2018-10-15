@@ -9,6 +9,8 @@ class PopUpOptions : public PopUpLayer
 private:
 	typedef PopUpLayer Parent;
 
+	cocos2d::Node* mFlagSelected;
+
 	void onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent);
 	void initButtons();
 protected:

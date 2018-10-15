@@ -184,21 +184,21 @@ void DataManager::loadViews(const std::string& aPath)
 	}
 }
 
-//void DataManager::saveSettings()
-//{
-//	rapidjson::Document settings;
-//	settings.SetObject();
-//	rapidjson::Value localeObj;
-//	localeObj.SetString(mSettings.locale.c_str(), settings.GetAllocator());
-//	settings.AddMember("locale", localeObj, settings.GetAllocator());
-//
-//	//output
-//	rapidjson::StringBuffer buffer;
-//	rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
-//	settings.Accept(writer);
-//	const std::string settingsFile = cocos2d::FileUtils::getInstance()->getWritablePath() + "/settings.json";
-//	cocos2d::FileUtils::getInstance()->writeStringToFile(buffer.GetString(), settingsFile);
-//}
+void DataManager::saveSettings()
+{
+	rapidjson::Document settings;
+	settings.SetObject();
+	rapidjson::Value localeObj;
+	localeObj.SetString(mSettings.locale.c_str(), settings.GetAllocator());
+	settings.AddMember("locale", localeObj, settings.GetAllocator());
+
+	//output
+	rapidjson::StringBuffer buffer;
+	rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+	settings.Accept(writer);
+	const std::string settingsFile = cocos2d::FileUtils::getInstance()->getWritablePath() + "/settings.json";
+	cocos2d::FileUtils::getInstance()->writeStringToFile(buffer.GetString(), settingsFile);
+}
 //
 //void DataManager::reloadStrings()
 //{
