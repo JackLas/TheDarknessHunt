@@ -73,8 +73,12 @@ void PopUpOptions::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::T
 				btnName == "ru")
 		{
 			mFlagSelected->setPosition(btn->getPosition());
-			DM->getSettings().locale = btnName;
-			//reload strings;
+			std::string& locale = DM->getSettings().locale;
+			if (locale != btnName)
+			{
+				locale = btnName;
+				//reload strings
+			}
 		}
 	}
 }
