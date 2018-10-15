@@ -36,7 +36,10 @@ bool MainMenuScene::init()
 		}
 		
 		mOptions = PopUpOptions::create();
-		addChild(mOptions);
+		if (mOptions != nullptr)
+		{
+			addChild(mOptions);
+		}
 
 		initButtons();
 	}
