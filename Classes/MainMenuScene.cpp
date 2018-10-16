@@ -39,14 +39,6 @@ bool MainMenuScene::init()
 		}
 
 		initButtons();
-
-		//cocos2d::Label* label = cocos2d::Label::createWithBMFont(
-		//	"fonts/times_new_roman_48/font.fnt",
-		//	DM->getStringById("asdasd"));
-		//addChild(label);
-		//label->setMaxLineWidth(getContentSize().width);
-		//label->setColor(cocos2d::Color3B(128,65,22));
-		//label->setPosition(getContentSize() / 2.0f);
 	}
 
 	return result;
