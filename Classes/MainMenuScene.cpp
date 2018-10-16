@@ -25,15 +25,12 @@ bool MainMenuScene::init()
 	if (Parent::init())
 	{
 		result = true;
-		const sData& data = DM->getData();
+
 		cocos2d::SpriteFrameCache* cache = cocos2d::SpriteFrameCache::getInstance();
 		cache->addSpriteFramesWithFile("images/images.plist");
 
-		const auto viewIt = data.views.find("MAIN_MENU");
-		if (viewIt != data.views.end())
-		{
-			result &= ViewBuilder::loadFromJson(this, viewIt->second);
-		}
+		const std::string& view = DM->getViewById("MAIN_MENU");
+		result &= ViewBuilder::loadFromJson(this, view);
 		
 		mOptions = PopUpOptions::create();
 		if (mOptions != nullptr)
@@ -42,6 +39,14 @@ bool MainMenuScene::init()
 		}
 
 		initButtons();
+
+		//cocos2d::Label* label = cocos2d::Label::createWithBMFont(
+		//	"fonts/times_new_roman_48/font.fnt",
+		//	DM->getStringById("asdasd"));
+		//addChild(label);
+		//label->setMaxLineWidth(getContentSize().width);
+		//label->setColor(cocos2d::Color3B(128,65,22));
+		//label->setPosition(getContentSize() / 2.0f);
 	}
 
 	return result;

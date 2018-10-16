@@ -22,9 +22,6 @@
     <Filter Include="src\UI">
       <UniqueIdentifier>{39b89886-2e99-4636-8388-153110ede87e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\UI\BMButton">
-      <UniqueIdentifier>{82dbe5da-24ca-40e8-afd7-6c785161b696}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\UI\PopUpLayer">
       <UniqueIdentifier>{27dc3d03-2a54-490b-a290-b948aabd5e4a}</UniqueIdentifier>
     </Filter>
@@ -44,9 +41,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\ViewBuilder.cpp">
       <Filter>src\scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\BMButton.cpp">
-      <Filter>src\UI\BMButton</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\PopUpLayer.cpp">
       <Filter>src\UI\PopUpLayer</Filter>
@@ -73,9 +67,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\ViewBuilder.h">
       <Filter>src\scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\BMButton.h">
-      <Filter>src\UI\BMButton</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\PopUpLayer.h">
       <Filter>src\UI\PopUpLayer</Filter>

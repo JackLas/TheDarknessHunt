@@ -18,12 +18,9 @@ bool PopUpOptions::init()
 	if (Parent::init())
 	{
 		result = true;
-		const sData& data = DM->getData();
-		const auto viewIt = data.views.find("MAIN_MENU_OPTIONS");
-		if (viewIt != data.views.end())
-		{
-			result &= ViewBuilder::loadFromJson(this, viewIt->second);
-		}
+		
+		const std::string& view = DM->getViewById("MAIN_MENU_OPTIONS");
+		result &= ViewBuilder::loadFromJson(this, view);
 
 		initButtons();
 

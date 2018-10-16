@@ -55,24 +55,12 @@ void ViewBuilder::loadChildren(cocos2d::Node* aParent, rapidjson::Value& aChildr
 			{
 				for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
 				{
-					if (initNode(aParent, sprite, attrIt));
-					else if (initSprite(aParent, sprite, attrIt));
+					if (initNode(aParent, sprite, attrIt))
+						;
+					else if (initSprite(aParent, sprite, attrIt))
+						;
 				}
 				aParent->addChild(sprite);
-			}
-		}
-		else if (childType == "BMButton")
-		{
-			rapidjson::Value& attributes = it->value;
-			BMButton* btn = createBMButton(attributes);
-			
-			if (btn)
-			{
-				for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
-				{
-					initNode(aParent, btn, attrIt);
-				}
-				aParent->addChild(btn);
 			}
 		}
 		else if (childType == "button")
@@ -83,7 +71,11 @@ void ViewBuilder::loadChildren(cocos2d::Node* aParent, rapidjson::Value& aChildr
 			{
 				for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
 				{
-					initNode(aParent, btn, attrIt);
+					if (initButton(aParent, btn, attrIt))
+						;
+					else if (initNode(aParent, btn, attrIt))
+						;
+					
 				}
 				aParent->addChild(btn);
 			}
@@ -133,9 +125,37 @@ bool ViewBuilder::initNode(const cocos2d::Node* aParent, cocos2d::Node* aObject,
 		aObject->setPositionY(contentSize.height * posY);
 		result = true;
 	}
+	else if (attrName == "visible")
+	{
+		aObject->setVisible(aAttrIt->value.GetBool());
+	}
+	else if (attrName == "color")
+	{
+		cocos2d::Color3B color = getColorFromValue(aAttrIt->value);
+		aObject->setColor(color);
+	}
 	else if (attrName == "children")
 	{
 		loadChildren(aObject, aAttrIt->value);
+		result = true;
+	}
+
+	return result;
+}
+
+bool ViewBuilder::initButton(const cocos2d::Node* aParent, cocos2d::ui::Button* aObject, rapidjson::Value::MemberIterator aAttrIt)
+{
+	bool result = false;
+	const std::string attrName = aAttrIt->name.GetString();
+
+	if (attrName == "title")
+	{
+		cocos2d::Label* title = createLabel(aAttrIt->value);
+		if (title != nullptr)
+		{
+			title->setPosition(cocos2d::Vec2::ANCHOR_MIDDLE);
+			aObject->setTitleLabel(title);
+		}
 		result = true;
 	}
 
@@ -172,99 +192,65 @@ bool ViewBuilder::initPopUpLayer(const cocos2d::Node* aParent, PopUpLayer* aObje
 	return true;
 }
 
-cocos2d::ui::Button* ViewBuilder::createButton(rapidjson::Value& aAttr)
+cocos2d::ui::Button* ViewBuilder::createButton(const rapidjson::Value& aAttr)
 {
-	const sData& data = DM->getData();
-
 	std::string normalFrameName;
 	if (aAttr.HasMember("normal_image_frame_name"))
 	{
-		const auto imageIt = data.images.find(aAttr["normal_image_frame_name"].GetString());
-		if (imageIt != data.images.end())
-		{
-			normalFrameName = imageIt->second;
-		}
+		normalFrameName = DM->getFrameNameById(aAttr["normal_image_frame_name"].GetString());
 	}
 
 	std::string selectedFrameName;
 	if (aAttr.HasMember("selected_image_frame_name"))
 	{
-		const auto imageIt = data.images.find(aAttr["selected_image_frame_name"].GetString());
-		if (imageIt != data.images.end())
-		{
-			selectedFrameName = imageIt->second;
-		}
+		selectedFrameName = DM->getFrameNameById(aAttr["selected_image_frame_name"].GetString());
 	}
 	std::string disabledFrameName;
 	if (aAttr.HasMember("disabled_image_frame_name"))
 	{
-		const auto imageIt = data.images.find(aAttr["disabled_image_frame_name"].GetString());
-		if (imageIt != data.images.end())
-		{
-			disabledFrameName = imageIt->second;
-		}
+		disabledFrameName = DM->getFrameNameById(aAttr["disabled_image_frame_name"].GetString());
 	}
 
-	return cocos2d::ui::Button::create(normalFrameName,
-		selectedFrameName,
-		disabledFrameName,
-		cocos2d::ui::Widget::TextureResType::PLIST);
-
+	return cocos2d::ui::Button::create(	normalFrameName,
+										selectedFrameName,
+										disabledFrameName,
+										cocos2d::ui::Widget::TextureResType::PLIST);
 }
 
-BMButton* ViewBuilder::createBMButton(rapidjson::Value& aAttr)
-{
-	std::string normalFrameNameID;
-	if (aAttr.HasMember("normal_image_frame_name"))
-	{
-		normalFrameNameID = aAttr["normal_image_frame_name"].GetString();
-	}
-	std::string selectedFrameNameID;
-	if (aAttr.HasMember("selected_image_frame_name"))
-	{
-		selectedFrameNameID = aAttr["selected_image_frame_name"].GetString();
-	}
-	std::string disabledFrameNameID;
-	if (aAttr.HasMember("disabled_image_frame_name"))
-	{
-		disabledFrameNameID = aAttr["disabled_image_frame_name"].GetString();
-	}
-
-	BMButton* btn = BMButton::create(normalFrameNameID, selectedFrameNameID, disabledFrameNameID);
-
-	if (btn && aAttr.HasMember("font") && aAttr.HasMember("title"))
-	{
-		const std::string fontID = aAttr["font"].GetString();
-		const std::string titleID = aAttr["title"].GetString();
-		btn->setTitle(titleID, fontID);
-	}
-
-	return btn;
-}
-
-cocos2d::Label* ViewBuilder::createLabel(rapidjson::Value& aAttr)
+cocos2d::Label* ViewBuilder::createLabel(const rapidjson::Value& aAttr)
 {
 	cocos2d::Label* label = nullptr;
 
 	if (aAttr.HasMember("font") && aAttr.HasMember("text"))
 	{
-		const sData& data = DM->getData();
-
 		std::string fontID = aAttr["font"].GetString();
-		const auto fontIt = data.fonts.find(fontID);
+		const std::string& font = DM->getFontById(fontID);
 
 		std::string stringID = aAttr["text"].GetString();
-		const auto stringIt = data.strings.find(stringID);
+		const std::string& text = DM->getStringById(stringID);
 
-		if ((fontIt != data.fonts.end()) && (stringIt != data.strings.end()))
-		{
-			label = cocos2d::Label::createWithBMFont(fontIt->second, stringIt->second);
-			if (label != nullptr)
-			{
-				label->setColor(cocos2d::Color3B::BLACK);
-			}
-		}
+		label = cocos2d::Label::createWithBMFont(font, text);
 	}
 
 	return label;
+}
+
+cocos2d::Color3B ViewBuilder::getColorFromValue(const rapidjson::Value& aAttrIt)
+{
+	cocos2d::Color3B color = cocos2d::Color3B::WHITE;
+
+	if (aAttrIt.HasMember("r"))
+	{
+		color.r = static_cast<float>(aAttrIt["r"].GetDouble());
+	}
+	if (aAttrIt.HasMember("g"))
+	{
+		color.g = static_cast<float>(aAttrIt["g"].GetDouble());
+	}
+	if (aAttrIt.HasMember("b"))
+	{
+		color.b = static_cast<float>(aAttrIt["b"].GetDouble());
+	}
+
+	return color;
 }

@@ -4,13 +4,14 @@
 #include "json/writer.h"
 
 DataManager::DataManager()
+	: mDefaultStr("default")
 {
 	loadMainConfig("main_config.json");
 	loadSettings();
-	loadImages("db/images.json");
-	loadFonts("db/fonts.json");
-	loadStrings("locale/" + mSettings.locale + ".json");
-	loadViews("db/views.json");
+	loadResources("db/images.json", mData.images);							//loadImages("db/images.json");
+	loadResources("db/fonts.json", mData.fonts);							//loadFonts("db/fonts.json");
+	loadResources("locale/" + mSettings.locale + ".json", mData.strings);	//loadStrings("locale/" + mSettings.locale + ".json");
+	loadResources("db/views.json", mData.views);							//loadViews("db/views.json");
 }
 
 DataManager* DataManager::getInstance()
@@ -107,75 +108,17 @@ void DataManager::loadSettings()
 	}
 }
 
-void DataManager::loadImages(const std::string& aPath)
+void DataManager::loadResources(const std::string& aPath, std::map<std::string, std::string>& aContainer)
 {
 	rapidjson::Document config;
 	std::string configContent = cocos2d::FileUtils::getInstance()->getStringFromFile(aPath);
 	config.Parse(configContent.c_str());
 	if (!config.HasParseError())
 	{
-		auto& images = mData.images;
+		aContainer[mDefaultStr] = mDefaultStr;
 		for (auto it = config.MemberBegin(); it != config.MemberEnd(); ++it)
 		{
-			images[it->name.GetString()] = it->value.GetString();
-		}
-	}
-	else
-	{
-		CCLOG("'%s' parsing error", aPath.c_str());
-	}
-}
-
-void DataManager::loadFonts(const std::string& aPath)
-{
-	rapidjson::Document config;
-	std::string configContent = cocos2d::FileUtils::getInstance()->getStringFromFile(aPath);
-	config.Parse(configContent.c_str());
-	if (!config.HasParseError())
-	{
-		auto& fonts = mData.fonts;
-		for (auto it = config.MemberBegin(); it != config.MemberEnd(); ++it)
-		{
-			fonts[it->name.GetString()] = it->value.GetString();
-		}
-	}
-	else
-	{
-		CCLOG("'%s' parsing error", aPath.c_str());
-	}
-}
-
-void DataManager::loadStrings(const std::string& aPath)
-{
-	rapidjson::Document config;
-	std::string configContent = cocos2d::FileUtils::getInstance()->getStringFromFile(aPath);
-	config.Parse(configContent.c_str());
-	if (!config.HasParseError())
-	{
-		auto& strings = mData.strings;
-		for (auto it = config.MemberBegin(); it != config.MemberEnd(); ++it)
-		{
-			strings[it->name.GetString()] = it->value.GetString();
-		}
-	}
-	else
-	{
-		CCLOG("'%s' parsing error, locale set 'en'", aPath.c_str());
-		loadStrings("locale/en.json");
-	}
-}
-
-void DataManager::loadViews(const std::string& aPath)
-{
-	rapidjson::Document config;
-	std::string configContent = cocos2d::FileUtils::getInstance()->getStringFromFile(aPath);
-	config.Parse(configContent.c_str());
-	if (!config.HasParseError())
-	{
-		auto& views = mData.views;
-		for (auto it = config.MemberBegin(); it != config.MemberEnd(); ++it)
-		{
-			views[it->name.GetString()] = it->value.GetString();
+			aContainer[it->name.GetString()] = it->value.GetString();
 		}
 	}
 	else
@@ -205,3 +148,33 @@ void DataManager::saveSettings()
 //	mData.strings.clear();
 //	loadStrings("locale/" + mSettings.locale + ".json");
 //}
+
+const std::string& DataManager::getResourceById(const std::string& aID, std::map<std::string, std::string>& aContainer)
+{
+	auto resIt = aContainer.find(aID);
+	if (resIt != aContainer.end())
+	{
+		return resIt->second;
+	}
+	return aContainer[mDefaultStr];
+}
+
+const std::string& DataManager::getStringById(const std::string& aID)
+{
+	return getResourceById(aID, mData.strings);
+}
+
+const std::string& DataManager::getFrameNameById(const std::string& aID)
+{
+	return getResourceById(aID, mData.images);
+}
+
+const std::string& DataManager::getFontById(const std::string& aID)
+{
+	return getResourceById(aID, mData.fonts);
+}
+
+const std::string& DataManager::getViewById(const std::string& aID)
+{
+	return getResourceById(aID, mData.views);
+}
