@@ -1,0 +1,12 @@
+{
+	"MAIN_MENU_BG" : "main_menu_bg.png",
+	"MAIN_LOGO" : "logo.png",
+	"OPTIONS_BG" : "options_popUp_bg.png",
+	"BUTTON" : "button.png",
+	"FLAG_RU": "ru_flag.png",
+	"FLAG_EN": "en_flag.png",
+	"FLAG_SELECTED": "selected_flag.png",
+	"MAP": "map.png",
+	"MAP_CURRENCY_BAR": "currency_bar.png",
+	"MAP_BOTTOM_BAR": "bottom_bar.png"
+}

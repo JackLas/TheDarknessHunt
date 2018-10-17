@@ -1,0 +1,5 @@
+{
+	"MAIN_MENU": "views/main_menu/main_menu.json",
+	"MAIN_MENU_OPTIONS": "views/main_menu/pop_up_options.json",
+	"MAP_SCENE": "views/map/scene_view.json"
+}

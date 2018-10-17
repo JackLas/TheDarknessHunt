@@ -1,0 +1,15 @@
+{
+	"locale": "ru",
+
+	"design_resolution":
+	{
+		"width": 720,
+		"height": 1280
+	},
+
+	"desktop_resolution":
+	{
+		"width": 360, 
+		"height": 640
+	}
+}

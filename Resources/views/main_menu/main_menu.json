@@ -1,0 +1,144 @@
+{
+	"children":
+	{
+		"sprite":
+		{
+			"frame_name": "MAIN_MENU_BG",
+
+			"pos_x": 0.5,
+			"pos_y": 0.5
+		},
+
+		"sprite":
+		{
+			"frame_name": "MAIN_LOGO",
+
+			"pos_x": 0.5,
+			"pos_y": 0.88
+		},
+
+		"button":
+		{
+			"normal_image_frame_name": "BUTTON",
+
+			"name": "btnPlay",
+
+			"pos_x": 0.5,
+			"pos_y": 0.3,
+
+			"title":
+			{
+				"font": "LARGE_FONT",
+				"text": "STID_MAIN_MENU_BTN_PLAY"
+			}
+		},
+
+		"button":
+		{
+			"normal_image_frame_name": "BUTTON",
+
+			"name": "btnOptions",
+
+			"pos_x": 0.5,
+			"pos_y": 0.2,
+
+			"title":
+			{
+				"font": "LARGE_FONT",
+				"text": "STID_MAIN_MENU_BTN_OPTIONS"
+			}
+		},
+
+		"button":
+		{
+			"normal_image_frame_name": "BUTTON",
+
+			"name": "btnExit",
+
+			"pos_x": 0.5,
+			"pos_y": 0.1,
+
+			"title":
+			{
+				"font": "LARGE_FONT",
+				"text": "STID_MAIN_MENU_BTN_EXIT"
+			}
+		},
+
+		"pop_up_layer":
+		{
+			"appearingTime": 0.2,
+			"name": "options_layer",
+			"children":
+			{
+				"sprite":
+				{
+					"frame_name": "OPTIONS_BG",
+					"pos_x": 0.5,
+					"pos_y": 0.5,
+
+					"children":
+					{
+						"label":
+						{
+							"font": "SMALL_FONT",
+							"text": "STID_FISH",
+							"width": 0.85,
+							"pos_x": 0.5,
+							"pos_y": 0.96,
+							"color": {"r": 0, "g": 0, "b": 0},
+							"anchor_x": 0.5,
+							"anchor_y": 1.0
+						}
+					}
+				},
+
+				"button":
+				{
+					"normal_image_frame_name": "BUTTON",
+
+					"name": "btnOK",
+					"pos_x": 0.5,
+					"pos_y": 0.15,
+
+					"title":
+					{
+						"font": "LARGE_FONT",
+						"text": "STID_OPTIONS_BTN_OK"
+					}
+				},
+
+				"button":
+				{
+					"normal_image_frame_name": "FLAG_EN",
+					"name": "en",
+					"pos_x": 0.3,
+					"pos_y": 0.6
+				},
+
+				"button":
+				{
+					"normal_image_frame_name": "FLAG_RU",
+					"name": "ru",
+					"pos_x": 0.7,
+					"pos_y": 0.6
+				},
+
+				"sprite":
+				{
+					"frame_name": "FLAG_SELECTED",
+					"name": "flag_selected"	
+				},
+
+				"label":
+				{
+					"font": "LARGE_FONT",
+					"text": "STID_OPTIONS_LABEL_LANGUAGE",
+					"pos_x": 0.5,
+					"pos_y": 0.72,
+					"color":{"r": 0, "g": 0, "b": 0}
+				}
+			}
+		}
+	}
+}
