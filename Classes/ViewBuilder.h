@@ -15,6 +15,7 @@ private:
 	static bool initSprite(const cocos2d::Node* aParent, cocos2d::Sprite* aObject, rapidjson::Value::MemberIterator aAttrIt);
 	static bool initPopUpLayer(const cocos2d::Node* aParent, PopUpLayer* aObject, rapidjson::Value::MemberIterator aAttrIt);
 	static bool initButton(const cocos2d::Node* aParent, cocos2d::ui::Button* aObject, rapidjson::Value::MemberIterator aAttrIt);
+	static bool initLabel(const cocos2d::Node* aParent, cocos2d::Label* aObject, rapidjson::Value::MemberIterator aAttrIt);
 
 	static cocos2d::ui::Button* createButton(const rapidjson::Value& aAttr);
 	static cocos2d::Label* createLabel(const rapidjson::Value& aAttr);

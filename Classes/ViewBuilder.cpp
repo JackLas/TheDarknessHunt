@@ -88,7 +88,10 @@ void ViewBuilder::loadChildren(cocos2d::Node* aParent, rapidjson::Value& aChildr
 			{
 				for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
 				{
-					initNode(aParent, label , attrIt);
+					if (initLabel(aParent, label, attrIt))
+						;
+					else if(initNode(aParent, label , attrIt))
+						;
 				}
 				aParent->addChild(label);
 			}
@@ -134,6 +137,18 @@ bool ViewBuilder::initNode(const cocos2d::Node* aParent, cocos2d::Node* aObject,
 		cocos2d::Color3B color = getColorFromValue(aAttrIt->value);
 		aObject->setColor(color);
 	}
+	else if (attrName == "anchor_x")
+	{
+		cocos2d::Vec2 anchor = aObject->getAnchorPoint();
+		anchor.x = static_cast<float>(aAttrIt->value.GetDouble());
+		aObject->setAnchorPoint(anchor);
+	}
+	else if (attrName == "anchor_y")
+	{
+		cocos2d::Vec2 anchor = aObject->getAnchorPoint();
+		anchor.y = static_cast<float>(aAttrIt->value.GetDouble());
+		aObject->setAnchorPoint(anchor);
+	}
 	else if (attrName == "children")
 	{
 		loadChildren(aObject, aAttrIt->value);
@@ -175,6 +190,20 @@ bool ViewBuilder::initSprite(const cocos2d::Node* aParent, cocos2d::Sprite* aObj
 			aObject->initWithSpriteFrameName(frameName->second);
 			result = true;
 		}
+	}
+
+	return result;
+}
+
+bool ViewBuilder::initLabel(const cocos2d::Node* aParent, cocos2d::Label* aObject, rapidjson::Value::MemberIterator aAttrIt)
+{
+	bool result = false;
+	const std::string attrName = aAttrIt->name.GetString();
+	if (attrName == "width")
+	{
+		float width = static_cast<float>(aAttrIt->value.GetDouble());
+		width *= aParent->getContentSize().width;
+		aObject->setMaxLineWidth(width);
 	}
 
 	return result;
