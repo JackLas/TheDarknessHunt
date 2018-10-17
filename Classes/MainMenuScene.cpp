@@ -19,6 +19,16 @@ cocos2d::Scene* MainMenuScene::createScene()
 	return scene;
 }
 
+void MainMenuScene::onEnter()
+{
+	Parent::onEnter();
+	cocos2d::Director::getInstance()->getScheduler()->performFunctionInCocosThread([]() {
+		cocos2d::Director::getInstance()->getTextureCache()->removeUnusedTextures();
+		cocos2d::SpriteFrameCache* cache = cocos2d::SpriteFrameCache::getInstance();
+		cache->removeUnusedSpriteFrames();
+	});
+}
+
 bool MainMenuScene::init()
 {
 	bool result = false;

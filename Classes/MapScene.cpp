@@ -21,6 +21,16 @@ cocos2d::Scene* MapScene::createScene()
 	return scene;
 }
 
+void MapScene::onEnter()
+{
+	Parent::onEnter();
+	cocos2d::Director::getInstance()->getScheduler()->performFunctionInCocosThread([]() {
+		cocos2d::Director::getInstance()->getTextureCache()->removeUnusedTextures();
+		cocos2d::SpriteFrameCache* cache = cocos2d::SpriteFrameCache::getInstance();
+		cache->removeUnusedSpriteFrames();
+	});
+}
+
 bool MapScene::init()
 {
 	bool result = false;

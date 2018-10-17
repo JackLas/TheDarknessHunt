@@ -11,6 +11,7 @@ private:
 	MapScene();
 protected:
 	virtual bool init();
+	virtual void onEnter();
 	CREATE_FUNC(MapScene);
 
 public:

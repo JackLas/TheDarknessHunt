@@ -17,6 +17,7 @@ private:
 	void onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent);
 	void initButtons();
 protected:
+	virtual void onEnter();
 	virtual bool init();
 public:
 	static cocos2d::Scene* createScene();
