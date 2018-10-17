@@ -151,6 +151,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\DataManager.cpp" />
     <ClCompile Include="..\Classes\MainMenuScene.cpp" />
+    <ClCompile Include="..\Classes\MapScene.cpp" />
     <ClCompile Include="..\Classes\PopUpLayer.cpp" />
     <ClCompile Include="..\Classes\PopUpOptions.cpp" />
     <ClCompile Include="..\Classes\ViewBuilder.cpp" />
@@ -161,6 +162,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\DataManager.h" />
     <ClInclude Include="..\Classes\dataTypes.h" />
     <ClInclude Include="..\Classes\MainMenuScene.h" />
+    <ClInclude Include="..\Classes\MapScene.h" />
     <ClInclude Include="..\Classes\PopUpLayer.h" />
     <ClInclude Include="..\Classes\PopUpOptions.h" />
     <ClInclude Include="..\Classes\ViewBuilder.h" />

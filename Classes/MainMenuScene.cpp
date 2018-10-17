@@ -1,6 +1,7 @@
 #include "MainMenuScene.h"
 #include "DataManager.h"
 #include "ViewBuilder.h"
+#include "MapScene.h"
 
 MainMenuScene::MainMenuScene()
 	: mOptions(nullptr)
@@ -62,19 +63,14 @@ void MainMenuScene::initButtons()
 
 void MainMenuScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent)
 {
-	if ((aEvent == cocos2d::ui::Widget::TouchEventType::ENDED) &&(!mOptions->isActive()))
+	if ((aEvent == cocos2d::ui::Widget::TouchEventType::ENDED) && (!mOptions->isActive()))
 	{
 		cocos2d::Node* btn = static_cast<cocos2d::Node*>(aSender);
 		const std::string& btnName = btn->getName();
 		if (btnName == "btnPlay")
 		{
 			//cocos2d::Director::getInstance()->pushScene(MapScene::createScene());
-			//test
-			//if (mLogo->getNumberOfRunningActions() == 0)
-			//{
-			//	mLogo->runAction(cocos2d::RotateBy::create(0.5f, 360));
-			//}
-
+			cocos2d::Director::getInstance()->replaceScene(MapScene::createScene());
 		}
 		else if (btnName == "btnOptions")
 		{

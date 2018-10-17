@@ -25,6 +25,9 @@
     <Filter Include="src\UI\PopUpLayer">
       <UniqueIdentifier>{27dc3d03-2a54-490b-a290-b948aabd5e4a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scenes\MapScene">
+      <UniqueIdentifier>{74abef8f-7ee3-4090-9212-aaea3945557c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -47,6 +50,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\PopUpOptions.cpp">
       <Filter>src\scenes\MainMenuScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MapScene.cpp">
+      <Filter>src\scenes\MapScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\PopUpOptions.h">
       <Filter>src\scenes\MainMenuScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MapScene.h">
+      <Filter>src\scenes\MapScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
