@@ -1,10 +1,10 @@
 #include "MainMenuScene.h"
 #include "DataManager.h"
-#include "ViewBuilder.h"
 #include "MapScene.h"
 
+#include "PopUpLayer.h"
+
 MainMenuScene::MainMenuScene()
-	: mOptions(nullptr)
 {
 }
 
@@ -19,79 +19,85 @@ cocos2d::Scene* MainMenuScene::createScene()
 	return scene;
 }
 
-void MainMenuScene::onEnter()
+void MainMenuScene::loadSpriteCache()
 {
-	Parent::onEnter();
-	cocos2d::Director::getInstance()->getScheduler()->performFunctionInCocosThread([]() {
-		cocos2d::Director::getInstance()->getTextureCache()->removeUnusedTextures();
-		cocos2d::SpriteFrameCache* cache = cocos2d::SpriteFrameCache::getInstance();
-		cache->removeUnusedSpriteFrames();
-	});
+	cocos2d::SpriteFrameCache* cache = cocos2d::SpriteFrameCache::getInstance();
+	cache->addSpriteFramesWithFile("images/images.plist");
 }
 
 bool MainMenuScene::init()
 {
 	bool result = false;
 	
-	if (Parent::init())
+	if (Parent::init(DM->getViewById("MAIN_MENU")))
 	{
 		result = true;
+		setButtonTouchListener(CC_CALLBACK_2(MainMenuScene::onButtonTouched, this));
 
-		cocos2d::SpriteFrameCache* cache = cocos2d::SpriteFrameCache::getInstance();
-		cache->addSpriteFramesWithFile("images/images.plist");
-
-		const std::string& view = DM->getViewById("MAIN_MENU");
-		result &= ViewBuilder::loadFromJson(this, view);
-		
-		mOptions = PopUpOptions::create();
-		if (mOptions != nullptr)
+		PopUpLayer* optionsLayer = getChildByName<PopUpLayer*>("options_layer");
+		if (optionsLayer != nullptr)
 		{
-			addChild(mOptions);
+			cocos2d::Node* flagSelected = optionsLayer->getChildByName("flag_selected");
+			if (flagSelected != nullptr)
+			{
+				cocos2d::Node* flagLocaleButton = optionsLayer->getChildByName(DM->getSettings().locale);
+				if (flagLocaleButton != nullptr)
+				{
+					flagSelected->setPosition(flagLocaleButton->getPosition());
+				}
+			}
 		}
-
-		initButtons();
 	}
 
 	return result;
 }
 
-void MainMenuScene::initButtons()
-{
-	std::vector<cocos2d::ui::Button*> buttons;
-	buttons.push_back(getChildByName<cocos2d::ui::Button*>("btnPlay"));
-	buttons.push_back(getChildByName<cocos2d::ui::Button*>("btnOptions"));
-	buttons.push_back(getChildByName<cocos2d::ui::Button*>("btnExit"));
-
-	for (auto& button : buttons)
-	{
-		if (button != nullptr)
-		{
-			button->addTouchEventListener(CC_CALLBACK_2(MainMenuScene::onButtonTouched, this));
-		}
-	}
-}
-
 void MainMenuScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent)
 {
-	if ((aEvent == cocos2d::ui::Widget::TouchEventType::ENDED) && (!mOptions->isActive()))
+	if (aEvent == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
-		cocos2d::Node* btn = static_cast<cocos2d::Node*>(aSender);
-		const std::string& btnName = btn->getName();
-		if (btnName == "btnPlay")
+		PopUpLayer* optionsLayer = getChildByName<PopUpLayer*>("options_layer");
+
+		if (optionsLayer != nullptr)
 		{
-			//cocos2d::Director::getInstance()->pushScene(MapScene::createScene());
-			cocos2d::Director::getInstance()->replaceScene(MapScene::createScene());
-		}
-		else if (btnName == "btnOptions")
-		{
-			if (mOptions != nullptr)
+			cocos2d::Node* btn = static_cast<cocos2d::Node*>(aSender);
+			const std::string& btnName = btn->getName();
+
+			if (!optionsLayer->isActive())
 			{
-				mOptions->show();
+				if (btnName == "btnPlay")
+				{
+					//cocos2d::Director::getInstance()->pushScene(MapScene::createScene());
+					cocos2d::Director::getInstance()->replaceScene(MapScene::createScene());
+				}
+				else if (btnName == "btnOptions")
+				{
+					optionsLayer->show();
+				}
+				else if (btnName == "btnExit")
+				{
+					cocos2d::Director::getInstance()->end();
+				}
 			}
-		}
-		else if (btnName == "btnExit")
-		{
-			cocos2d::Director::getInstance()->end();
+			else
+			{
+				if (btnName == "btnOK")
+				{
+					optionsLayer->hide();
+					DM->saveSettings();
+				}
+				else if (btnName == "en" || btnName == "ru")
+				{
+					cocos2d::Node* flagSelected = optionsLayer->getChildByName("flag_selected");
+					flagSelected->setPosition(btn->getPosition());
+					std::string& locale = DM->getSettings().locale;
+					if (locale != btnName)
+					{
+						locale = btnName;
+						//reload strings
+					}
+				}
+			}
 		}
 	}
 }

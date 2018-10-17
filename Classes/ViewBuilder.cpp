@@ -1,4 +1,6 @@
 #include "ViewBuilder.h"
+#include "viewObjectType.h"
+
 #include "json/document.h"
 #include "DataManager.h"
 
@@ -51,6 +53,7 @@ void ViewBuilder::loadChildren(cocos2d::Node* aParent, rapidjson::Value& aChildr
 		{
 			rapidjson::Value& attributes = it->value;
 			cocos2d::Sprite* sprite = cocos2d::Sprite::create();
+			sprite->setTag(static_cast<int>(eViewObjectType::OBJECT_TYPE_SPRITE));
 			if (sprite)
 			{
 				for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
@@ -67,6 +70,7 @@ void ViewBuilder::loadChildren(cocos2d::Node* aParent, rapidjson::Value& aChildr
 		{
 			rapidjson::Value& attributes = it->value;
 			cocos2d::ui::Button* btn = createButton(attributes);
+			btn->setTag(static_cast<int>(eViewObjectType::OBEJCT_TYPE_BUTTON));
 			if (btn)
 			{
 				for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
@@ -84,6 +88,7 @@ void ViewBuilder::loadChildren(cocos2d::Node* aParent, rapidjson::Value& aChildr
 		{
 			rapidjson::Value& attributes = it->value;
 			cocos2d::Label* label = createLabel(attributes);
+			label->setTag(static_cast<int>(eViewObjectType::OBJECT_TYPE_LABEL));
 			if (label != nullptr)
 			{
 				for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
@@ -94,6 +99,23 @@ void ViewBuilder::loadChildren(cocos2d::Node* aParent, rapidjson::Value& aChildr
 						;
 				}
 				aParent->addChild(label);
+			}
+		}
+		else if (childType == "pop_up_layer")
+		{
+			rapidjson::Value& attributes = it->value;
+			PopUpLayer* layer = PopUpLayer::create();
+			layer->setTag(static_cast<int>(eViewObjectType::OBJECT_TYPE_POP_UP_LAYER));
+			if (layer != nullptr)
+			{
+				for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
+				{
+					if (initPopUpLayer(aParent, layer, attrIt))
+						;
+					else if (initNode(aParent, layer, attrIt))
+						;
+				}
+				aParent->addChild(layer);
 			}
 		}
 	}
@@ -212,13 +234,15 @@ bool ViewBuilder::initLabel(const cocos2d::Node* aParent, cocos2d::Label* aObjec
 bool ViewBuilder::initPopUpLayer(const cocos2d::Node* aParent, PopUpLayer* aObject, rapidjson::Value::MemberIterator aAttrIt)
 {
 	const std::string attrName = aAttrIt->name.GetString();
+	bool result = false;
 
 	if (attrName == "appearingTime")
 	{
 		aObject->setAppeatingTime(static_cast<float>(aAttrIt->value.GetDouble()));
+		result = true;
 	}
 
-	return true;
+	return result;
 }
 
 cocos2d::ui::Button* ViewBuilder::createButton(const rapidjson::Value& aAttr)

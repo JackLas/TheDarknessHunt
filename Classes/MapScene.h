@@ -1,18 +1,19 @@
 #ifndef MAPSCENE_H
 #define MAPSCENE_H
 
-#include "cocos2d.h"
+#include "BaseScene.h"
 
-class MapScene: public cocos2d::Layer
+class MapScene: public BaseScene
 {
 private:
-	typedef cocos2d::Layer Parent;
+	typedef BaseScene Parent;
 
 	MapScene();
 protected:
-	virtual bool init();
-	virtual void onEnter();
 	CREATE_FUNC(MapScene);
+
+	virtual bool init();
+	virtual void loadSpriteCache();
 
 public:
 	static cocos2d::Scene* createScene();

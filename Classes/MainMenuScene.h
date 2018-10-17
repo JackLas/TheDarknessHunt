@@ -2,24 +2,24 @@
 #define MAINMENUSCENE_H
 
 #include "cocos2d.h"
-#include "ui/UIButton.h"
-#include "PopUpOptions.h"
+#include "BaseScene.h"
 
-class MainMenuScene : public cocos2d::Layer
+#include "ui/UIButton.h"
+
+class MainMenuScene: public BaseScene
 {
 private:
-	typedef cocos2d::Layer Parent;
-
-	PopUpOptions* mOptions;
+	typedef BaseScene Parent;
 
 	MainMenuScene();
 	CREATE_FUNC(MainMenuScene);
 	void onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent);
-	void initButtons();
+
 protected:
-	virtual void onEnter();
 	virtual bool init();
+	virtual void loadSpriteCache();
 public:
 	static cocos2d::Scene* createScene();
 };
+
 #endif //MAINMENUSCENE_H

@@ -1,5 +1,4 @@
 #include "MapScene.h"
-#include "ViewBuilder.h"
 #include "DataManager.h"
 
 MapScene::MapScene()
@@ -12,8 +11,8 @@ MapScene::~MapScene()
 
 cocos2d::Scene* MapScene::createScene()
 {
-	cocos2d::Layer* layer = MapScene::create();
 	cocos2d::Scene* scene = cocos2d::Scene::create();
+	cocos2d::Layer* layer = MapScene::create();
 	if (layer != nullptr)
 	{
 		scene->addChild(layer);
@@ -21,30 +20,14 @@ cocos2d::Scene* MapScene::createScene()
 	return scene;
 }
 
-void MapScene::onEnter()
+void MapScene::loadSpriteCache()
 {
-	Parent::onEnter();
-	cocos2d::Director::getInstance()->getScheduler()->performFunctionInCocosThread([]() {
-		cocos2d::Director::getInstance()->getTextureCache()->removeUnusedTextures();
-		cocos2d::SpriteFrameCache* cache = cocos2d::SpriteFrameCache::getInstance();
-		cache->removeUnusedSpriteFrames();
-	});
+	cocos2d::SpriteFrameCache* cache = cocos2d::SpriteFrameCache::getInstance();
+	cache->addSpriteFramesWithFile("images/images.plist");
 }
 
 bool MapScene::init()
 {
-	bool result = false;
-
-	cocos2d::SpriteFrameCache* cache = cocos2d::SpriteFrameCache::getInstance();
-	cache->addSpriteFramesWithFile("images/images.plist");
-
-	if (Parent::init())
-	{
-		result = true;
-
-		const std::string& view = DM->getViewById("MAP_SCENE");
-		result &= ViewBuilder::loadFromJson(this, view);
-	}
-
-	return result;
+	const std::string& view = DM->getViewById("MAP_SCENE");
+	return Parent::init(view);
 }

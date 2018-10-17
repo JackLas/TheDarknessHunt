@@ -48,11 +48,11 @@
     <ClCompile Include="..\Classes\PopUpLayer.cpp">
       <Filter>src\UI\PopUpLayer</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\PopUpOptions.cpp">
-      <Filter>src\scenes\MainMenuScene</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\MapScene.cpp">
       <Filter>src\scenes\MapScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BaseScene.cpp">
+      <Filter>src\scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,11 +77,14 @@
     <ClInclude Include="..\Classes\PopUpLayer.h">
       <Filter>src\UI\PopUpLayer</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\PopUpOptions.h">
-      <Filter>src\scenes\MainMenuScene</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\MapScene.h">
       <Filter>src\scenes\MapScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BaseScene.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\viewObjectType.h">
+      <Filter>src\scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
