@@ -36,9 +36,6 @@ bool MapScene::init()
 	bool result = false;
 
 	cocos2d::SpriteFrameCache* cache = cocos2d::SpriteFrameCache::getInstance();
-	cache->removeUnusedSpriteFrames();
-	cocos2d::Director::getInstance()->getTextureCache()->removeUnusedTextures();
-
 	cache->addSpriteFramesWithFile("images/images.plist");
 
 	if (Parent::init())
