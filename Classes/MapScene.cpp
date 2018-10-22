@@ -23,7 +23,8 @@ cocos2d::Scene* MapScene::createScene()
 void MapScene::loadSpriteCache()
 {
 	cocos2d::SpriteFrameCache* cache = cocos2d::SpriteFrameCache::getInstance();
-	cache->addSpriteFramesWithFile("images/images.plist");
+	cache->addSpriteFramesWithFile("images/map_scene/map_scene.plist");
+	CCLOG("test");
 }
 
 bool MapScene::init()

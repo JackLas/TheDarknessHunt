@@ -6,7 +6,12 @@
 	"FLAG_RU": "ru_flag.png",
 	"FLAG_EN": "en_flag.png",
 	"FLAG_SELECTED": "selected_flag.png",
-	"MAP": "map.png",
+
+	"MAP_PART_1": "part1.png",
+	"MAP_PART_2": "part2.png",
 	"MAP_CURRENCY_BAR": "currency_bar.png",
-	"MAP_BOTTOM_BAR": "bottom_bar.png"
+	"MAP_BOTTOM_BAR": "bottom_bar.png",
+	"MAP_ICON_CITY": "city_icon.png",
+	"MAP_ICON_TAVERN": "tavern_icon.png",
+	"MAP_ICON_CAMP": "camp_icon.png"
 }

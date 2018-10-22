@@ -22,7 +22,7 @@ cocos2d::Scene* MainMenuScene::createScene()
 void MainMenuScene::loadSpriteCache()
 {
 	cocos2d::SpriteFrameCache* cache = cocos2d::SpriteFrameCache::getInstance();
-	cache->addSpriteFramesWithFile("images/images.plist");
+	cache->addSpriteFramesWithFile("images/main_menu/main_menu.plist");
 }
 
 bool MainMenuScene::init()

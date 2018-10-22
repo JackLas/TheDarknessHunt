@@ -1,11 +1,52 @@
 {
 	"children":
 	{
-		"sprite":
+		"scrollview":
 		{
-			"frame_name": "MAP",
 			"pos_x": 0.5,
-			"pos_y": 0.5
+			"pos_y": 0.5,
+			"content_width": 1.0,
+			"content_height": 0.8,
+
+			"parts":
+			{
+				"sprite":
+				{
+					"frame_name": "MAP_PART_1",
+
+					"children":
+					{
+						"button":
+						{
+							"normal_image_frame_name": "MAP_ICON_CITY",
+							"name": "city",
+							"pos_x": 0.28,
+							"pos_y": 0.14
+						},
+
+						"button":
+						{
+							"normal_image_frame_name": "MAP_ICON_TAVERN",
+							"name": "tavern",
+							"pos_x": 0.74,
+							"pos_y": 0.34
+						},
+
+						"button":
+						{
+							"normal_image_frame_name": "MAP_ICON_CAMP",
+							"name": "camp",
+							"pos_x": 0.22,
+							"pos_y": 0.67
+						}
+					}
+				},
+
+				"sprite":
+				{
+					"frame_name": "MAP_PART_2"
+				}
+			}
 		},
 
 		"sprite":

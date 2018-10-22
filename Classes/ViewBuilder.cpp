@@ -13,22 +13,8 @@ bool ViewBuilder::loadFromJson(cocos2d::Node* aParent, const std::string& aJson)
 
 	if (!json.HasParseError())
 	{
-		std::string type;
-		if (json.HasMember("type"))
-		{
-			type = json["type"].GetString();
-		}
-
 		for (auto it = json.MemberBegin(); it != json.MemberEnd(); ++it)
 		{
-			if (!type.empty())
-			{
-				if (type == "popUpLayer")
-				{
-					initPopUpLayer(nullptr, static_cast<PopUpLayer*>(aParent), it);
-				}
-			}
-
 			initNode(nullptr, aParent, it);
 		}
 		result = true;
@@ -42,83 +28,137 @@ bool ViewBuilder::loadFromJson(cocos2d::Node* aParent, const std::string& aJson)
 	return result;
 }
 
+cocos2d::Node* ViewBuilder::initChild(cocos2d::Node* aParent, rapidjson::Value::MemberIterator aChildIt)
+{
+	const std::string childType = aChildIt->name.GetString();
+	rapidjson::Value& attributes = aChildIt->value;
+	cocos2d::Node* result = nullptr;
+
+	if (childType == "sprite")
+	{
+		cocos2d::Sprite* sprite = cocos2d::Sprite::create();
+		sprite->setTag(static_cast<int>(eViewObjectType::OBJECT_TYPE_SPRITE));
+		if (sprite)
+		{
+			for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
+			{
+				if (initNode(aParent, sprite, attrIt))
+					;
+				else if (initSprite(aParent, sprite, attrIt))
+					;
+			}
+			result = sprite;
+		}
+	}
+	else if (childType == "button")
+	{
+		cocos2d::ui::Button* btn = createButton(attributes);
+		btn->setTag(static_cast<int>(eViewObjectType::OBEJCT_TYPE_BUTTON));
+		if (btn)
+		{
+			for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
+			{
+				if (initButton(aParent, btn, attrIt))
+					;
+				else if (initNode(aParent, btn, attrIt))
+					;
+
+			}
+			result = btn;
+		}
+	}
+	else if (childType == "label")
+	{
+		cocos2d::Label* label = createLabel(attributes);
+		label->setTag(static_cast<int>(eViewObjectType::OBJECT_TYPE_LABEL));
+		if (label != nullptr)
+		{
+			for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
+			{
+				if (initLabel(aParent, label, attrIt))
+					;
+				else if (initNode(aParent, label, attrIt))
+					;
+			}
+			result = label;
+		}
+	}
+	else if (childType == "pop_up_layer")
+	{
+		PopUpLayer* layer = PopUpLayer::create();
+		layer->setTag(static_cast<int>(eViewObjectType::OBJECT_TYPE_POP_UP_LAYER));
+		if (layer != nullptr)
+		{
+			for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
+			{
+				if (initPopUpLayer(aParent, layer, attrIt))
+					;
+				else if (initNode(aParent, layer, attrIt))
+					;
+			}
+			result = layer;
+		}
+	}
+	else if (childType == "scrollview")
+	{
+		cocos2d::ui::ScrollView* scrollView = cocos2d::ui::ScrollView::create();
+		if (scrollView != nullptr)
+		{
+			for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
+			{
+				if (initScrollView(aParent, scrollView, attrIt))
+					;
+				else if (initNode(aParent, scrollView, attrIt))
+					;
+			}
+			scrollView->setScrollBarEnabled(true);
+			scrollView->setDirection(cocos2d::ui::ScrollView::Direction::VERTICAL);
+			scrollView->setInnerContainerPosition(cocos2d::Vec2::ZERO);
+			scrollView->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
+
+			result = scrollView;
+		}
+	}
+
+	return result;
+}
+
 void ViewBuilder::loadChildren(cocos2d::Node* aParent, rapidjson::Value& aChildrenValue)
 {
 	const cocos2d::Size& contentSize = aParent->getContentSize();
 
 	for (auto it = aChildrenValue.MemberBegin(); it != aChildrenValue.MemberEnd(); ++it)
 	{
-		const std::string childType = it->name.GetString();
-		if (childType == "sprite")
+		cocos2d::Node* child = initChild(aParent, it);
+		if (child != nullptr)
 		{
-			rapidjson::Value& attributes = it->value;
-			cocos2d::Sprite* sprite = cocos2d::Sprite::create();
-			sprite->setTag(static_cast<int>(eViewObjectType::OBJECT_TYPE_SPRITE));
-			if (sprite)
-			{
-				for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
-				{
-					if (initNode(aParent, sprite, attrIt))
-						;
-					else if (initSprite(aParent, sprite, attrIt))
-						;
-				}
-				aParent->addChild(sprite);
-			}
-		}
-		else if (childType == "button")
-		{
-			rapidjson::Value& attributes = it->value;
-			cocos2d::ui::Button* btn = createButton(attributes);
-			btn->setTag(static_cast<int>(eViewObjectType::OBEJCT_TYPE_BUTTON));
-			if (btn)
-			{
-				for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
-				{
-					if (initButton(aParent, btn, attrIt))
-						;
-					else if (initNode(aParent, btn, attrIt))
-						;
-					
-				}
-				aParent->addChild(btn);
-			}
-		}
-		else if (childType == "label")
-		{
-			rapidjson::Value& attributes = it->value;
-			cocos2d::Label* label = createLabel(attributes);
-			label->setTag(static_cast<int>(eViewObjectType::OBJECT_TYPE_LABEL));
-			if (label != nullptr)
-			{
-				for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
-				{
-					if (initLabel(aParent, label, attrIt))
-						;
-					else if(initNode(aParent, label , attrIt))
-						;
-				}
-				aParent->addChild(label);
-			}
-		}
-		else if (childType == "pop_up_layer")
-		{
-			rapidjson::Value& attributes = it->value;
-			PopUpLayer* layer = PopUpLayer::create();
-			layer->setTag(static_cast<int>(eViewObjectType::OBJECT_TYPE_POP_UP_LAYER));
-			if (layer != nullptr)
-			{
-				for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
-				{
-					if (initPopUpLayer(aParent, layer, attrIt))
-						;
-					else if (initNode(aParent, layer, attrIt))
-						;
-				}
-				aParent->addChild(layer);
-			}
+			aParent->addChild(child);
 		}
 	}
+}
+
+void ViewBuilder::loadScrollViewParts(cocos2d::ui::ScrollView* aParent, rapidjson::Value& aPartsValue)
+{
+	const cocos2d::Size& contentSize = aParent->getContentSize();
+	cocos2d::Size innerContainerSize = aParent->getInnerContainerSize();
+	innerContainerSize.height = 0.0f;
+
+	for (auto it = aPartsValue.MemberBegin(); it != aPartsValue.MemberEnd(); ++it)
+	{
+		cocos2d::Node* child = initChild(aParent, it);
+		if (child != nullptr)
+		{
+			child->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_BOTTOM);
+			const cocos2d::Size& childSize = child->getContentSize();
+			cocos2d::Size childPos = innerContainerSize;
+			childPos.width *= 0.5f;
+			child->setPosition(childPos);
+			innerContainerSize.height += childSize.height;
+			aParent->addChild(child);
+		}
+	}
+	aParent->setInnerContainerSize(innerContainerSize);
+
 }
 
 bool ViewBuilder::initNode(const cocos2d::Node* aParent, cocos2d::Node* aObject, rapidjson::Value::MemberIterator aAttrIt)
@@ -240,6 +280,31 @@ bool ViewBuilder::initPopUpLayer(const cocos2d::Node* aParent, PopUpLayer* aObje
 	{
 		aObject->setAppeatingTime(static_cast<float>(aAttrIt->value.GetDouble()));
 		result = true;
+	}
+
+	return result;
+}
+
+bool ViewBuilder::initScrollView(const cocos2d::Node* aParent, cocos2d::ui::ScrollView* aObject, rapidjson::Value::MemberIterator aAttrIt)
+{
+	const std::string attrName = aAttrIt->name.GetString();
+	bool result = false;
+
+	if (attrName == "content_width")
+	{
+		cocos2d::Size currentSize = aObject->getContentSize();
+		currentSize.width = aParent->getContentSize().width * static_cast<float>(aAttrIt->value.GetDouble());
+		aObject->setContentSize(currentSize);
+	}
+	else if (attrName == "content_height")
+	{
+		cocos2d::Size currentSize = aObject->getContentSize();
+		currentSize.height = aParent->getContentSize().height * static_cast<float>(aAttrIt->value.GetDouble());
+		aObject->setContentSize(currentSize);
+	}
+	else if (attrName == "parts")
+	{
+		loadScrollViewParts(static_cast<cocos2d::ui::ScrollView*>(aObject), aAttrIt->value);
 	}
 
 	return result;
