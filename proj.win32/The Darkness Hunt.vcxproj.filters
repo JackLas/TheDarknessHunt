@@ -28,6 +28,18 @@
     <Filter Include="src\scenes\MapScene">
       <UniqueIdentifier>{74abef8f-7ee3-4090-9212-aaea3945557c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scenes\BaseScene">
+      <UniqueIdentifier>{f05dac8c-a252-4d1a-8666-0d5bed42312e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scenes\TavernScene">
+      <UniqueIdentifier>{f0bf7fae-94d6-4708-8203-30360bdc56f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scenes\CityScene">
+      <UniqueIdentifier>{906c8d69-4576-4aa1-bd39-ba0b1320ba55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scenes\CampScene">
+      <UniqueIdentifier>{3a233dbd-59f2-430e-9024-e0ece3a291d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -52,7 +64,10 @@
       <Filter>src\scenes\MapScene</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\BaseScene.cpp">
-      <Filter>src\scenes</Filter>
+      <Filter>src\scenes\BaseScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CityScene.cpp">
+      <Filter>src\scenes\CityScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -80,11 +95,14 @@
     <ClInclude Include="..\Classes\MapScene.h">
       <Filter>src\scenes\MapScene</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\BaseScene.h">
-      <Filter>src\scenes</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\viewObjectType.h">
       <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BaseScene.h">
+      <Filter>src\scenes\BaseScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CityScene.h">
+      <Filter>src\scenes\CityScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

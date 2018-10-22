@@ -75,22 +75,7 @@
 				{
 					"frame_name": "OPTIONS_BG",
 					"pos_x": 0.5,
-					"pos_y": 0.5,
-
-					"children":
-					{
-						"label":
-						{
-							"font": "SMALL_FONT",
-							"text": "STID_FISH",
-							"width": 0.85,
-							"pos_x": 0.5,
-							"pos_y": 0.96,
-							"color": {"r": 0, "g": 0, "b": 0},
-							"anchor_x": 0.5,
-							"anchor_y": 1.0
-						}
-					}
+					"pos_y": 0.5
 				},
 
 				"button":

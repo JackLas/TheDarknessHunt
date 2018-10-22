@@ -1,19 +1,17 @@
-#ifndef MAPSCENE_H
-#define MAPSCENE_H
+#ifndef CITYSCENE_H
+#define CITYSCENE_H 
 
 #include "cocos2d.h"
 #include "BaseScene.h"
-#include "ui/UIButton.h"
 
-class MapScene: public BaseScene
+class CityScene : public BaseScene
 {
 private:
 	typedef BaseScene Parent;
 
-	MapScene();
+	CityScene();
 protected:
-	CREATE_FUNC(MapScene);
-
+	CREATE_FUNC(CityScene);
 	virtual bool init();
 	virtual void loadSpriteCache();
 
@@ -21,7 +19,7 @@ protected:
 
 public:
 	static cocos2d::Scene* createScene();
-	virtual ~MapScene();
+	virtual ~CityScene();
 };
 
-#endif //MAPSCENE_H
+#endif CITYSCENE_H

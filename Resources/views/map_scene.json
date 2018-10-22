@@ -59,11 +59,17 @@
 
 			"children":
 			{
-				"sprite":
+				"button":
 				{
-					"frame_name": "BUTTON",
+					"normal_image_frame_name": "BUTTON",
+					"name": "back",
 					"pos_x": 0.5,
-					"pos_y": 0.5
+					"pos_y": 0.5,
+					"title":
+					{
+						"font": "LARGE_FONT",
+						"text": "STID_BTN_BACK"
+					}
 				}
 			}
 		},

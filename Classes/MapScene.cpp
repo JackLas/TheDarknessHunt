@@ -1,5 +1,7 @@
 #include "MapScene.h"
 #include "DataManager.h"
+#include "MainMenuScene.h"
+#include "CityScene.h"
 
 MapScene::MapScene()
 {
@@ -24,11 +26,42 @@ void MapScene::loadSpriteCache()
 {
 	cocos2d::SpriteFrameCache* cache = cocos2d::SpriteFrameCache::getInstance();
 	cache->addSpriteFramesWithFile("images/map_scene/map_scene.plist");
-	CCLOG("test");
 }
 
 bool MapScene::init()
 {
 	const std::string& view = DM->getViewById("MAP_SCENE");
-	return Parent::init(view);
+	bool result = false;
+
+	if (Parent::init(view))
+	{
+		result = true;
+		setButtonTouchListener(CC_CALLBACK_2(MapScene::onButtonTouched, this));
+	}
+
+	return result;
+}
+
+void MapScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent)
+{
+	if (aEvent == cocos2d::ui::Widget::TouchEventType::ENDED)
+	{
+		cocos2d::ui::Button* btn = static_cast<cocos2d::ui::Button*>(aSender);
+		const std::string& btnName = btn->getName();
+
+		if (btnName == "back")
+		{
+			cocos2d::Director::getInstance()->replaceScene(MainMenuScene::createScene());
+		}
+		if (btnName == "city")
+		{
+			cocos2d::Director::getInstance()->replaceScene(CityScene::createScene());
+		}
+		else if (btnName == "tavern")
+		{
+		}
+		else if (btnName == "camp")
+		{
+		}
+	}
 }

@@ -1,5 +1,7 @@
 {
-	"MAIN_MENU": "views/main_menu/main_menu.json",
-	"MAIN_MENU_OPTIONS": "views/main_menu/pop_up_options.json",
-	"MAP_SCENE": "views/map/scene_view.json"
+	"MAIN_MENU": "views/main_menu_scene.json",
+	"MAP_SCENE": "views/map_scene.json",
+	"CITY_SCENE": "views/city_scene.json",
+	"TAVERN_SCENE": "null",
+	"CAMP_SCENE": "null"
 }
