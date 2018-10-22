@@ -4,6 +4,7 @@
 #include "MainMenuScene.h"
 #include "CityScene.h"
 #include "CampScene.h"
+#include "TavernScene.h"
 
 MapScene::MapScene()
 {
@@ -61,6 +62,7 @@ void MapScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::Touch
 		}
 		else if (btnName == "tavern")
 		{
+			cocos2d::Director::getInstance()->replaceScene(TavernScene::createScene());
 		}
 		else if (btnName == "camp")
 		{

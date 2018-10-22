@@ -72,6 +72,9 @@
     <ClCompile Include="..\Classes\CampScene.cpp">
       <Filter>src\scenes\CampScene</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\TavernScene.cpp">
+      <Filter>src\scenes\TavernScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -109,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\CampScene.h">
       <Filter>src\scenes\CampScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TavernScene.h">
+      <Filter>src\scenes\TavernScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

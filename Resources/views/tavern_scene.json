@@ -1,0 +1,25 @@
+{
+	"children":
+	{
+		"button":
+		{
+			"normal_image_frame_name": "BUTTON",
+			"name": "back",
+			"title":
+			{
+				"font": "LARGE_FONT",
+				"text": "STID_BTN_BACK"
+			},
+			"pos_x": 0.5,
+			"pos_y": 0.5
+		},
+
+		"label":
+		{
+			"font": "LARGE_FONT",
+			"text": "STID_TAVERN",
+			"pos_x": 0.5,
+			"pos_y": 0.7
+		}
+	}
+}

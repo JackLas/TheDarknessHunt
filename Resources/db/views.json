@@ -2,6 +2,6 @@
 	"MAIN_MENU": "views/main_menu_scene.json",
 	"MAP_SCENE": "views/map_scene.json",
 	"CITY_SCENE": "views/city_scene.json",
-	"TAVERN_SCENE": "null",
+	"TAVERN_SCENE": "views/tavern_scene.json",
 	"CAMP_SCENE": "views/camp_scene.json"
 }
