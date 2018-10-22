@@ -3,5 +3,5 @@
 	"MAP_SCENE": "views/map_scene.json",
 	"CITY_SCENE": "views/city_scene.json",
 	"TAVERN_SCENE": "null",
-	"CAMP_SCENE": "null"
+	"CAMP_SCENE": "views/camp_scene.json"
 }

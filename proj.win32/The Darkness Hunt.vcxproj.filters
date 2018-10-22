@@ -69,6 +69,9 @@
     <ClCompile Include="..\Classes\CityScene.cpp">
       <Filter>src\scenes\CityScene</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\CampScene.cpp">
+      <Filter>src\scenes\CampScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\CityScene.h">
       <Filter>src\scenes\CityScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CampScene.h">
+      <Filter>src\scenes\CampScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

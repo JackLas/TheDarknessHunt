@@ -1,7 +1,9 @@
 #include "MapScene.h"
 #include "DataManager.h"
+
 #include "MainMenuScene.h"
 #include "CityScene.h"
+#include "CampScene.h"
 
 MapScene::MapScene()
 {
@@ -62,6 +64,7 @@ void MapScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::Touch
 		}
 		else if (btnName == "camp")
 		{
+			cocos2d::Director::getInstance()->replaceScene(CampScene::createScene());
 		}
 	}
 }

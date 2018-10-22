@@ -1,17 +1,17 @@
-#ifndef CITYSCENE_H
-#define CITYSCENE_H 
+#ifndef CAMPSCENE_H
+#define CAMPSCENE_H 
 
 #include "cocos2d.h"
 #include "BaseScene.h"
 
-class CityScene : public BaseScene
+class CampScene : public BaseScene
 {
 private:
 	typedef BaseScene Parent;
 
-	CityScene();
+	CampScene();
 protected:
-	CREATE_FUNC(CityScene);
+	CREATE_FUNC(CampScene);
 	virtual bool init();
 	virtual void loadSpriteCache();
 
@@ -19,7 +19,7 @@ protected:
 
 public:
 	static cocos2d::Scene* createScene();
-	virtual ~CityScene();
+	virtual ~CampScene();
 };
 
-#endif //CITYSCENE_H
+#endif //CAMPSCENE_H
