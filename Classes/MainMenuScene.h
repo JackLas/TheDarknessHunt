@@ -17,7 +17,7 @@ private:
 
 protected:
 	virtual bool init();
-	virtual void loadSpriteCache();
+
 public:
 	static cocos2d::Scene* createScene();
 };

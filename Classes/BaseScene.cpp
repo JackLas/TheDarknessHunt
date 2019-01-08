@@ -10,16 +10,6 @@ BaseScene::~BaseScene()
 {
 }
 
-void BaseScene::onEnter()
-{
-	Parent::onEnter();
-	cocos2d::Director::getInstance()->getScheduler()->performFunctionInCocosThread([]() {
-		cocos2d::Director::getInstance()->getTextureCache()->removeUnusedTextures();
-		cocos2d::SpriteFrameCache* cache = cocos2d::SpriteFrameCache::getInstance();
-		cache->removeUnusedSpriteFrames();
-	});
-}
-
 bool BaseScene::init(const std::string& aView)
 {
 	bool result = false;
@@ -27,7 +17,6 @@ bool BaseScene::init(const std::string& aView)
 	if (Parent::init())
 	{
 		result = true;
-		loadSpriteCache();
 		result &= ViewBuilder::loadFromJson(this, aView);
 	}
 

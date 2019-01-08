@@ -21,10 +21,6 @@ cocos2d::Scene* TavernScene::createScene()
 	return scene;
 }
 
-void TavernScene::loadSpriteCache()
-{
-}
-
 bool TavernScene::init()
 {
 	bool result = false;

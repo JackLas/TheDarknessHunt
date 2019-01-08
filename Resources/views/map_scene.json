@@ -44,7 +44,48 @@
 
 				"sprite":
 				{
-					"frame_name": "MAP_PART_2"
+					"frame_name": "MAP_PART_2",
+					"children":
+					{
+						"button":
+						{
+							"normal_image_frame_name": "MAP_ICON_WASTELAND",
+							"name": "wasteland",
+							"pos_x": 0.51,
+							"pos_y": 0.17
+						},
+
+						"button":
+						{
+							"normal_image_frame_name": "MAP_ICON_CANYON",
+							"name": "canyon",
+							"pos_x": 0.53,
+							"pos_y": 0.69
+						}
+					}
+				},
+
+				"sprite":
+				{
+					"frame_name": "MAP_PART_3",
+					"children":
+					{
+						"button":
+						{
+							"normal_image_frame_name": "MAP_ICON_FOREST",
+							"name": "forest",
+							"pos_x": 0.4,
+							"pos_y": 0.13
+						},
+
+						"button":
+						{
+							"normal_image_frame_name": "MAP_ICON_CASTLE",
+							"name": "canyon",
+							"pos_x": 0.54,
+							"pos_y": 0.69
+						}
+					}
 				}
 			}
 		},

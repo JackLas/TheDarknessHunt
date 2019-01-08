@@ -21,10 +21,6 @@ cocos2d::Scene* CampScene::createScene()
 	return scene;
 }
 
-void CampScene::loadSpriteCache()
-{
-}
-
 bool CampScene::init()
 {
 	bool result = false;

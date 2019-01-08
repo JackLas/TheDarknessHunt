@@ -9,9 +9,14 @@
 
 	"MAP_PART_1": "part1.png",
 	"MAP_PART_2": "part2.png",
+	"MAP_PART_3": "part3.png",
 	"MAP_CURRENCY_BAR": "currency_bar.png",
 	"MAP_BOTTOM_BAR": "bottom_bar.png",
 	"MAP_ICON_CITY": "city_icon.png",
 	"MAP_ICON_TAVERN": "tavern_icon.png",
-	"MAP_ICON_CAMP": "camp_icon.png"
+	"MAP_ICON_CAMP": "camp_icon.png",
+	"MAP_ICON_WASTELAND": "wasteland_icon.png",
+	"MAP_ICON_CANYON": "canyon_icon.png",
+	"MAP_ICON_FOREST": "forrest_icon.png",
+	"MAP_ICON_CASTLE": "castle_icon.png"
 }

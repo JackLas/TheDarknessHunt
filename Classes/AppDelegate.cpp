@@ -52,7 +52,6 @@ static int register_all_packages()
 
 bool AppDelegate::applicationDidFinishLaunching() 
 {
-
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
@@ -76,6 +75,11 @@ bool AppDelegate::applicationDidFinishLaunching()
 	glview->setDesignResolutionSize(desRes.width, desRes.height, ResolutionPolicy::SHOW_ALL);
 
     register_all_packages();
+
+	cocos2d::SpriteFrameCache* cache = cocos2d::SpriteFrameCache::getInstance();
+	cache->addSpriteFramesWithFile("images/map_scene/map_pack.plist");
+	cache->addSpriteFramesWithFile("images/main_menu/main_menu_pack.plist");
+	cache->addSpriteFramesWithFile("images/locations/locations_pack.plist");
 
     // create a scene. it's an autorelease object
     auto scene = MainMenuScene::createScene();

@@ -21,10 +21,6 @@ cocos2d::Scene* CityScene::createScene()
 	return scene;
 }
 
-void CityScene::loadSpriteCache()
-{
-}
-
 bool CityScene::init()
 {
 	bool result = false;
