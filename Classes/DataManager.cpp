@@ -8,10 +8,13 @@ DataManager::DataManager()
 {
 	loadMainConfig("main_config.json");
 	loadSettings();
-	loadResources("db/images.json", mData.images);							//loadImages("db/images.json");
-	loadResources("db/fonts.json", mData.fonts);							//loadFonts("db/fonts.json");
-	loadResources("locale/" + mSettings.locale + ".json", mData.strings);	//loadStrings("locale/" + mSettings.locale + ".json");
-	loadResources("db/views.json", mData.views);							//loadViews("db/views.json");
+	loadResources("db/images.json", mData.images);							
+	loadResources("db/fonts.json", mData.fonts);							
+	loadResources("locale/" + mSettings.locale + ".json", mData.strings);	
+	loadResources("db/views.json", mData.views);	
+
+	loadLevels("db/levels.json");
+
 }
 
 DataManager* DataManager::getInstance()
@@ -159,6 +162,45 @@ const std::string& DataManager::getResourceById(const std::string& aID, std::map
 	return aContainer[mDefaultStr];
 }
 
+void DataManager::loadLevels(const std::string aPath)
+{
+	rapidjson::Document levelsDB;
+	std::string configContent = cocos2d::FileUtils::getInstance()->getStringFromFile(aPath);
+	levelsDB.Parse(configContent.c_str());
+	if (!levelsDB.HasParseError())
+	{
+		for (auto it = levelsDB.MemberBegin(); it != levelsDB.MemberEnd(); ++it)
+		{
+			rapidjson::Document currentLevelConfig;
+			std::string currentLevelConfigContent = cocos2d::FileUtils::getInstance()->getStringFromFile(it->value.GetString());
+			currentLevelConfig.Parse(currentLevelConfigContent.c_str());
+			if (!currentLevelConfig.HasParseError())
+			{
+				const std::string levelIDStr = it->name.GetString();
+				eLevelID levelID = getLevelIDEnumFromLevelIDString(levelIDStr);
+				sLevel& currentLevel = mData.levels[levelID];
+
+				for (auto levelConfigIt = currentLevelConfig.MemberBegin(); levelConfigIt != currentLevelConfig.MemberEnd(); ++levelConfigIt)
+				{
+					std::string levelAttributeName = levelConfigIt->name.GetString();
+					if (levelAttributeName == "background")
+					{
+						currentLevel.background = levelConfigIt->value.GetString();
+					}
+				}
+			}
+			else
+			{
+				CCLOG("'%s' parsing error", aPath.c_str());
+			}
+		}
+	}
+	else
+	{
+		CCLOG("'%s' parsing error", aPath.c_str());
+	}
+}
+
 const std::string& DataManager::getStringById(const std::string& aID)
 {
 	return getResourceById(aID, mData.strings);
@@ -178,3 +220,32 @@ const std::string& DataManager::getViewById(const std::string& aID)
 {
 	return getResourceById(aID, mData.views);
 }
+
+eLevelID DataManager::getLevelIDEnumFromLevelIDString(const std::string aID)
+{
+	eLevelID levelID = eLevelID::LEVEL_UNKNOWN;
+
+	if (aID == "LEVEL_WASTELAND")
+	{
+		levelID = eLevelID::LEVEL_WASTELAND;
+	}
+	else if (aID == "LEVEL_CANYON")
+	{
+		levelID = eLevelID::LEVEL_CANYON;
+	}
+	else if (aID == "LEVEL_FOREST")
+	{
+		levelID = eLevelID::LEVEL_FOREST;
+	}
+	else if (aID == "LEVEL_CASTLE")
+	{
+		levelID = eLevelID::LEVEL_CASTLE;
+	}
+
+	return levelID;
+}
+
+//std::string DataManager::getLevelIDStringFromLevelIDEnum()
+//{
+//
+//}

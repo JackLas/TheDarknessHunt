@@ -18,5 +18,10 @@
 	"MAP_ICON_WASTELAND": "wasteland_icon.png",
 	"MAP_ICON_CANYON": "canyon_icon.png",
 	"MAP_ICON_FOREST": "forrest_icon.png",
-	"MAP_ICON_CASTLE": "castle_icon.png"
+	"MAP_ICON_CASTLE": "castle_icon.png",
+
+	"LEVEL_BG_WASTELAND": "wasteland.png",
+	"LEVEL_BG_CANYON": "canyon.png",
+	"LEVEL_BG_FOREST": "forrest.png",
+	"LEVEL_BG_CASTLE": "castle.png"
 }

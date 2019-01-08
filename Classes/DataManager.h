@@ -17,6 +17,7 @@ private:
 	void loadSettings();
 	void loadResources(const std::string& aPath, std::map<std::string, std::string>& aContainer);
 	const std::string& getResourceById(const std::string& aID, std::map<std::string, std::string>& aContainer);
+	void loadLevels(const std::string aPath);
 
 public:
 	static DataManager* getInstance();
@@ -28,6 +29,9 @@ public:
 	const std::string& getFrameNameById(const std::string& aID);
 	const std::string& getFontById(const std::string& aID);
 	const std::string& getViewById(const std::string& aID);
+
+	eLevelID getLevelIDEnumFromLevelIDString(const std::string aID);
+	/*std::string getLevelIDStringFromLevelIDEnum();*/
 };
 
 #define DM DataManager::getInstance()

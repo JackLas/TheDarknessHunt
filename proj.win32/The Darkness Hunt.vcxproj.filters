@@ -40,6 +40,9 @@
     <Filter Include="src\scenes\CampScene">
       <UniqueIdentifier>{3a233dbd-59f2-430e-9024-e0ece3a291d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scenes\FightScene">
+      <UniqueIdentifier>{bcdb0e0f-6355-4184-91ce-471edc70f7c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -74,6 +77,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\TavernScene.cpp">
       <Filter>src\scenes\TavernScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FightScene.cpp">
+      <Filter>src\scenes\FightScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\TavernScene.h">
       <Filter>src\scenes\TavernScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FightScene.h">
+      <Filter>src\scenes\FightScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,24 @@
+{
+	"children":
+	{
+		"sprite":
+		{
+			"name": "bg",
+			"pos_x": 0.5,
+			"pos_y": 0.5
+		},
+
+		"button":
+		{
+			"normal_image_frame_name": "BUTTON",
+			"name": "back",
+			"pos_x": 0.5,
+			"pos_y": 0.1,
+			"title":
+			{
+				"font": "LARGE_FONT",
+				"text": "STID_BTN_BACK"
+			}
+		}
+	}
+}

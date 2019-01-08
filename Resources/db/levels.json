@@ -1,0 +1,6 @@
+{
+	"LEVEL_WASTELAND": "levels/wasteland.json",
+	"LEVEL_CANYON": "levels/canyon.json",
+	"LEVEL_FOREST": "levels/forest.json",
+	"LEVEL_CASTLE": "levels/castle.json"
+}

@@ -13,7 +13,6 @@
 				"sprite":
 				{
 					"frame_name": "MAP_PART_1",
-
 					"children":
 					{
 						"button":
@@ -50,7 +49,7 @@
 						"button":
 						{
 							"normal_image_frame_name": "MAP_ICON_WASTELAND",
-							"name": "wasteland",
+							"name": "LEVEL_WASTELAND",
 							"pos_x": 0.51,
 							"pos_y": 0.17
 						},
@@ -58,7 +57,7 @@
 						"button":
 						{
 							"normal_image_frame_name": "MAP_ICON_CANYON",
-							"name": "canyon",
+							"name": "LEVEL_CANYON",
 							"pos_x": 0.53,
 							"pos_y": 0.69
 						}
@@ -73,7 +72,7 @@
 						"button":
 						{
 							"normal_image_frame_name": "MAP_ICON_FOREST",
-							"name": "forest",
+							"name": "LEVEL_FOREST",
 							"pos_x": 0.4,
 							"pos_y": 0.13
 						},
@@ -81,7 +80,7 @@
 						"button":
 						{
 							"normal_image_frame_name": "MAP_ICON_CASTLE",
-							"name": "canyon",
+							"name": "LEVEL_CASTLE",
 							"pos_x": 0.54,
 							"pos_y": 0.69
 						}

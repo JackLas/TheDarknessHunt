@@ -5,6 +5,7 @@
 #include "CityScene.h"
 #include "CampScene.h"
 #include "TavernScene.h"
+#include "FightScene.h"
 
 MapScene::MapScene()
 {
@@ -61,6 +62,16 @@ void MapScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::Touch
 		else if (btnName == "camp")
 		{
 			cocos2d::Director::getInstance()->replaceScene(CampScene::createScene());
+		}
+		else
+		{
+			eLevelID levelID = DM->getInstance()->getLevelIDEnumFromLevelIDString(btnName);
+			const auto levels = DM->getInstance()->getData().levels;
+			auto levelIt = levels.find(levelID);
+			if (levelIt != levels.end())
+			{
+				cocos2d::Director::getInstance()->replaceScene(FightScene::createScene(levelIt->second));
+			}
 		}
 	}
 }

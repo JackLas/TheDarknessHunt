@@ -10,6 +10,11 @@ BaseScene::~BaseScene()
 {
 }
 
+void BaseScene::onEnter()
+{
+	Parent::onEnter();
+}
+
 bool BaseScene::init(const std::string& aView)
 {
 	bool result = false;
