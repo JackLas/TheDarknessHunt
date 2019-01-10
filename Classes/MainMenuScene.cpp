@@ -51,45 +51,47 @@ void MainMenuScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::
 	if (aEvent == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		PopUpLayer* optionsLayer = getChildByName<PopUpLayer*>("options_layer");
-
+		bool isMainMenu = true;
 		if (optionsLayer != nullptr)
 		{
-			cocos2d::Node* btn = static_cast<cocos2d::Node*>(aSender);
-			const std::string& btnName = btn->getName();
+			isMainMenu = !optionsLayer->isActive();
+		}
 
-			if (!optionsLayer->isActive())
+		cocos2d::Node* btn = static_cast<cocos2d::Node*>(aSender);
+		const std::string& btnName = btn->getName();
+
+		if (isMainMenu)
+		{
+			if (btnName == "btnPlay")
 			{
-				if (btnName == "btnPlay")
-				{
-					//cocos2d::Director::getInstance()->pushScene(MapScene::createScene());
-					cocos2d::Director::getInstance()->replaceScene(MapScene::createScene());
-				}
-				else if (btnName == "btnOptions")
-				{
-					optionsLayer->show();
-				}
-				else if (btnName == "btnExit")
-				{
-					cocos2d::Director::getInstance()->end();
-				}
+				//cocos2d::Director::getInstance()->pushScene(MapScene::createScene());
+				cocos2d::Director::getInstance()->replaceScene(MapScene::createScene());
 			}
-			else
+			else if (btnName == "btnOptions")
 			{
-				if (btnName == "btnOK")
+				optionsLayer->show();
+			}
+			else if (btnName == "btnExit")
+			{
+				cocos2d::Director::getInstance()->end();
+			}
+		}
+		else
+		{
+			if (btnName == "btnOK")
+			{
+				optionsLayer->hide();
+				DM->saveSettings();
+			}
+			else if (btnName == "en" || btnName == "ru")
+			{
+				cocos2d::Node* flagSelected = optionsLayer->getChildByName("flag_selected");
+				flagSelected->setPosition(btn->getPosition());
+				std::string& locale = DM->getSettings().locale;
+				if (locale != btnName)
 				{
-					optionsLayer->hide();
-					DM->saveSettings();
-				}
-				else if (btnName == "en" || btnName == "ru")
-				{
-					cocos2d::Node* flagSelected = optionsLayer->getChildByName("flag_selected");
-					flagSelected->setPosition(btn->getPosition());
-					std::string& locale = DM->getSettings().locale;
-					if (locale != btnName)
-					{
-						locale = btnName;
-						//reload strings
-					}
+					locale = btnName;
+					//reload strings
 				}
 			}
 		}
