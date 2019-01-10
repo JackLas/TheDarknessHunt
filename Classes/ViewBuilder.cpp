@@ -53,7 +53,7 @@ cocos2d::Node* ViewBuilder::initChild(cocos2d::Node* aParent, rapidjson::Value::
 	else if (childType == "button")
 	{
 		cocos2d::ui::Button* btn = createButton(attributes);
-		btn->setTag(static_cast<int>(eViewObjectType::OBEJCT_TYPE_BUTTON));
+		btn->setTag(static_cast<int>(eViewObjectType::OBJECT_TYPE_BUTTON));
 		if (btn)
 		{
 			for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)

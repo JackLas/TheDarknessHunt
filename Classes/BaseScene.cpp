@@ -33,7 +33,7 @@ void BaseScene::initButtons(cocos2d::Vector<cocos2d::Node*>& aChildren,
 {
 	for (auto& child : aChildren)
 	{
-		if (static_cast<eViewObjectType>(child->getTag()) == eViewObjectType::OBEJCT_TYPE_BUTTON)
+		if (static_cast<eViewObjectType>(child->getTag()) == eViewObjectType::OBJECT_TYPE_BUTTON)
 		{
 			cocos2d::ui::Button* btn = static_cast<cocos2d::ui::Button*>(child);
 			btn->addTouchEventListener(aCallback);
