@@ -17,6 +17,7 @@ protected:
 	static FightScene* create(const sLevel& aLevelData);
 	virtual bool init();
 	void onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent);
+	virtual void onEnter();
 public:
 	static cocos2d::Scene* createScene(const sLevel& aLevelData);
 	virtual ~FightScene();

@@ -54,11 +54,33 @@ bool FightScene::init()
 			bg->initWithSpriteFrameName(frameName);
 		}
 		
-
 		setButtonTouchListener(CC_CALLBACK_2(FightScene::onButtonTouched, this));
 	}
 
 	return result;
+}
+
+void FightScene::onEnter()
+{
+	Parent::onEnter();
+
+	const float appearingTime = 0.5f;
+	cocos2d::Sprite* topBar = getChildByName<cocos2d::Sprite*>("top_bar");
+	if (topBar != nullptr)
+	{
+		float initialPositionY = topBar->getPosition().y;
+		float shiftSize = topBar->getContentSize().height;
+		topBar->setPositionY(initialPositionY + shiftSize);
+		topBar->runAction(cocos2d::MoveBy::create(appearingTime, cocos2d::Vec2(0.0f, -shiftSize)));
+	}
+	cocos2d::Sprite* bottomBar = getChildByName<cocos2d::Sprite*>("bottom_bar");
+	if (bottomBar != nullptr)
+	{
+		float initialPositionY = bottomBar->getPosition().y;
+		float shiftSize = bottomBar->getContentSize().height;
+		bottomBar->setPositionY(initialPositionY - shiftSize);
+		bottomBar->runAction(cocos2d::MoveBy::create(appearingTime, cocos2d::Vec2(0.0f, +shiftSize)));
+	}
 }
 
 void FightScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent)
