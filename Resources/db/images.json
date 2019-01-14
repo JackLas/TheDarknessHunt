@@ -1,17 +1,12 @@
 {
 	"MAIN_MENU_BG" : "locations/main_menu.png",
-	"MAIN_LOGO" : "UI/logo.png",
-	"OPTIONS_BG" : "UI/options_popUp_bg.png",
-	"BUTTON" : "UI/button.png",
-	"FLAG_RU": "UI/ru_flag.png",
-	"FLAG_EN": "UI/en_flag.png",
-	"FLAG_SELECTED": "UI/selected_flag.png",
+	"LEVEL_BG_WASTELAND": "locations/wasteland.png",
+	"LEVEL_BG_CANYON": "locations/canyon.png",
+	"LEVEL_BG_FOREST": "locations/forrest.png",
+	"LEVEL_BG_CASTLE": "locations/castle.png",
+	"CAMP_BG": "locations/camp.png",
+	"TAVERN_BG": "locations/tavern.png",
 
-	"MAP_PART_1": "map/part1.png",
-	"MAP_PART_2": "map/part2.png",
-	"MAP_PART_3": "map/part3.png",
-	"MAP_CURRENCY_BAR": "UI/currency_bar.png",
-	"MAP_BOTTOM_BAR": "UI/bottom_bar.png",
 	"MAP_ICON_CITY": "map/map_icons/city.png",
 	"MAP_ICON_TAVERN": "map/map_icons/tavern.png",
 	"MAP_ICON_CAMP": "map/map_icons/camp.png",
@@ -19,16 +14,22 @@
 	"MAP_ICON_CANYON": "map/map_icons/canyon.png",
 	"MAP_ICON_FOREST": "map/map_icons/forest.png",
 	"MAP_ICON_CASTLE": "map/map_icons/castle.png",
-
-	"LEVEL_BG_WASTELAND": "locations/wasteland.png",
-	"LEVEL_BG_CANYON": "locations/canyon.png",
-	"LEVEL_BG_FOREST": "locations/forrest.png",
-	"LEVEL_BG_CASTLE": "locations/castle.png",
+	"MAP_PART_1": "map/part1.png",
+	"MAP_PART_2": "map/part2.png",
+	"MAP_PART_3": "map/part3.png",
 
 	"MONSTER_1": "monsters/unknown1.png",
 	"MONSTER_2": "monsters/unknown2.png",
 	"MONSTER_3": "monsters/skeleton.png",
 
+	"MAIN_LOGO" : "UI/logo.png",
+	"OPTIONS_BG" : "UI/options_popUp_bg.png",
+	"BUTTON" : "UI/button.png",
+	"FLAG_RU": "UI/ru_flag.png",
+	"FLAG_EN": "UI/en_flag.png",
+	"FLAG_SELECTED": "UI/selected_flag.png",
 	"FIGHT_BAR_LARGE": "UI/fight_bar_large.png",
-	"FIGHT_BAR_SMALL": "UI/fight_bar_small.png"
+	"FIGHT_BAR_SMALL": "UI/fight_bar_small.png",
+	"MAP_CURRENCY_BAR": "UI/currency_bar.png",
+	"MAP_BOTTOM_BAR": "UI/bottom_bar.png"
 }
