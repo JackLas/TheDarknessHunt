@@ -8,16 +8,33 @@
 			"pos_y": 0.5
 		},
 
-		"button":
+		"sprite":
 		{
-			"normal_image_frame_name": "BUTTON",
-			"name": "back",
+			"frame_name": "FIGHT_BAR_LARGE",
 			"pos_x": 0.5,
-			"pos_y": 0.1,
-			"title":
+			"pos_y": 1.0,			
+			"anchor_y": 1.0
+		},
+
+		"sprite":
+		{
+			"frame_name": "FIGHT_BAR_SMALL",
+			"pos_x": 0.5,
+			"anchor_y": 0.0,
+			"children":
 			{
-				"font": "LARGE_FONT",
-				"text": "STID_BTN_BACK"
+				"button":
+				{
+					"normal_image_frame_name": "BUTTON",
+					"name": "back",
+					"pos_x": 0.5,
+					"pos_y": 0.35,
+					"title":
+					{
+						"font": "LARGE_FONT",
+						"text": "STID_BTN_BACK"
+					}
+				}
 			}
 		}
 	}
