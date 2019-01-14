@@ -111,7 +111,7 @@ cocos2d::Node* ViewBuilder::initChild(cocos2d::Node* aParent, rapidjson::Value::
 				else if (initNode(aParent, scrollView, attrIt))
 					;
 			}
-			scrollView->setScrollBarEnabled(true);
+			scrollView->setScrollBarEnabled(false);
 			scrollView->setDirection(cocos2d::ui::ScrollView::Direction::VERTICAL);
 			scrollView->setInnerContainerPosition(cocos2d::Vec2::ZERO);
 			scrollView->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);

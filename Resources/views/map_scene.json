@@ -1,6 +1,13 @@
 {
 	"children":
 	{
+		"sprite":
+		{
+			"frame_name": "MAIN_MENU_BG",
+			"pos_x": 0.5,
+			"pos_y": 0.5			
+		},
+
 		"scrollview":
 		{
 			"pos_x": 0.5,
@@ -104,7 +111,7 @@
 					"normal_image_frame_name": "BUTTON",
 					"name": "back",
 					"pos_x": 0.5,
-					"pos_y": 0.5,
+					"pos_y": 0.45,
 					"title":
 					{
 						"font": "LARGE_FONT",
