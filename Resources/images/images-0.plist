@@ -4,7 +4,37 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>canyon.png</key>
+            <key>UI/logo.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{544,264}</string>
+                <key>spriteSourceSize</key>
+                <string>{544,264}</string>
+                <key>textureRect</key>
+                <string>{{725,725},{544,264}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>UI/selected_flag.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{260,220}</string>
+                <key>spriteSourceSize</key>
+                <string>{260,220}</string>
+                <key>textureRect</key>
+                <string>{{725,993},{260,220}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>locations/camp.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -19,7 +49,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>castle.png</key>
+            <key>locations/canyon.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -30,11 +60,11 @@
                 <key>spriteSourceSize</key>
                 <string>{720,1280}</string>
                 <key>textureRect</key>
-                <string>{{1,1283},{720,1280}}</string>
+                <string>{{1,1285},{720,1280}}</string>
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>forrest.png</key>
+            <key>locations/castle.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -45,11 +75,11 @@
                 <key>spriteSourceSize</key>
                 <string>{720,1280}</string>
                 <key>textureRect</key>
-                <string>{{723,1},{720,1280}}</string>
+                <string>{{725,1},{720,1280}}</string>
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>wasteland.png</key>
+            <key>locations/forest.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -60,7 +90,22 @@
                 <key>spriteSourceSize</key>
                 <string>{720,1280}</string>
                 <key>textureRect</key>
-                <string>{{1283,723},{720,1280}}</string>
+                <string>{{1285,725},{720,1280}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>map/map_icons/camp.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{210,200}</string>
+                <key>spriteSourceSize</key>
+                <string>{210,200}</string>
+                <key>textureRect</key>
+                <string>{{989,993},{210,200}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -74,13 +119,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>locations_pack.webp</string>
+            <string>images-0.webp</string>
             <key>size</key>
-            <string>{2004,2004}</string>
+            <string>{2006,2006}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:3868467c247e8461c7f9cf24b4b67bff:d77d44b9482e13458e112a72d76f9d02:2574d218f619fa3929940fc4a36caa10$</string>
+            <string>$TexturePacker:SmartUpdate:17e3be70a7d28a14bf24bd6b8c1cd295:fc0f9d1d8d94b9eebbe99d5d5403252b:551a97c8091a27f303b1d3c25b09e054$</string>
             <key>textureFileName</key>
-            <string>locations_pack.webp</string>
+            <string>images-0.webp</string>
         </dict>
     </dict>
 </plist>

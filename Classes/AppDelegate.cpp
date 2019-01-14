@@ -77,9 +77,13 @@ bool AppDelegate::applicationDidFinishLaunching()
     register_all_packages();
 
 	cocos2d::SpriteFrameCache* cache = cocos2d::SpriteFrameCache::getInstance();
-	cache->addSpriteFramesWithFile("images/map_scene/map_pack.plist");
-	cache->addSpriteFramesWithFile("images/main_menu/main_menu_pack.plist");
-	cache->addSpriteFramesWithFile("images/locations/locations_pack.plist");
+	int packN = 0;
+	std::string currentPack = "images/images-" + std::to_string(packN) + ".plist";
+	while (cocos2d::FileUtils::getInstance()->isFileExist(currentPack))
+	{
+		cache->addSpriteFramesWithFile(currentPack);
+		currentPack = "images/images-" + std::to_string(++packN) + ".plist";
+	}
 
     // create a scene. it's an autorelease object
     auto scene = MainMenuScene::createScene();
