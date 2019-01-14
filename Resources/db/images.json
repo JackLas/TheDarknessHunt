@@ -2,7 +2,7 @@
 	"MAIN_MENU_BG" : "locations/main_menu.png",
 	"LEVEL_BG_WASTELAND": "locations/wasteland.png",
 	"LEVEL_BG_CANYON": "locations/canyon.png",
-	"LEVEL_BG_FOREST": "locations/forrest.png",
+	"LEVEL_BG_FOREST": "locations/forest.png",
 	"LEVEL_BG_CASTLE": "locations/castle.png",
 	"CAMP_BG": "locations/camp.png",
 	"TAVERN_BG": "locations/tavern.png",
