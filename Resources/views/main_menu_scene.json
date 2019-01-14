@@ -12,7 +12,7 @@
 		"sprite":
 		{
 			"frame_name": "MAIN_LOGO",
-
+			"name": "logo",
 			"pos_x": 0.5,
 			"pos_y": 0.88
 		},

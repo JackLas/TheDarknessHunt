@@ -41,6 +41,14 @@ bool MainMenuScene::init()
 				}
 			}
 		}
+
+		cocos2d::Sprite* logo = getChildByName<cocos2d::Sprite*>("logo");
+		if (logo != nullptr)
+		{
+
+			cocos2d::MoveBy* action = cocos2d::MoveBy::create(0.8f, cocos2d::Vec2(0.0f, getContentSize().height * -0.01f));
+			logo->runAction(cocos2d::RepeatForever::create(cocos2d::Sequence::create(action, action->reverse(), nullptr)));
+		}
 	}
 
 	return result;
