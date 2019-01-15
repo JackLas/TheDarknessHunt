@@ -1,3 +1,9 @@
 {
-	"background": "LEVEL_BG_WASTELAND"
+	"background": "LEVEL_BG_WASTELAND",
+	"spawnpoint_x": 0.5,
+	"spawnpoint_y": 0.4,
+	"monsters":
+	[
+		"SKELETON"
+	]
 }

@@ -1,7 +1,7 @@
 {
 	"SKELETON":
 	{
-		"sprite": "MONSTER_1",
+		"sprite": "MONSTER_3",
 		"name": "STID_MONSTER_SKELETON",
 		"HP": 1.0
 	}
