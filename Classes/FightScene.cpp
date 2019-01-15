@@ -56,6 +56,12 @@ bool FightScene::init()
 		}
 		
 		setButtonTouchListener(CC_CALLBACK_2(FightScene::onButtonTouched, this));
+		auto touchListener = cocos2d::EventListenerTouchOneByOne::create();
+		touchListener->setSwallowTouches(true);
+		touchListener->onTouchBegan = CC_CALLBACK_2(FightScene::onTouchBegan, this);
+		touchListener->onTouchMoved = CC_CALLBACK_2(FightScene::onTouchMoved, this);
+		touchListener->onTouchEnded = CC_CALLBACK_2(FightScene::onTouchEnded, this);
+		_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 
 		//	-- test --
 		const sMonster& test = DM->getData().monsters.find(eMonsterID::MONSTER_SKELETON)->second;
@@ -101,6 +107,29 @@ void FightScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::Tou
 		if (btnName == "back")
 		{
 			cocos2d::Director::getInstance()->replaceScene(MapScene::createScene());
+		}
+	}
+}
+
+bool FightScene::onTouchBegan(cocos2d::Touch* aTouch, cocos2d::Event* aEvent)
+{
+	CCLOG("touch began");
+	return true;
+}
+
+void FightScene::onTouchMoved(cocos2d::Touch* aTouch, cocos2d::Event* aEvent)
+{
+	CCLOG("touch moved");
+}
+
+void FightScene::onTouchEnded(cocos2d::Touch* aTouch, cocos2d::Event* aEvent)
+{
+	const cocos2d::Vec2 touchPosition = convertTouchToNodeSpace(aTouch);
+	if (mCurrentMonster != nullptr)
+	{
+		if (mCurrentMonster->getBoundingBox().containsPoint(touchPosition))
+		{
+			mCurrentMonster->onTouched();
 		}
 	}
 }

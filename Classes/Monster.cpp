@@ -60,4 +60,8 @@ float Monster::getCurrentHealth() const
 
 void Monster::onTouched()
 {
+	const float actionTime = 0.15f;
+	cocos2d::TintTo* action = cocos2d::TintTo::create(actionTime, cocos2d::Color3B::RED);
+	cocos2d::TintTo* actionReverse = cocos2d::TintTo::create(actionTime, cocos2d::Color3B::WHITE);
+	runAction(cocos2d::Sequence::create(action, actionReverse, nullptr));
 }
