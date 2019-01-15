@@ -4,6 +4,7 @@
 
 FightScene::FightScene(const sLevel& aLevelData)
 	: mLevelData(aLevelData)
+	, mSpawner(mLevelData.monsters)
 	, mCurrentMonster(nullptr)
 {
 }
@@ -67,7 +68,6 @@ bool FightScene::init()
 		position.x *= mLevelData.spawnPoint.x;
 		position.y *= mLevelData.spawnPoint.y;
 		mSpawner.setSpawnPoint(position);
-		mSpawner.setMonsterArray(&mLevelData.monsters);
 
 		updateMonster();
 	}
@@ -136,5 +136,14 @@ void FightScene::onTouchEnded(cocos2d::Touch* aTouch, cocos2d::Event* aEvent)
 void FightScene::updateMonster()
 {
 	mCurrentMonster = mSpawner.getNextMonster();
-	addChild(mCurrentMonster);
+	if (mCurrentMonster != nullptr)
+	{
+		mCurrentMonster->setDeathListener(this);
+		addChild(mCurrentMonster);
+	}
+}
+
+void FightScene::onMonsterDied()
+{
+	updateMonster();
 }

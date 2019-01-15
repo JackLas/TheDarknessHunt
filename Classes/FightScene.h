@@ -6,13 +6,14 @@
 #include "dataTypes.h"
 #include "Monster.h"
 #include "Spawner.h"
+#include "MonsterDeathListener.h"
 
-class FightScene : public BaseScene
+class FightScene : public BaseScene, public MonsterDeathListener
 {
 private:
 	typedef BaseScene Parent;
 
-	const sLevel& mLevelData;
+	const sLevel mLevelData;
 	Spawner mSpawner;
 	Monster* mCurrentMonster;
 
@@ -31,6 +32,8 @@ protected:
 public:
 	static cocos2d::Scene* createScene(const sLevel& aLevelData);
 	virtual ~FightScene();
+
+	virtual void onMonsterDied();
 };
 
 #endif //FIGHTSCENE_H

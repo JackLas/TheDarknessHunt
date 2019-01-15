@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "dataTypes.h"
+#include "MonsterDeathListener.h"
 
 class Monster: public cocos2d::Sprite
 {
@@ -10,7 +11,8 @@ private:
 	typedef cocos2d::Sprite Parent;
 
 	const sMonster& mData;
-	float mCurrentHealth;
+	float mCurrentHP;
+	MonsterDeathListener* mDeathListener;
 
 	Monster(const sMonster& aMonsterData);
 protected:
@@ -23,6 +25,7 @@ public:
 	const std::string& getName() const;
 	float getCurrentHealth() const;
 	void onTouched();
+	void setDeathListener(MonsterDeathListener* aListener);
 };
 
 #endif //MONSTER_H

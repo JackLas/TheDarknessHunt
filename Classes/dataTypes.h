@@ -8,7 +8,9 @@
 enum class eMonsterID
 {
 	MONSTER_UNKNOWN = 0,
-	MONSTER_SKELETON
+	MONSTER_SKELETON,
+	MONSTER_1,
+	MONSTER_2
 };
 
 struct sMonster

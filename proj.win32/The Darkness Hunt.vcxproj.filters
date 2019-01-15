@@ -140,6 +140,9 @@
     <ClInclude Include="..\Classes\Spawner.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\MonsterDeathListener.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

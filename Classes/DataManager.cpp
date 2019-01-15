@@ -319,6 +319,14 @@ eMonsterID DataManager::getMonsterIDEnumFromMonsterIDString(const std::string& a
 	{
 		result = eMonsterID::MONSTER_SKELETON;
 	}
+	else if (aID == "MONSTER_1")
+	{
+		result = eMonsterID::MONSTER_1;
+	}
+	else if (aID == "MONSTER_2")
+	{
+		result = eMonsterID::MONSTER_2;
+	}
 
 	return result;
 }

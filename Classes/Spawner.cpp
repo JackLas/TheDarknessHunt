@@ -1,8 +1,8 @@
 #include "Spawner.h"
 #include "DataManager.h"
 
-Spawner::Spawner()
-	: mMonsters(nullptr)
+Spawner::Spawner(const std::vector<eMonsterID>& aMonstersArray)
+	: mMonsters(aMonstersArray)
 {
 }
 
@@ -15,10 +15,11 @@ Monster* Spawner::getNextMonster()
 	Monster* result = nullptr;
 	const auto monsters = DM->getData().monsters;
 	
-	if (mMonsters != nullptr)
+	if (mMonsters.size() > 0)
 	{
-		int monsterIndex = cocos2d::RandomHelper::random_int<int>(0, mMonsters->size()-1);
-		const auto monsterIt = monsters.find(eMonsterID::MONSTER_SKELETON);
+		const int maxIndex = mMonsters.size() - 1;
+		int monsterIndex = cocos2d::RandomHelper::random_int<int>(0, maxIndex);
+		const auto monsterIt = monsters.find(mMonsters[monsterIndex]);
 		if (monsterIt != monsters.end())
 		{
 			result = Monster::create(monsterIt->second);
@@ -32,9 +33,4 @@ Monster* Spawner::getNextMonster()
 void Spawner::setSpawnPoint(const cocos2d::Vec2& aPoint)
 {
 	mSpawnPoint = aPoint;
-}
-
-void Spawner::setMonsterArray(std::vector<eMonsterID> const* aArray)
-{
-	mMonsters = aArray;
 }
