@@ -14,6 +14,7 @@ DataManager::DataManager()
 	loadResources("db/views.json", mData.views);	
 
 	loadLevels("db/levels.json");
+	loadMonsters("objects/monsters.json");
 
 }
 
@@ -162,7 +163,7 @@ const std::string& DataManager::getResourceById(const std::string& aID, std::map
 	return aContainer[mDefaultStr];
 }
 
-void DataManager::loadLevels(const std::string aPath)
+void DataManager::loadLevels(const std::string& aPath)
 {
 	rapidjson::Document levelsDB;
 	std::string configContent = cocos2d::FileUtils::getInstance()->getStringFromFile(aPath);
@@ -201,6 +202,50 @@ void DataManager::loadLevels(const std::string aPath)
 	}
 }
 
+void DataManager::loadMonsters(const std::string& aPath)
+{
+	rapidjson::Document monsterConfig;
+	std::string configContent = cocos2d::FileUtils::getInstance()->getStringFromFile(aPath);
+	monsterConfig.Parse(configContent.c_str());
+	if (!monsterConfig.HasParseError())
+	{
+		for (auto monsterIt = monsterConfig.MemberBegin(); monsterIt != monsterConfig.MemberEnd(); ++monsterIt)
+		{
+			const std::string monsterIDStr = monsterIt->name.GetString();
+			eMonsterID monsterID = getMonsterIDEnumFromMonsterIDString(monsterIDStr);
+			if (monsterID != eMonsterID::MONSTER_UNKNOWN)
+			{
+				sMonster& monster = mData.monsters[monsterID];
+				rapidjson::Value& monsterAttr = monsterIt->value;
+				for (auto monsterAttrIt = monsterAttr.MemberBegin(); monsterAttrIt != monsterAttr.MemberEnd(); ++monsterAttrIt)
+				{
+					const std::string attrName = monsterAttrIt->name.GetString();
+					if (attrName == "sprite")
+					{
+						monster.spriteFrameName = monsterAttrIt->value.GetString();
+					}
+					else if (attrName == "name")
+					{
+						monster.name = monsterAttrIt->value.GetString();
+					}
+					else if (attrName == "HP")
+					{
+						monster.hp = static_cast<float>(monsterAttrIt->value.GetDouble());
+					}
+				}
+			}
+			else
+			{
+				CCLOG("'%s' is unknown monster", monsterIDStr.c_str());
+			}
+		}
+	}
+	else
+	{
+		CCLOG("'%s' parsing error", aPath.c_str());
+	}
+}
+
 const std::string& DataManager::getStringById(const std::string& aID)
 {
 	return getResourceById(aID, mData.strings);
@@ -221,28 +266,40 @@ const std::string& DataManager::getViewById(const std::string& aID)
 	return getResourceById(aID, mData.views);
 }
 
-eLevelID DataManager::getLevelIDEnumFromLevelIDString(const std::string aID)
+eLevelID DataManager::getLevelIDEnumFromLevelIDString(const std::string& aID)
 {
-	eLevelID levelID = eLevelID::LEVEL_UNKNOWN;
+	eLevelID result = eLevelID::LEVEL_UNKNOWN;
 
 	if (aID == "LEVEL_WASTELAND")
 	{
-		levelID = eLevelID::LEVEL_WASTELAND;
+		result = eLevelID::LEVEL_WASTELAND;
 	}
 	else if (aID == "LEVEL_CANYON")
 	{
-		levelID = eLevelID::LEVEL_CANYON;
+		result = eLevelID::LEVEL_CANYON;
 	}
 	else if (aID == "LEVEL_FOREST")
 	{
-		levelID = eLevelID::LEVEL_FOREST;
+		result = eLevelID::LEVEL_FOREST;
 	}
 	else if (aID == "LEVEL_CASTLE")
 	{
-		levelID = eLevelID::LEVEL_CASTLE;
+		result = eLevelID::LEVEL_CASTLE;
 	}
 
-	return levelID;
+	return result;
+}
+
+eMonsterID DataManager::getMonsterIDEnumFromMonsterIDString(const std::string& aID)
+{
+	eMonsterID result = eMonsterID::MONSTER_UNKNOWN;
+
+	if (aID == "SKELETON")
+	{
+		result = eMonsterID::MONSTER_SKELETON;
+	}
+
+	return result;
 }
 
 //std::string DataManager::getLevelIDStringFromLevelIDEnum()
