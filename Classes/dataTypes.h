@@ -27,8 +27,8 @@ enum class eMonsterID
 
 struct sMonster
 {
-	std::string spriteFrameName;
-	std::string name;
+	std::string spriteFrameNameID;
+	std::string nameSTID;
 	float hp;
 
 	sMonster()

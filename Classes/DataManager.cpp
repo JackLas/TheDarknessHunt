@@ -222,11 +222,11 @@ void DataManager::loadMonsters(const std::string& aPath)
 					const std::string attrName = monsterAttrIt->name.GetString();
 					if (attrName == "sprite")
 					{
-						monster.spriteFrameName = monsterAttrIt->value.GetString();
+						monster.spriteFrameNameID = monsterAttrIt->value.GetString();
 					}
 					else if (attrName == "name")
 					{
-						monster.name = monsterAttrIt->value.GetString();
+						monster.nameSTID = monsterAttrIt->value.GetString();
 					}
 					else if (attrName == "HP")
 					{

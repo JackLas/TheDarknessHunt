@@ -4,6 +4,7 @@
 #include "BaseScene.h"
 #include "cocos2d.h"
 #include "dataTypes.h"
+#include "Monster.h"
 
 class FightScene : public BaseScene
 {
@@ -11,6 +12,7 @@ private:
 	typedef BaseScene Parent;
 
 	const sLevel& mLevelData;
+	Monster* mCurrentMonster;
 
 	FightScene(const sLevel& aLevelData);
 protected:

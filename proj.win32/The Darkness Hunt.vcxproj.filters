@@ -43,6 +43,9 @@
     <Filter Include="src\scenes\FightScene">
       <UniqueIdentifier>{bcdb0e0f-6355-4184-91ce-471edc70f7c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\objects">
+      <UniqueIdentifier>{200d4ead-b82e-4f0c-a907-16ab86b09b25}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -80,6 +83,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\FightScene.cpp">
       <Filter>src\scenes\FightScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Monster.cpp">
+      <Filter>src\objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\FightScene.h">
       <Filter>src\scenes\FightScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Monster.h">
+      <Filter>src\objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

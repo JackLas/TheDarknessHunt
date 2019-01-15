@@ -4,6 +4,7 @@
 
 FightScene::FightScene(const sLevel& aLevelData)
 	: mLevelData(aLevelData)
+	, mCurrentMonster(nullptr)
 {
 }
 
@@ -55,6 +56,13 @@ bool FightScene::init()
 		}
 		
 		setButtonTouchListener(CC_CALLBACK_2(FightScene::onButtonTouched, this));
+
+		//	-- test --
+		const sMonster& test = DM->getData().monsters.find(eMonsterID::MONSTER_SKELETON)->second;
+		mCurrentMonster = Monster::create(test);
+		addChild(mCurrentMonster);
+		mCurrentMonster->setPosition(this->getContentSize() * 0.5f);
+		// -- end of test -- 
 	}
 
 	return result;
