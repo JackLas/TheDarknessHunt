@@ -5,20 +5,6 @@
 #include <string>
 #include <map>
 
-enum class eLevelID
-{
-	LEVEL_UNKNOWN = 0,
-	LEVEL_WASTELAND,
-	LEVEL_CANYON,
-	LEVEL_FOREST,
-	LEVEL_CASTLE
-};
-
-struct sLevel
-{
-	std::string background;
-};
-
 enum class eMonsterID
 {
 	MONSTER_UNKNOWN = 0,
@@ -35,6 +21,22 @@ struct sMonster
 		: hp(0.0f)
 	{
 	}
+};
+
+enum class eLevelID
+{
+	LEVEL_UNKNOWN = 0,
+	LEVEL_WASTELAND,
+	LEVEL_CANYON,
+	LEVEL_FOREST,
+	LEVEL_CASTLE
+};
+
+struct sLevel
+{
+	std::string background;
+	cocos2d::Vec2 spawnPoint;
+	std::vector<eMonsterID> monsters;
 };
 
 struct sData

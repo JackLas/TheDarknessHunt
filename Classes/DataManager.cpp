@@ -181,12 +181,33 @@ void DataManager::loadLevels(const std::string& aPath)
 				eLevelID levelID = getLevelIDEnumFromLevelIDString(levelIDStr);
 				sLevel& currentLevel = mData.levels[levelID];
 
-				for (auto levelConfigIt = currentLevelConfig.MemberBegin(); levelConfigIt != currentLevelConfig.MemberEnd(); ++levelConfigIt)
+				for (auto levelAttrIt = currentLevelConfig.MemberBegin(); levelAttrIt != currentLevelConfig.MemberEnd(); ++levelAttrIt)
 				{
-					std::string levelAttributeName = levelConfigIt->name.GetString();
-					if (levelAttributeName == "background")
+					std::string levelAttrName = levelAttrIt->name.GetString();
+					if (levelAttrName == "background")
 					{
-						currentLevel.background = levelConfigIt->value.GetString();
+						currentLevel.background = levelAttrIt->value.GetString();
+					}
+					else if (levelAttrName == "spawnpoint_x")
+					{
+						currentLevel.spawnPoint.x = static_cast<float>(levelAttrIt->value.GetDouble());
+					}
+					else if (levelAttrName == "spawnpoint_y")
+					{
+						currentLevel.spawnPoint.y = static_cast<float>(levelAttrIt->value.GetDouble());
+					}
+					else if (levelAttrName == "monsters")
+					{
+						rapidjson::Value& monsterArray = levelAttrIt->value;
+						for (auto monsterIt = monsterArray.Begin(); monsterIt != monsterArray.End(); ++monsterIt)
+						{
+							const std::string monsterIDStr = monsterIt->GetString();
+							eMonsterID monsterID = getMonsterIDEnumFromMonsterIDString(monsterIDStr);
+							if (monsterID != eMonsterID::MONSTER_UNKNOWN)
+							{
+								currentLevel.monsters.push_back(monsterID);
+							}
+						}
 					}
 				}
 			}

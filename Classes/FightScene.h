@@ -5,6 +5,7 @@
 #include "cocos2d.h"
 #include "dataTypes.h"
 #include "Monster.h"
+#include "Spawner.h"
 
 class FightScene : public BaseScene
 {
@@ -12,6 +13,7 @@ private:
 	typedef BaseScene Parent;
 
 	const sLevel& mLevelData;
+	Spawner mSpawner;
 	Monster* mCurrentMonster;
 
 	FightScene(const sLevel& aLevelData);
@@ -24,6 +26,8 @@ protected:
 	virtual bool onTouchBegan(cocos2d::Touch* aTouch, cocos2d::Event* aEvent);
 	virtual void onTouchMoved(cocos2d::Touch* aTouch, cocos2d::Event* aEvent);
 	virtual void onTouchEnded(cocos2d::Touch* aTouch, cocos2d::Event* aEvent);
+
+	void updateMonster();
 public:
 	static cocos2d::Scene* createScene(const sLevel& aLevelData);
 	virtual ~FightScene();

@@ -63,12 +63,13 @@ bool FightScene::init()
 		touchListener->onTouchEnded = CC_CALLBACK_2(FightScene::onTouchEnded, this);
 		_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 
-		//	-- test --
-		const sMonster& test = DM->getData().monsters.find(eMonsterID::MONSTER_SKELETON)->second;
-		mCurrentMonster = Monster::create(test);
-		addChild(mCurrentMonster);
-		mCurrentMonster->setPosition(this->getContentSize() * 0.5f);
-		// -- end of test -- 
+		cocos2d::Vec2 position = getContentSize();
+		position.x *= mLevelData.spawnPoint.x;
+		position.y *= mLevelData.spawnPoint.y;
+		mSpawner.setSpawnPoint(position);
+		mSpawner.setMonsterArray(&mLevelData.monsters);
+
+		updateMonster();
 	}
 
 	return result;
@@ -113,13 +114,11 @@ void FightScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::Tou
 
 bool FightScene::onTouchBegan(cocos2d::Touch* aTouch, cocos2d::Event* aEvent)
 {
-	CCLOG("touch began");
 	return true;
 }
 
 void FightScene::onTouchMoved(cocos2d::Touch* aTouch, cocos2d::Event* aEvent)
 {
-	CCLOG("touch moved");
 }
 
 void FightScene::onTouchEnded(cocos2d::Touch* aTouch, cocos2d::Event* aEvent)
@@ -132,4 +131,10 @@ void FightScene::onTouchEnded(cocos2d::Touch* aTouch, cocos2d::Event* aEvent)
 			mCurrentMonster->onTouched();
 		}
 	}
+}
+
+void FightScene::updateMonster()
+{
+	mCurrentMonster = mSpawner.getNextMonster();
+	addChild(mCurrentMonster);
 }
