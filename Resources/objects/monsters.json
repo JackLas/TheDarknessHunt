@@ -1,8 +1,22 @@
 {
+	"MONSTER_1":
+	{
+		"sprite": "MONSTER_1",
+		"name": "STID_MONSTER_SKELETON",
+		"HP": 3.0
+	},
+
+	"MONSTER_2":
+	{
+		"sprite": "MONSTER_2",
+		"name": "STID_MONSTER_SKELETON",
+		"HP": 3.0
+	},
+
 	"SKELETON":
 	{
 		"sprite": "MONSTER_3",
 		"name": "STID_MONSTER_SKELETON",
-		"HP": 1.0
+		"HP": 3.0
 	}
 }
