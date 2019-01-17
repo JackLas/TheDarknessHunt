@@ -1,8 +1,8 @@
 #include "Spawner.h"
 #include "DataManager.h"
 
-Spawner::Spawner(const std::vector<std::string>& aMonstersArray)
-	: mMonsters(aMonstersArray)
+Spawner::Spawner(const std::string& aLevelID)
+	: mLevelID(aLevelID)
 {
 }
 
@@ -13,17 +13,24 @@ Spawner::~Spawner()
 Monster* Spawner::getNextMonster()
 {
 	Monster* result = nullptr;
-	const auto monsters = DM->getData().monsters;
-	
-	if (mMonsters.size() > 0)
+
+	const auto& data = DM->getData();
+	const auto& allMonsters = data.monsters;
+	auto levelIt = data.levels.find(mLevelID);
+	if (levelIt != data.levels.end())
 	{
-		const int maxIndex = mMonsters.size() - 1;
-		int monsterIndex = cocos2d::RandomHelper::random_int<int>(0, maxIndex);
-		const auto monsterIt = monsters.find(mMonsters[monsterIndex]);
-		if (monsterIt != monsters.end())
+		const auto& levelMonsters = levelIt->second.monsters;
+
+		if (levelMonsters.size() > 0)
 		{
-			result = Monster::create(monsterIt->second);
-			result->setPosition(mSpawnPoint);
+			const int maxIndex = levelMonsters.size() - 1;
+			int monsterIndex = cocos2d::RandomHelper::random_int<int>(0, maxIndex);
+			const auto monsterIt = allMonsters.find(levelMonsters[monsterIndex]);
+			if (monsterIt != allMonsters.end())
+			{
+				result = Monster::create(monsterIt->second);
+				result->setPosition(mSpawnPoint);
+			}
 		}
 	}
 

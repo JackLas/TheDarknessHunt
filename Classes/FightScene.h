@@ -13,13 +13,13 @@ class FightScene : public BaseScene, public MonsterDeathListener
 private:
 	typedef BaseScene Parent;
 
-	const sLevel mLevelData;
+	const std::string mLevelID;
 	Spawner mSpawner;
 	Monster* mCurrentMonster;
 
-	FightScene(const sLevel& aLevelData);
+	FightScene(const std::string& aLevelID);
 protected:
-	static FightScene* create(const sLevel& aLevelData);
+	static FightScene* create(const std::string& aLevelID);
 	virtual bool init();
 	void onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent);
 	virtual void onEnter();
@@ -30,7 +30,7 @@ protected:
 
 	void updateMonster();
 public:
-	static cocos2d::Scene* createScene(const sLevel& aLevelData);
+	static cocos2d::Scene* createScene(const std::string& aLevelID);
 	virtual ~FightScene();
 
 	virtual void onMonsterDied();

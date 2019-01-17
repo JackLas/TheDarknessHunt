@@ -2,9 +2,9 @@
 #include "DataManager.h"
 #include "MapScene.h"
 
-FightScene::FightScene(const sLevel& aLevelData)
-	: mLevelData(aLevelData)
-	, mSpawner(mLevelData.monsters)
+FightScene::FightScene(const std::string& aLevelID)
+	: mLevelID(aLevelID)
+	, mSpawner(mLevelID)
 	, mCurrentMonster(nullptr)
 {
 }
@@ -13,9 +13,9 @@ FightScene::~FightScene()
 {
 }
 
-FightScene* FightScene::create(const sLevel& aLevelData)
+FightScene* FightScene::create(const std::string& aLevelID)
 { 
-	FightScene *pRet = new (std::nothrow) FightScene(aLevelData);
+	FightScene *pRet = new (std::nothrow) FightScene(aLevelID);
     if (pRet && pRet->init()) 
     { 
         pRet->autorelease(); 
@@ -29,10 +29,10 @@ FightScene* FightScene::create(const sLevel& aLevelData)
     } 
 }
 
-cocos2d::Scene* FightScene::createScene(const sLevel& aLevelData)
+cocos2d::Scene* FightScene::createScene(const std::string& aLevelID)
 {
 	cocos2d::Scene* scene = cocos2d::Scene::create();
-	cocos2d::Layer* layer = FightScene::create(aLevelData);
+	cocos2d::Layer* layer = FightScene::create(aLevelID);
 	if (layer != nullptr)
 	{
 		scene->addChild(layer);
@@ -49,27 +49,33 @@ bool FightScene::init()
 	{
 		result = true;
 
-		cocos2d::Sprite* bg = getChildByName<cocos2d::Sprite*>("bg");
-		if (bg != nullptr)
+		const auto& levelIt = DM->getData().levels.find(mLevelID);
+		if (levelIt != DM->getData().levels.end())
 		{
-			const std::string frameName = DM->getFrameNameById(mLevelData.background);
-			bg->initWithSpriteFrameName(frameName);
+			const auto& levelData = levelIt->second;
+
+			cocos2d::Sprite* bg = getChildByName<cocos2d::Sprite*>("bg");
+			if (bg != nullptr)
+			{
+				const std::string frameName = DM->getFrameNameById(levelData.background);
+				bg->initWithSpriteFrameName(frameName);
+			}
+
+			setButtonTouchListener(CC_CALLBACK_2(FightScene::onButtonTouched, this));
+			auto touchListener = cocos2d::EventListenerTouchOneByOne::create();
+			touchListener->setSwallowTouches(true);
+			touchListener->onTouchBegan = CC_CALLBACK_2(FightScene::onTouchBegan, this);
+			touchListener->onTouchMoved = CC_CALLBACK_2(FightScene::onTouchMoved, this);
+			touchListener->onTouchEnded = CC_CALLBACK_2(FightScene::onTouchEnded, this);
+			_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+
+			cocos2d::Vec2 position = getContentSize();
+			position.x *= levelData.spawnPoint.x;
+			position.y *= levelData.spawnPoint.y;
+			mSpawner.setSpawnPoint(position);
+
+			updateMonster();
 		}
-		
-		setButtonTouchListener(CC_CALLBACK_2(FightScene::onButtonTouched, this));
-		auto touchListener = cocos2d::EventListenerTouchOneByOne::create();
-		touchListener->setSwallowTouches(true);
-		touchListener->onTouchBegan = CC_CALLBACK_2(FightScene::onTouchBegan, this);
-		touchListener->onTouchMoved = CC_CALLBACK_2(FightScene::onTouchMoved, this);
-		touchListener->onTouchEnded = CC_CALLBACK_2(FightScene::onTouchEnded, this);
-		_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
-
-		cocos2d::Vec2 position = getContentSize();
-		position.x *= mLevelData.spawnPoint.x;
-		position.y *= mLevelData.spawnPoint.y;
-		mSpawner.setSpawnPoint(position);
-
-		updateMonster();
 	}
 
 	return result;

@@ -66,10 +66,9 @@ void MapScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::Touch
 		else
 		{
 			const auto levels = DM->getInstance()->getData().levels;
-			auto levelIt = levels.find(btnName);
-			if (levelIt != levels.end())
+			if (levels.find(btnName) != levels.end())
 			{
-				cocos2d::Director::getInstance()->replaceScene(FightScene::createScene(levelIt->second));
+				cocos2d::Director::getInstance()->replaceScene(FightScene::createScene(btnName));
 			}
 		}
 	}
