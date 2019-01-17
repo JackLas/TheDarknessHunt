@@ -31,6 +31,11 @@ AppDelegate::~AppDelegate()
 #elif USE_SIMPLE_AUDIO_ENGINE
     SimpleAudioEngine::end();
 #endif
+
+	// --- Testing elapsed time between launchings game ---
+	std::string file = cocos2d::FileUtils::getInstance()->getWritablePath() + "/data.time";
+	cocos2d::FileUtils::getInstance()->writeStringToFile(std::to_string(time(NULL)), file);
+	// --- end of test ---
 }
 
 // if you want a different context, modify the value of glContextAttrs
