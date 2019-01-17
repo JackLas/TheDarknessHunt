@@ -1,7 +1,7 @@
 #include "Spawner.h"
 #include "DataManager.h"
 
-Spawner::Spawner(const std::vector<eMonsterID>& aMonstersArray)
+Spawner::Spawner(const std::vector<std::string>& aMonstersArray)
 	: mMonsters(aMonstersArray)
 {
 }

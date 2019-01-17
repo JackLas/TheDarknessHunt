@@ -7,11 +7,11 @@
 class Spawner
 {
 private:
-	const std::vector<eMonsterID>& mMonsters;
+	const std::vector<std::string>& mMonsters;
 	cocos2d::Vec2 mSpawnPoint;
 
 public:
-	Spawner(const std::vector<eMonsterID>& aMonstersArray);
+	Spawner(const std::vector<std::string>& aMonstersArray);
 	virtual ~Spawner();
 	Monster* getNextMonster();
 	void setSpawnPoint(const cocos2d::Vec2& aPoint);

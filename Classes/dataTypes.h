@@ -5,14 +5,6 @@
 #include <string>
 #include <map>
 
-enum class eMonsterID
-{
-	MONSTER_UNKNOWN = 0,
-	MONSTER_SKELETON,
-	MONSTER_1,
-	MONSTER_2
-};
-
 struct sMonster
 {
 	std::string spriteFrameNameID;
@@ -25,20 +17,11 @@ struct sMonster
 	}
 };
 
-enum class eLevelID
-{
-	LEVEL_UNKNOWN = 0,
-	LEVEL_WASTELAND,
-	LEVEL_CANYON,
-	LEVEL_FOREST,
-	LEVEL_CASTLE
-};
-
 struct sLevel
 {
 	std::string background;
 	cocos2d::Vec2 spawnPoint;
-	std::vector<eMonsterID> monsters;
+	std::vector<std::string> monsters;
 };
 
 struct sData
@@ -47,8 +30,8 @@ struct sData
 	std::map<std::string, std::string> fonts;
 	std::map<std::string, std::string> strings;
 	std::map<std::string, std::string> views;
-	std::map<eLevelID, sLevel> levels;
-	std::map<eMonsterID, sMonster> monsters;
+	std::map<std::string, sLevel> levels;
+	std::map<std::string, sMonster> monsters;
 	cocos2d::Size designResolution;
 	cocos2d::Size desktopResolution;
 };

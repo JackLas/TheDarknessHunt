@@ -15,7 +15,6 @@ DataManager::DataManager()
 
 	loadLevels("db/levels.json");
 	loadMonsters("objects/monsters.json");
-
 }
 
 DataManager* DataManager::getInstance()
@@ -177,8 +176,7 @@ void DataManager::loadLevels(const std::string& aPath)
 			currentLevelConfig.Parse(currentLevelConfigContent.c_str());
 			if (!currentLevelConfig.HasParseError())
 			{
-				const std::string levelIDStr = it->name.GetString();
-				eLevelID levelID = getLevelIDEnumFromLevelIDString(levelIDStr);
+				const std::string levelID = it->name.GetString();
 				sLevel& currentLevel = mData.levels[levelID];
 
 				for (auto levelAttrIt = currentLevelConfig.MemberBegin(); levelAttrIt != currentLevelConfig.MemberEnd(); ++levelAttrIt)
@@ -201,12 +199,7 @@ void DataManager::loadLevels(const std::string& aPath)
 						rapidjson::Value& monsterArray = levelAttrIt->value;
 						for (auto monsterIt = monsterArray.Begin(); monsterIt != monsterArray.End(); ++monsterIt)
 						{
-							const std::string monsterIDStr = monsterIt->GetString();
-							eMonsterID monsterID = getMonsterIDEnumFromMonsterIDString(monsterIDStr);
-							if (monsterID != eMonsterID::MONSTER_UNKNOWN)
-							{
-								currentLevel.monsters.push_back(monsterID);
-							}
+							currentLevel.monsters.emplace_back(monsterIt->GetString());
 						}
 					}
 				}
@@ -232,32 +225,25 @@ void DataManager::loadMonsters(const std::string& aPath)
 	{
 		for (auto monsterIt = monsterConfig.MemberBegin(); monsterIt != monsterConfig.MemberEnd(); ++monsterIt)
 		{
-			const std::string monsterIDStr = monsterIt->name.GetString();
-			eMonsterID monsterID = getMonsterIDEnumFromMonsterIDString(monsterIDStr);
-			if (monsterID != eMonsterID::MONSTER_UNKNOWN)
+			const std::string monsterID = monsterIt->name.GetString();
+			
+			sMonster& monster = mData.monsters[monsterID];
+			rapidjson::Value& monsterAttr = monsterIt->value;
+			for (auto monsterAttrIt = monsterAttr.MemberBegin(); monsterAttrIt != monsterAttr.MemberEnd(); ++monsterAttrIt)
 			{
-				sMonster& monster = mData.monsters[monsterID];
-				rapidjson::Value& monsterAttr = monsterIt->value;
-				for (auto monsterAttrIt = monsterAttr.MemberBegin(); monsterAttrIt != monsterAttr.MemberEnd(); ++monsterAttrIt)
+				const std::string attrName = monsterAttrIt->name.GetString();
+				if (attrName == "sprite")
 				{
-					const std::string attrName = monsterAttrIt->name.GetString();
-					if (attrName == "sprite")
-					{
-						monster.spriteFrameNameID = monsterAttrIt->value.GetString();
-					}
-					else if (attrName == "name")
-					{
-						monster.nameSTID = monsterAttrIt->value.GetString();
-					}
-					else if (attrName == "HP")
-					{
-						monster.hp = static_cast<float>(monsterAttrIt->value.GetDouble());
-					}
+					monster.spriteFrameNameID = monsterAttrIt->value.GetString();
 				}
-			}
-			else
-			{
-				CCLOG("'%s' is unknown monster", monsterIDStr.c_str());
+				else if (attrName == "name")
+				{
+					monster.nameSTID = monsterAttrIt->value.GetString();
+				}
+				else if (attrName == "HP")
+				{
+					monster.hp = static_cast<float>(monsterAttrIt->value.GetDouble());
+				}
 			}
 		}
 	}
@@ -286,52 +272,3 @@ const std::string& DataManager::getViewById(const std::string& aID)
 {
 	return getResourceById(aID, mData.views);
 }
-
-eLevelID DataManager::getLevelIDEnumFromLevelIDString(const std::string& aID)
-{
-	eLevelID result = eLevelID::LEVEL_UNKNOWN;
-
-	if (aID == "LEVEL_WASTELAND")
-	{
-		result = eLevelID::LEVEL_WASTELAND;
-	}
-	else if (aID == "LEVEL_CANYON")
-	{
-		result = eLevelID::LEVEL_CANYON;
-	}
-	else if (aID == "LEVEL_FOREST")
-	{
-		result = eLevelID::LEVEL_FOREST;
-	}
-	else if (aID == "LEVEL_CASTLE")
-	{
-		result = eLevelID::LEVEL_CASTLE;
-	}
-
-	return result;
-}
-
-eMonsterID DataManager::getMonsterIDEnumFromMonsterIDString(const std::string& aID)
-{
-	eMonsterID result = eMonsterID::MONSTER_UNKNOWN;
-
-	if (aID == "SKELETON")
-	{
-		result = eMonsterID::MONSTER_SKELETON;
-	}
-	else if (aID == "MONSTER_1")
-	{
-		result = eMonsterID::MONSTER_1;
-	}
-	else if (aID == "MONSTER_2")
-	{
-		result = eMonsterID::MONSTER_2;
-	}
-
-	return result;
-}
-
-//std::string DataManager::getLevelIDStringFromLevelIDEnum()
-//{
-//
-//}

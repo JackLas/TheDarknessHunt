@@ -30,10 +30,6 @@ public:
 	const std::string& getFrameNameById(const std::string& aID);
 	const std::string& getFontById(const std::string& aID);
 	const std::string& getViewById(const std::string& aID);
-
-	eLevelID getLevelIDEnumFromLevelIDString(const std::string& aID);
-	eMonsterID getMonsterIDEnumFromMonsterIDString(const std::string& aID);
-	/*std::string getLevelIDStringFromLevelIDEnum();*/
 };
 
 #define DM DataManager::getInstance()
