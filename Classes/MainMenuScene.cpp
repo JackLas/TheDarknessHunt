@@ -1,8 +1,8 @@
 #include "MainMenuScene.h"
 #include "DataManager.h"
 #include "MapScene.h"
-
 #include "PopUpLayer.h"
+#include "Player.h"
 
 MainMenuScene::MainMenuScene()
 {
@@ -51,35 +51,24 @@ bool MainMenuScene::init()
 		}
 
 		// --- Testing elapsed time between launchings game ---
-		std::string timeFilePath = cocos2d::FileUtils::getInstance()->getWritablePath() + "/data.time";
-		if (cocos2d::FileUtils::getInstance()->isFileExist(timeFilePath))
-		{
-			std::string timeData = cocos2d::FileUtils::getInstance()->getStringFromFile(timeFilePath);
-			time_t elapsedTime = difftime(time(NULL), static_cast<time_t>(std::stoll(timeData)));
-			std::string timeStr;
-			timeStr += std::to_string(elapsedTime / 86400);
-			elapsedTime = elapsedTime % 86400;
-			timeStr += "::" + std::to_string(elapsedTime / 3600);
-			elapsedTime = elapsedTime % 3600;
-			timeStr += ":" + std::to_string(elapsedTime / 60);
-			elapsedTime = elapsedTime % 60;
-			timeStr += ":" + std::to_string(elapsedTime) + "\n\n\n";
+		time_t elapsedTime = Player::getInstance()->getTimeBetweenGameLaunchings();
+		std::string timeStr;
+		timeStr += std::to_string(elapsedTime / 86400);
+		elapsedTime = elapsedTime % 86400;
+		timeStr += "::" + std::to_string(elapsedTime / 3600);
+		elapsedTime = elapsedTime % 3600;
+		timeStr += ":" + std::to_string(elapsedTime / 60);
+		elapsedTime = elapsedTime % 60;
+		timeStr += ":" + std::to_string(elapsedTime) + "\n\n\n";
 
-			auto fontIt = DM->getData().fonts.find("SMALL_FONT");
-			if (fontIt != DM->getData().fonts.end())
-			{
-				cocos2d::Label* timeLabel = cocos2d::Label::createWithBMFont(fontIt->second, timeStr);
-				timeLabel->setAnchorPoint(cocos2d::Vec2::ANCHOR_BOTTOM_LEFT);
-				addChild(timeLabel);
-				timeLabel->runAction(
-					cocos2d::Sequence::create(
-						cocos2d::DelayTime::create(15.0f),
-						cocos2d::CallFunc::create([timeLabel](){timeLabel->removeFromParent();}),
-						nullptr
-					)
-				);
-			}
+		auto fontIt = DM->getData().fonts.find("SMALL_FONT");
+		if (fontIt != DM->getData().fonts.end())
+		{ 
+			cocos2d::Label* timeLabel = cocos2d::Label::createWithBMFont(fontIt->second, timeStr);
+			timeLabel->setAnchorPoint(cocos2d::Vec2::ANCHOR_BOTTOM_LEFT);
+			addChild(timeLabel);
 		}
+
 		// --- end of test ---
 	}
 

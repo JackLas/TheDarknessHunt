@@ -157,6 +157,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\MainMenuScene.cpp" />
     <ClCompile Include="..\Classes\MapScene.cpp" />
     <ClCompile Include="..\Classes\Monster.cpp" />
+    <ClCompile Include="..\Classes\Player.cpp" />
     <ClCompile Include="..\Classes\PopUpLayer.cpp" />
     <ClCompile Include="..\Classes\Spawner.cpp" />
     <ClCompile Include="..\Classes\TavernScene.cpp" />
@@ -175,6 +176,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\MapScene.h" />
     <ClInclude Include="..\Classes\Monster.h" />
     <ClInclude Include="..\Classes\MonsterDeathListener.h" />
+    <ClInclude Include="..\Classes\Player.h" />
     <ClInclude Include="..\Classes\PopUpLayer.h" />
     <ClInclude Include="..\Classes\Spawner.h" />
     <ClInclude Include="..\Classes\TavernScene.h" />
