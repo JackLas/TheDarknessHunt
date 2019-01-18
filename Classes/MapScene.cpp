@@ -1,11 +1,12 @@
 #include "MapScene.h"
 #include "DataManager.h"
-
+#include "ui/CocosGUI.h"
 #include "MainMenuScene.h"
 #include "CityScene.h"
 #include "CampScene.h"
 #include "TavernScene.h"
 #include "FightScene.h"
+#include "Player.h"
 
 MapScene::MapScene()
 {
@@ -35,6 +36,14 @@ bool MapScene::init()
 	{
 		result = true;
 		setButtonTouchListener(CC_CALLBACK_2(MapScene::onButtonTouched, this));
+
+		cocos2d::ui::ScrollView* map = getChildByName<cocos2d::ui::ScrollView*>("map");
+		if (map != nullptr)
+		{
+
+			const cocos2d::Vec2& mapPosition = Player::getInstance()->getMapPosition();
+			map->setInnerContainerPosition(mapPosition);
+		}
 	}
 
 	return result;
@@ -70,6 +79,13 @@ void MapScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::Touch
 			{
 				cocos2d::Director::getInstance()->replaceScene(FightScene::createScene(btnName));
 			}
+		}
+
+		cocos2d::ui::ScrollView* map = getChildByName<cocos2d::ui::ScrollView*>("map");
+		if (map != nullptr)
+		{
+			const cocos2d::Vec2& mapPosition = map->getInnerContainerPosition();
+			Player::getInstance()->setMapPosition(mapPosition);
 		}
 	}
 }

@@ -1,5 +1,4 @@
 #include "Player.h"
-#include "cocos2d.h"
 #include <string>
 #include <chrono>
 
@@ -29,13 +28,23 @@ Player::~Player()
 {
 }
 
+Player* Player::getInstance()
+{
+	static Player player;
+	return &player;
+}
+
 const std::time_t& Player::getTimeBetweenGameLaunchings()
 {
 	return mTimeBetweenGameLaunchings;
 }
 
-Player* Player::getInstance()
+void Player::setMapPosition(const cocos2d::Vec2& aPosition)
 {
-	static Player player;
-	return &player;
+	mMapPosition = aPosition;
+}
+
+const cocos2d::Vec2& Player::getMapPosition()
+{
+	return mMapPosition;
 }
