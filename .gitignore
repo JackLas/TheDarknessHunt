@@ -5,3 +5,7 @@ proj.win32/.vs/*
 proj.win32/Debug.win32/*
 bin/*
 cocos2d/cocos/platform/android/libcocos2dx/build/*
+cocos2d/cocos/2d/Release.win32/*
+cocos2d/cocos/editor-support/spine/proj.win32/Release.win32/*
+cocos2d/external/recast/proj.win32/Release.win32/*
+proj.win32/Release.win32/*
