@@ -1,6 +1,6 @@
 #include "BaseScene.h"
-#include "ViewBuilder.h"
 #include "viewObjectType.h"
+#include "DataManager.h"
 
 BaseScene::BaseScene()
 {
@@ -22,7 +22,8 @@ bool BaseScene::init(const std::string& aView)
 	if (Parent::init())
 	{
 		result = true;
-		result &= ViewBuilder::loadFromJson(this, aView);
+
+		result &= DM->loadViewFromJson(this, aView);
 	}
 
 	return result;

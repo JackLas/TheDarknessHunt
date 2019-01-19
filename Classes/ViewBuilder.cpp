@@ -1,8 +1,25 @@
 #include "ViewBuilder.h"
 #include "viewObjectType.h"
-
 #include "json/document.h"
 #include "DataManager.h"
+
+ViewBuilder::ViewBuilder()
+{
+	mComponents["node"] = new NodeComponent(mComponents);
+	mComponents["sprite"] = new SpriteComponent(mComponents);
+	mComponents["label"] = new LabelComponent(mComponents);
+	mComponents["button"] = new ButtonComponent(mComponents);
+	mComponents["pop_up_layer"] = new PopUpLayerComponent(mComponents);
+	mComponents["map_scrollview"] = new MapScrollViewComponent(mComponents);
+}
+
+ViewBuilder::~ViewBuilder()
+{
+	for (auto component : mComponents)
+	{
+		delete component.second;
+	}
+}
 
 bool ViewBuilder::loadFromJson(cocos2d::Node* aParent, const std::string& aJson)
 {
@@ -13,154 +30,65 @@ bool ViewBuilder::loadFromJson(cocos2d::Node* aParent, const std::string& aJson)
 
 	if (!json.HasParseError())
 	{
-		for (auto it = json.MemberBegin(); it != json.MemberEnd(); ++it)
+		auto componentIt = mComponents.find("node");
+		if (componentIt != mComponents.end())
 		{
-			initNode(nullptr, aParent, it);
+			for (auto it = json.MemberBegin(); it != json.MemberEnd(); ++it)
+			{
+				componentIt->second->init(nullptr, aParent, it);
+			}
 		}
 		result = true;
 	}
 	else
 	{
-		result = false;
 		CCLOG("'%s' parsing error", aJson.c_str());
 	}
 
 	return result;
 }
 
-cocos2d::Node* ViewBuilder::initChild(cocos2d::Node* aParent, rapidjson::Value::MemberIterator aChildIt)
+ViewBuilder::ViewComponent::ViewComponent(
+	const std::map<std::string, ViewComponent*>& aComponents)
+	: mComponents(aComponents)
 {
-	const std::string childType = aChildIt->name.GetString();
-	rapidjson::Value& attributes = aChildIt->value;
-	cocos2d::Node* result = nullptr;
-
-	if (childType == "sprite")
-	{
-		cocos2d::Sprite* sprite = cocos2d::Sprite::create();
-		sprite->setTag(static_cast<int>(eViewObjectType::OBJECT_TYPE_SPRITE));
-		if (sprite)
-		{
-			for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
-			{
-				if (initNode(aParent, sprite, attrIt))
-					;
-				else if (initSprite(aParent, sprite, attrIt))
-					;
-			}
-			result = sprite;
-		}
-	}
-	else if (childType == "button")
-	{
-		cocos2d::ui::Button* btn = createButton(attributes);
-		btn->setTag(static_cast<int>(eViewObjectType::OBJECT_TYPE_BUTTON));
-		if (btn)
-		{
-			for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
-			{
-				if (initButton(aParent, btn, attrIt))
-					;
-				else if (initNode(aParent, btn, attrIt))
-					;
-
-			}
-			result = btn;
-		}
-	}
-	else if (childType == "label")
-	{
-		cocos2d::Label* label = createLabel(attributes);
-		label->setTag(static_cast<int>(eViewObjectType::OBJECT_TYPE_LABEL));
-		if (label != nullptr)
-		{
-			for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
-			{
-				if (initLabel(aParent, label, attrIt))
-					;
-				else if (initNode(aParent, label, attrIt))
-					;
-			}
-			result = label;
-		}
-	}
-	else if (childType == "pop_up_layer")
-	{
-		PopUpLayer* layer = PopUpLayer::create();
-		layer->setTag(static_cast<int>(eViewObjectType::OBJECT_TYPE_POP_UP_LAYER));
-		if (layer != nullptr)
-		{
-			for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
-			{
-				if (initPopUpLayer(aParent, layer, attrIt))
-					;
-				else if (initNode(aParent, layer, attrIt))
-					;
-			}
-			result = layer;
-		}
-	}
-	else if (childType == "scrollview")
-	{
-		cocos2d::ui::ScrollView* scrollView = cocos2d::ui::ScrollView::create();
-		if (scrollView != nullptr)
-		{
-			for (auto attrIt = attributes.MemberBegin(); attrIt != attributes.MemberEnd(); ++attrIt)
-			{
-				if (initScrollView(aParent, scrollView, attrIt))
-					;
-				else if (initNode(aParent, scrollView, attrIt))
-					;
-			}
-			scrollView->setScrollBarEnabled(false);
-			scrollView->setDirection(cocos2d::ui::ScrollView::Direction::VERTICAL);
-			scrollView->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
-
-			result = scrollView;
-		}
-	}
-
-	return result;
 }
 
-void ViewBuilder::loadChildren(cocos2d::Node* aParent, rapidjson::Value& aChildrenValue)
+cocos2d::Color3B ViewBuilder::ViewComponent::getColorFromValue(const rapidjson::Value& aAttrIt)
 {
-	const cocos2d::Size& contentSize = aParent->getContentSize();
+	cocos2d::Color3B color = cocos2d::Color3B::WHITE;
 
-	for (auto it = aChildrenValue.MemberBegin(); it != aChildrenValue.MemberEnd(); ++it)
+	if (aAttrIt.HasMember("r"))
 	{
-		cocos2d::Node* child = initChild(aParent, it);
-		if (child != nullptr)
-		{
-			aParent->addChild(child);
-		}
+		color.r = static_cast<float>(aAttrIt["r"].GetDouble());
 	}
+	if (aAttrIt.HasMember("g"))
+	{
+		color.g = static_cast<float>(aAttrIt["g"].GetDouble());
+	}
+	if (aAttrIt.HasMember("b"))
+	{
+		color.b = static_cast<float>(aAttrIt["b"].GetDouble());
+	}
+
+	return color;
 }
 
-void ViewBuilder::loadScrollViewParts(cocos2d::ui::ScrollView* aParent, rapidjson::Value& aPartsValue)
+ViewBuilder::NodeComponent::NodeComponent(
+	const std::map<std::string, ViewComponent*>& aComponents)
+	: ViewComponent(aComponents)
 {
-	const cocos2d::Size& contentSize = aParent->getContentSize();
-	cocos2d::Size innerContainerSize = aParent->getInnerContainerSize();
-	innerContainerSize.height = 0.0f;
-
-	for (auto it = aPartsValue.MemberBegin(); it != aPartsValue.MemberEnd(); ++it)
-	{
-		cocos2d::Node* child = initChild(aParent, it);
-		if (child != nullptr)
-		{
-			child->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_BOTTOM);
-			const cocos2d::Size& childSize = child->getContentSize();
-			cocos2d::Size childPos = innerContainerSize;
-			childPos.width *= 0.5f;
-			child->setPosition(childPos);
-			innerContainerSize.height += childSize.height;
-			aParent->addChild(child);
-		}
-	}
-	aParent->setInnerContainerSize(innerContainerSize);
-
 }
 
-bool ViewBuilder::initNode(const cocos2d::Node* aParent, cocos2d::Node* aObject, rapidjson::Value::MemberIterator aAttrIt)
+cocos2d::Node* ViewBuilder::NodeComponent::create(const rapidjson::Value& aAttr)
+{
+	return cocos2d::Node::create();
+}
+
+bool ViewBuilder::NodeComponent::init(
+	const cocos2d::Node* aParent, 
+	cocos2d::Node* aObject, 
+	rapidjson::Value::MemberIterator aAttrIt)
 {
 	cocos2d::Size contentSize;
 	if (aParent != nullptr)
@@ -219,36 +147,119 @@ bool ViewBuilder::initNode(const cocos2d::Node* aParent, cocos2d::Node* aObject,
 	return result;
 }
 
-bool ViewBuilder::initButton(const cocos2d::Node* aParent, cocos2d::ui::Button* aObject, rapidjson::Value::MemberIterator aAttrIt)
+void ViewBuilder::NodeComponent::addToParent(cocos2d::Node* aParent, cocos2d::Node* aChild)
+{
+	aParent->addChild(aChild);
+}
+
+cocos2d::Node* ViewBuilder::NodeComponent::initChild(
+	cocos2d::Node* aParent, rapidjson::Value::MemberIterator aChildIt)
+{
+	cocos2d::Node* result = nullptr;
+	std::string childType = aChildIt->name.GetString();
+	auto componentIt = mComponents.find(childType);
+	if (componentIt != mComponents.end())
+	{
+		cocos2d::Node* child = componentIt->second->create(aChildIt->value);
+		if (child != nullptr)
+		{
+			for (auto attrIt = aChildIt->value.MemberBegin(); attrIt != aChildIt->value.MemberEnd(); ++attrIt)
+			{
+				componentIt->second->init(aParent, child, attrIt);
+			}
+			result = child;
+		}
+	}
+	return result;
+}
+
+void ViewBuilder::NodeComponent::loadChildren(
+	cocos2d::Node* aParent, rapidjson::Value& aChildrenValue)
+{
+	for (auto it = aChildrenValue.MemberBegin(); it != aChildrenValue.MemberEnd(); ++it)
+	{
+		cocos2d::Node* child = initChild(aParent, it);
+		if (child != nullptr)
+		{
+			aParent->addChild(child);
+		}
+	}
+}
+
+ViewBuilder::SpriteComponent::SpriteComponent(
+	const std::map<std::string, ViewComponent*>& aComponents)
+	: NodeComponent(aComponents)
+{
+}
+
+cocos2d::Node* ViewBuilder::SpriteComponent::create(const rapidjson::Value& aAttr)
+{
+	return cocos2d::Sprite::create();
+}
+
+bool ViewBuilder::SpriteComponent::init(
+	const cocos2d::Node* aParent, cocos2d::Node* aObject, 
+	rapidjson::Value::MemberIterator aAttrIt)
 {
 	bool result = false;
-	const std::string attrName = aAttrIt->name.GetString();
 
-	if (attrName == "title")
+	if (!NodeComponent::init(aParent, aObject, aAttrIt))
 	{
-		cocos2d::Label* title = createLabel(aAttrIt->value);
-		if (title != nullptr)
+		const std::string attrName = aAttrIt->name.GetString();
+		cocos2d::Sprite* sprite = static_cast<cocos2d::Sprite*>(aObject);
+		if (attrName == "frame_name")
 		{
-			title->setPosition(cocos2d::Vec2::ANCHOR_MIDDLE);
-			aObject->setTitleLabel(title);
+			const auto frameName = DM->getData().images.find(aAttrIt->value.GetString());
+			if (frameName != DM->getData().images.end())
+			{
+				sprite->initWithSpriteFrameName(frameName->second);
+				result = true;
+			}
 		}
-		result = true;
 	}
 
 	return result;
 }
 
-bool ViewBuilder::initSprite(const cocos2d::Node* aParent, cocos2d::Sprite* aObject, rapidjson::Value::MemberIterator aAttrIt)
+ViewBuilder::LabelComponent::LabelComponent(const std::map<std::string, ViewComponent*>& aComponents)
+	:NodeComponent(aComponents)
+{
+}
+
+cocos2d::Node* ViewBuilder::LabelComponent::create(const rapidjson::Value& aAttr)
+{
+	cocos2d::Label* label = nullptr;
+
+	if (aAttr.HasMember("font") && aAttr.HasMember("text"))
+	{
+		std::string fontID = aAttr["font"].GetString();
+		const std::string& font = DM->getFontById(fontID);
+
+		std::string stringID = aAttr["text"].GetString();
+		const std::string& text = DM->getStringById(stringID);
+
+		label = cocos2d::Label::createWithBMFont(font, text);
+	}
+
+	return label;
+}
+
+bool ViewBuilder::LabelComponent::init(
+	const cocos2d::Node* aParent, 
+	cocos2d::Node* aObject, 
+	rapidjson::Value::MemberIterator aAttrIt)
 {
 	bool result = false;
-	const std::string attrName = aAttrIt->name.GetString();
 
-	if (attrName == "frame_name")
+	if (!NodeComponent::init(aParent, aObject, aAttrIt))
 	{
-		const auto frameName = DM->getData().images.find(aAttrIt->value.GetString());
-		if (frameName != DM->getData().images.end())
+		const std::string attrName = aAttrIt->name.GetString();
+		cocos2d::Label* label = static_cast<cocos2d::Label*>(aObject);
+		if (attrName == "width")
 		{
-			aObject->initWithSpriteFrameName(frameName->second);
+			float width = static_cast<float>(aAttrIt->value.GetDouble());
+			width *= aParent->getContentSize().width;
+			label->setMaxLineWidth(width);
 			result = true;
 		}
 	}
@@ -256,60 +267,13 @@ bool ViewBuilder::initSprite(const cocos2d::Node* aParent, cocos2d::Sprite* aObj
 	return result;
 }
 
-bool ViewBuilder::initLabel(const cocos2d::Node* aParent, cocos2d::Label* aObject, rapidjson::Value::MemberIterator aAttrIt)
+ViewBuilder::ButtonComponent::ButtonComponent(
+	const std::map<std::string, ViewComponent*>& aComponents)
+	: NodeComponent(aComponents)
 {
-	bool result = false;
-	const std::string attrName = aAttrIt->name.GetString();
-	if (attrName == "width")
-	{
-		float width = static_cast<float>(aAttrIt->value.GetDouble());
-		width *= aParent->getContentSize().width;
-		aObject->setMaxLineWidth(width);
-	}
-
-	return result;
 }
 
-bool ViewBuilder::initPopUpLayer(const cocos2d::Node* aParent, PopUpLayer* aObject, rapidjson::Value::MemberIterator aAttrIt)
-{
-	const std::string attrName = aAttrIt->name.GetString();
-	bool result = false;
-
-	if (attrName == "appearingTime")
-	{
-		aObject->setAppeatingTime(static_cast<float>(aAttrIt->value.GetDouble()));
-		result = true;
-	}
-
-	return result;
-}
-
-bool ViewBuilder::initScrollView(const cocos2d::Node* aParent, cocos2d::ui::ScrollView* aObject, rapidjson::Value::MemberIterator aAttrIt)
-{
-	const std::string attrName = aAttrIt->name.GetString();
-	bool result = false;
-
-	if (attrName == "content_width")
-	{
-		cocos2d::Size currentSize = aObject->getContentSize();
-		currentSize.width = aParent->getContentSize().width * static_cast<float>(aAttrIt->value.GetDouble());
-		aObject->setContentSize(currentSize);
-	}
-	else if (attrName == "content_height")
-	{
-		cocos2d::Size currentSize = aObject->getContentSize();
-		currentSize.height = aParent->getContentSize().height * static_cast<float>(aAttrIt->value.GetDouble());
-		aObject->setContentSize(currentSize);
-	}
-	else if (attrName == "parts")
-	{
-		loadScrollViewParts(static_cast<cocos2d::ui::ScrollView*>(aObject), aAttrIt->value);
-	}
-
-	return result;
-}
-
-cocos2d::ui::Button* ViewBuilder::createButton(const rapidjson::Value& aAttr)
+cocos2d::Node* ViewBuilder::ButtonComponent::create(const rapidjson::Value& aAttr)
 {
 	std::string normalFrameName;
 	if (aAttr.HasMember("normal_image_frame_name"))
@@ -334,40 +298,137 @@ cocos2d::ui::Button* ViewBuilder::createButton(const rapidjson::Value& aAttr)
 										cocos2d::ui::Widget::TextureResType::PLIST);
 }
 
-cocos2d::Label* ViewBuilder::createLabel(const rapidjson::Value& aAttr)
+bool ViewBuilder::ButtonComponent::init(
+	const cocos2d::Node* aParent, 
+	cocos2d::Node* aObject, 
+	rapidjson::Value::MemberIterator aAttrIt)
 {
-	cocos2d::Label* label = nullptr;
-
-	if (aAttr.HasMember("font") && aAttr.HasMember("text"))
+	bool result = false;
+	aObject->setTag(static_cast<int>(eViewObjectType::OBJECT_TYPE_BUTTON));
+	if (!NodeComponent::init(aParent, aObject, aAttrIt))
 	{
-		std::string fontID = aAttr["font"].GetString();
-		const std::string& font = DM->getFontById(fontID);
-
-		std::string stringID = aAttr["text"].GetString();
-		const std::string& text = DM->getStringById(stringID);
-
-		label = cocos2d::Label::createWithBMFont(font, text);
+		const std::string attrName = aAttrIt->name.GetString();
+		cocos2d::ui::Button* button = static_cast<cocos2d::ui::Button*>(aObject);
+		if (attrName == "title")
+		{
+			auto componentIt = mComponents.find("label");
+			if (componentIt != mComponents.end())
+			{
+				cocos2d::Node* titleNode = componentIt->second->create(aAttrIt->value);
+				cocos2d::Label* title = static_cast<cocos2d::Label*>(titleNode);
+				if (title != nullptr)
+				{
+					title->setPosition(cocos2d::Vec2::ANCHOR_MIDDLE);
+					button->setTitleLabel(title);
+				}
+				result = true;
+			}
+		}
 	}
 
-	return label;
+	return result;
 }
 
-cocos2d::Color3B ViewBuilder::getColorFromValue(const rapidjson::Value& aAttrIt)
+ViewBuilder::PopUpLayerComponent::PopUpLayerComponent(
+	const std::map<std::string, ViewComponent*>& aComponents)
+	: NodeComponent(aComponents)
 {
-	cocos2d::Color3B color = cocos2d::Color3B::WHITE;
+}
 
-	if (aAttrIt.HasMember("r"))
+cocos2d::Node* ViewBuilder::PopUpLayerComponent::create(const rapidjson::Value& aAttr)
+{
+	return PopUpLayer::create();
+}
+
+bool ViewBuilder::PopUpLayerComponent::init(
+	const cocos2d::Node* aParent,
+	cocos2d::Node* aObject, 
+	rapidjson::Value::MemberIterator aAttrIt)
+{
+	bool result = false;
+	
+	if (!NodeComponent::init(aParent, aObject, aAttrIt))
 	{
-		color.r = static_cast<float>(aAttrIt["r"].GetDouble());
-	}
-	if (aAttrIt.HasMember("g"))
-	{
-		color.g = static_cast<float>(aAttrIt["g"].GetDouble());
-	}
-	if (aAttrIt.HasMember("b"))
-	{
-		color.b = static_cast<float>(aAttrIt["b"].GetDouble());
+		const std::string attrName = aAttrIt->name.GetString();
+		PopUpLayer* layer = static_cast<PopUpLayer*>(aObject);
+		if (attrName == "appearingTime")
+		{
+			layer->setAppeatingTime(static_cast<float>(aAttrIt->value.GetDouble()));
+			result = true;
+		}
 	}
 
-	return color;
+	return result;
+}
+
+ViewBuilder::MapScrollViewComponent::MapScrollViewComponent(
+	const std::map<std::string, ViewComponent*>& aComponents)
+	: NodeComponent(aComponents)
+{
+}
+
+cocos2d::Node* ViewBuilder::MapScrollViewComponent::create(
+	const rapidjson::Value& aAttr)
+{
+	return cocos2d::ui::ScrollView::create();
+}
+
+bool ViewBuilder::MapScrollViewComponent::init(
+	const cocos2d::Node* aParent, 
+	cocos2d::Node* aObject, 
+	rapidjson::Value::MemberIterator aAttrIt)
+{
+	bool result = false;
+
+	if (!NodeComponent::init(aParent, aObject, aAttrIt))
+	{
+		const std::string attrName = aAttrIt->name.GetString();
+		if (attrName == "content_width")
+		{
+			cocos2d::Size currentSize = aObject->getContentSize();
+			currentSize.width = aParent->getContentSize().width * static_cast<float>(aAttrIt->value.GetDouble());
+			aObject->setContentSize(currentSize);
+		}
+		else if (attrName == "content_height")
+		{
+			cocos2d::Size currentSize = aObject->getContentSize();
+			currentSize.height = aParent->getContentSize().height * static_cast<float>(aAttrIt->value.GetDouble());
+			aObject->setContentSize(currentSize);
+		}
+		else if (attrName == "parts")
+		{
+			loadParts(static_cast<cocos2d::ui::ScrollView*>(aObject), aAttrIt->value);
+		}
+	}
+
+	cocos2d::ui::ScrollView* scrollView = static_cast<cocos2d::ui::ScrollView*>(aObject);
+	scrollView->setScrollBarEnabled(false);
+	scrollView->setDirection(cocos2d::ui::ScrollView::Direction::VERTICAL);
+	scrollView->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
+
+	return result;
+}
+
+void ViewBuilder::MapScrollViewComponent::loadParts(
+	cocos2d::ui::ScrollView* aParent, rapidjson::Value& aPartsValue)
+{
+	const cocos2d::Size& contentSize = aParent->getContentSize();
+	cocos2d::Size innerContainerSize = aParent->getInnerContainerSize();
+	innerContainerSize.height = 0.0f;
+
+	for (auto it = aPartsValue.MemberBegin(); it != aPartsValue.MemberEnd(); ++it)
+	{
+		cocos2d::Node* child = initChild(aParent, it);
+		if (child != nullptr)
+		{
+			child->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_BOTTOM);
+			const cocos2d::Size& childSize = child->getContentSize();
+			cocos2d::Size childPos = innerContainerSize;
+			childPos.width *= 0.5f;
+			child->setPosition(childPos);
+			innerContainerSize.height += childSize.height;
+			aParent->addChild(child);
+		}
+	}
+	aParent->setInnerContainerSize(innerContainerSize);
 }

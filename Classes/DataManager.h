@@ -2,12 +2,14 @@
 #define DATAMANAGER_H
 
 #include "dataTypes.h"
+#include "ViewBuilder.h"
 
 class DataManager
 {
 private:
 	sData mData;
 	sSettings mSettings;
+	ViewBuilder mViewBuilder;
 
 	const std::string mDefaultStr;
 
@@ -25,6 +27,8 @@ public:
 	const sData& getData() const;
 	sSettings& getSettings();
 	void saveSettings();
+
+	bool loadViewFromJson(cocos2d::Node* aParent, const std::string& aJson);
 
 	const std::string& getStringById(const std::string& aID);
 	const std::string& getFrameNameById(const std::string& aID);

@@ -145,6 +145,11 @@ void DataManager::saveSettings()
 	const std::string settingsFile = cocos2d::FileUtils::getInstance()->getWritablePath() + "/settings.json";
 	cocos2d::FileUtils::getInstance()->writeStringToFile(buffer.GetString(), settingsFile);
 }
+bool DataManager::loadViewFromJson(cocos2d::Node* aParent, const std::string& aJson)
+{
+	return mViewBuilder.loadFromJson(aParent, aJson);
+}
+
 //
 //void DataManager::reloadStrings()
 //{
