@@ -18,9 +18,14 @@
 	"MAP_PART_2": "map/part2.png",
 	"MAP_PART_3": "map/part3.png",
 
-	"MONSTER_1": "monsters/unknown1.png",
-	"MONSTER_2": "monsters/unknown2.png",
-	"MONSTER_3": "monsters/skeleton.png",
+	"MONSTER_1": "monsters/monster1.png",
+	"MONSTER_2": "monsters/monster2.png",
+	"MONSTER_3": "monsters/monster3.png",
+	"MONSTER_4": "monsters/monster4.png",
+	"MONSTER_5": "monsters/monster5.png",
+	"MONSTER_6": "monsters/monster6.png",
+	"MONSTER_7": "monsters/monster7.png",
+	"MONSTER_8": "monsters/monster8.png",
 
 	"MAIN_LOGO" : "UI/logo.png",
 	"OPTIONS_BG" : "UI/options_popUp_bg.png",
@@ -31,5 +36,14 @@
 	"FIGHT_BAR_LARGE": "UI/fight_bar_large.png",
 	"FIGHT_BAR_SMALL": "UI/fight_bar_small.png",
 	"MAP_CURRENCY_BAR": "UI/currency_bar.png",
-	"MAP_BOTTOM_BAR": "UI/bottom_bar.png"
+	"MAP_BOTTOM_BAR": "UI/bottom_bar.png",
+	"BUTTON_MAP": "UI/btn_map.png",
+	"HEALTH_BAR_BG": "UI/health_bar_bg.png",
+	"HEALTH_BAR_CORE": "UI/health_bar_core.png",
+	"HEALTH_BAR_FRONT": "UI/health_bar_front.png",
+	"ICON_KILLS": "UI/icon_kills.png",
+	"ICON_PHYS_DAMAGE": "UI/icon_physical_damage.png",
+	"ICON_PHYS_RESIST": "UI/icon_physical_resistance.png",
+	"ICON_MAG_DAMAGE": "UI/icon_magical_damage.png",
+	"ICON_MAG_RESIST": "UI/icon_magical_resistance.png"
 }
