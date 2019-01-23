@@ -24,6 +24,7 @@ public:
 
 	const std::string& getName() const;
 	float getCurrentHealth() const;
+	float getCurrentHealthInPercent() const;
 	void onTouched();
 	void setDeathListener(MonsterDeathListener* aListener);
 };

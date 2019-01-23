@@ -64,6 +64,12 @@ float Monster::getCurrentHealth() const
 	return mCurrentHP;
 }
 
+
+float Monster::getCurrentHealthInPercent() const
+{
+	return mCurrentHP / mData.hp * 100;
+}
+
 void Monster::onTouched()
 {
 	const float actionTime = 0.15f;

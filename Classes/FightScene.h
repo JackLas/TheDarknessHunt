@@ -3,6 +3,7 @@
 
 #include "BaseScene.h"
 #include "cocos2d.h"
+#include "ui/CocosGUI.h"
 #include "dataTypes.h"
 #include "Monster.h"
 #include "Spawner.h"
@@ -16,6 +17,16 @@ private:
 	const std::string mLevelID;
 	Spawner mSpawner;
 	Monster* mCurrentMonster;
+
+	cocos2d::Label* mPhysDamageLabel;
+	cocos2d::Label* mMagDamageLabel;
+	cocos2d::Label* mPhysResistLabel;
+	cocos2d::Label* mMagResistLabel;
+	cocos2d::Label* mKillsLabel;
+	cocos2d::Label* mGoldLabel;
+	cocos2d::Label* mMonsterNameLabel;
+	cocos2d::Label* mTimeToHealLabel;
+	cocos2d::ui::LoadingBar* mMonsterHealthBar;
 
 	FightScene(const std::string& aLevelID);
 protected:
