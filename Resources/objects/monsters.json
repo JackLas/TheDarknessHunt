@@ -2,21 +2,56 @@
 	"MONSTER_1":
 	{
 		"sprite": "MONSTER_1",
-		"name": "STID_MONSTER_SKELETON",
+		"name": "default",
 		"HP": 3.0
 	},
 
 	"MONSTER_2":
 	{
 		"sprite": "MONSTER_2",
-		"name": "STID_MONSTER_SKELETON",
+		"name": "default",
 		"HP": 3.0
 	},
 
-	"SKELETON":
+	"MONSTER_3":
 	{
 		"sprite": "MONSTER_3",
-		"name": "STID_MONSTER_SKELETON",
+		"name": "default",
+		"HP": 3.0
+	},
+
+	"MONSTER_4":
+	{
+		"sprite": "MONSTER_4",
+		"name": "default",
+		"HP": 3.0
+	},
+
+	"MONSTER_5":
+	{
+		"sprite": "MONSTER_5",
+		"name": "default",
+		"HP": 3.0
+	},
+
+	"MONSTER_6":
+	{
+		"sprite": "MONSTER_6",
+		"name": "default",
+		"HP": 3.0
+	},
+
+	"MONSTER_7":
+	{
+		"sprite": "MONSTER_7",
+		"name": "default",
+		"HP": 3.0
+	},
+
+	"MONSTER_8":
+	{
+		"sprite": "MONSTER_8",
+		"name": "default",
 		"HP": 3.0
 	}
 }
