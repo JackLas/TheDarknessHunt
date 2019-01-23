@@ -11,6 +11,7 @@ ViewBuilder::ViewBuilder()
 	mComponents["button"] = new ButtonComponent(mComponents);
 	mComponents["pop_up_layer"] = new PopUpLayerComponent(mComponents);
 	mComponents["map_scrollview"] = new MapScrollViewComponent(mComponents);
+	mComponents["loading_bar"] = new LoadingBarComponent(mComponents);
 }
 
 ViewBuilder::~ViewBuilder()
@@ -138,6 +139,11 @@ bool ViewBuilder::NodeComponent::init(
 		anchor.y = static_cast<float>(aAttrIt->value.GetDouble());
 		aObject->setAnchorPoint(anchor);
 	}
+	else if (attrName == "z_order")
+	{
+		int zOrder = aAttrIt->value.GetInt();
+		aObject->setLocalZOrder(zOrder);
+	}
 	else if (attrName == "children")
 	{
 		loadChildren(aObject, aAttrIt->value);
@@ -230,15 +236,22 @@ cocos2d::Node* ViewBuilder::LabelComponent::create(const rapidjson::Value& aAttr
 {
 	cocos2d::Label* label = nullptr;
 
-	if (aAttr.HasMember("font") && aAttr.HasMember("text"))
+	if (aAttr.HasMember("font"))
 	{
 		std::string fontID = aAttr["font"].GetString();
 		const std::string& font = DM->getFontById(fontID);
 
-		std::string stringID = aAttr["text"].GetString();
-		const std::string& text = DM->getStringById(stringID);
+		if (aAttr.HasMember("text"))
+		{
+			std::string stringID = aAttr["text"].GetString();
+			const std::string& text = DM->getStringById(stringID);
 
-		label = cocos2d::Label::createWithBMFont(font, text);
+			label = cocos2d::Label::createWithBMFont(font, text);
+		}
+		else
+		{
+			label = cocos2d::Label::createWithBMFont(font, "");
+		}
 	}
 
 	return label;
@@ -431,4 +444,24 @@ void ViewBuilder::MapScrollViewComponent::loadParts(
 		}
 	}
 	aParent->setInnerContainerSize(innerContainerSize);
+}
+
+ViewBuilder::LoadingBarComponent::LoadingBarComponent(
+	const std::map<std::string, ViewComponent*>& aComponents)
+	: NodeComponent(aComponents)
+{
+}
+
+cocos2d::Node* ViewBuilder::LoadingBarComponent::create(const rapidjson::Value& aAttr)
+{
+	cocos2d::Node* result = nullptr;
+
+	if (aAttr.HasMember("core_frame_name"))
+	{
+		const std::string frameNameID = aAttr["core_frame_name"].GetString();
+		const std::string& frameName = DM->getFrameNameById(frameNameID);
+		result = cocos2d::ui::LoadingBar::create(frameName, cocos2d::ui::Widget::TextureResType::PLIST);
+	}
+
+	return result;
 }

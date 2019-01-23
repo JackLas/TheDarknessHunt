@@ -90,6 +90,13 @@ private:
 		void loadParts(cocos2d::ui::ScrollView* aParent, rapidjson::Value& aPartsValue);
 	};
 
+	class LoadingBarComponent : public NodeComponent
+	{
+	public:
+		LoadingBarComponent(const std::map<std::string, ViewComponent*>& aComponents);
+		virtual cocos2d::Node* create(const rapidjson::Value& aAttr) override;
+	};
+
 	std::map<std::string, ViewComponent*> mComponents;
 public:
 	ViewBuilder();
