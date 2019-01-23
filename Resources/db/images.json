@@ -45,5 +45,6 @@
 	"ICON_PHYS_DAMAGE": "UI/icon_physical_damage.png",
 	"ICON_PHYS_RESIST": "UI/icon_physical_resistance.png",
 	"ICON_MAG_DAMAGE": "UI/icon_magical_damage.png",
-	"ICON_MAG_RESIST": "UI/icon_magical_resistance.png"
+	"ICON_MAG_RESIST": "UI/icon_magical_resistance.png",
+	"ICON_COIN": "UI/icon_coin.png"
 }

@@ -79,37 +79,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>UI/icon_kills.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,1}</string>
-                <key>spriteSize</key>
-                <string>{41,43}</string>
-                <key>spriteSourceSize</key>
-                <string>{45,45}</string>
-                <key>textureRect</key>
-                <string>{{1207,738},{41,43}}</string>
-                <key>textureRotated</key>
-                <true/>
-            </dict>
-            <key>UI/icon_magical_damage.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{-1,0}</string>
-                <key>spriteSize</key>
-                <string>{43,45}</string>
-                <key>spriteSourceSize</key>
-                <string>{45,45}</string>
-                <key>textureRect</key>
-                <string>{{1209,645},{43,45}}</string>
-                <key>textureRotated</key>
-                <true/>
-            </dict>
-            <key>UI/icon_magical_resistance.png</key>
+            <key>UI/icon_coin.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -124,6 +94,51 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
+            <key>UI/icon_kills.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,1}</string>
+                <key>spriteSize</key>
+                <string>{41,43}</string>
+                <key>spriteSourceSize</key>
+                <string>{45,45}</string>
+                <key>textureRect</key>
+                <string>{{1207,787},{41,43}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>UI/icon_magical_damage.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-1,0}</string>
+                <key>spriteSize</key>
+                <string>{43,45}</string>
+                <key>spriteSourceSize</key>
+                <string>{45,45}</string>
+                <key>textureRect</key>
+                <string>{{1209,694},{43,45}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>UI/icon_magical_resistance.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{45,45}</string>
+                <key>spriteSourceSize</key>
+                <string>{45,45}</string>
+                <key>textureRect</key>
+                <string>{{1209,596},{45,45}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
             <key>UI/icon_physical_damage.png</key>
             <dict>
                 <key>aliases</key>
@@ -135,7 +150,7 @@
                 <key>spriteSourceSize</key>
                 <string>{45,42}</string>
                 <key>textureRect</key>
-                <string>{{1209,692},{45,42}}</string>
+                <string>{{1207,741},{45,42}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -150,7 +165,7 @@
                 <key>spriteSourceSize</key>
                 <string>{45,45}</string>
                 <key>textureRect</key>
-                <string>{{1209,596},{45,45}}</string>
+                <string>{{1209,645},{45,45}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -288,7 +303,7 @@
             <key>size</key>
             <string>{2006,2042}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:fb4d9746c47f00a3d24f4ff0bde548ab:5acf23da58c9bde73a53d69dfabf940d:551a97c8091a27f303b1d3c25b09e054$</string>
+            <string>$TexturePacker:SmartUpdate:1b7a4b32157c68c4445b27c8b6916e18:837aca154a7706591b8cd07ac04e2a05:551a97c8091a27f303b1d3c25b09e054$</string>
             <key>textureFileName</key>
             <string>images-0.webp</string>
         </dict>
