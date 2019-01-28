@@ -23,12 +23,14 @@ public:
 	virtual ~Monster();
 
 	virtual void onEnter() override;
-
+	void setActionListener(MonsterActionListener* aListener);
+	
 	const std::string& getName() const;
 	float getCurrentHealth() const;
 	float getCurrentHealthInPercent() const;
+	const sResistance& getResistance() const;
+
 	void onTouched();
-	void setActionListener(MonsterActionListener* aListener);
 };
 
 #endif //MONSTER_H

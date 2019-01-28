@@ -5,14 +5,36 @@
 #include <string>
 #include <map>
 
+struct sResistance
+{
+	int physical;
+	int magical;
+
+	sResistance()
+		: physical(0)
+		, magical(0)
+	{
+	}
+};
+
 struct sMonster
 {
 	std::string spriteFrameNameID;
 	std::string nameSTID;
+	cocos2d::Vec2 anchor;
+	float appearingTime;
+	float disappearingTime;
+	float touchActionTime;
+
 	float hp;
+	sResistance resistance;
 
 	sMonster()
-		: hp(0.0f)
+		: anchor(cocos2d::Vec2::ANCHOR_MIDDLE)
+		, appearingTime(0.0f)
+		, disappearingTime(0.0f)
+		, touchActionTime(0.0f)
+		, hp(0.0f)
 	{
 	}
 };

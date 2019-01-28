@@ -228,11 +228,25 @@ void DataManager::loadMonsters(const std::string& aPath)
 	monsterConfig.Parse(configContent.c_str());
 	if (!monsterConfig.HasParseError())
 	{
+		const std::string defaultMonsterID = "DEFAULT_MONSTER";
+		bool isDefaultMonsterExists = false;
+
 		for (auto monsterIt = monsterConfig.MemberBegin(); monsterIt != monsterConfig.MemberEnd(); ++monsterIt)
 		{
 			const std::string monsterID = monsterIt->name.GetString();
-			
 			sMonster& monster = mData.monsters[monsterID];
+
+			if (isDefaultMonsterExists)
+			{
+				monster = mData.monsters[defaultMonsterID];
+				CCLOG("Set current monster as default");
+			}
+			else
+			{
+				isDefaultMonsterExists = (monsterID == defaultMonsterID);
+				CCLOG("Check default monster");
+			}
+
 			rapidjson::Value& monsterAttr = monsterIt->value;
 			for (auto monsterAttrIt = monsterAttr.MemberBegin(); monsterAttrIt != monsterAttr.MemberEnd(); ++monsterAttrIt)
 			{
@@ -249,7 +263,41 @@ void DataManager::loadMonsters(const std::string& aPath)
 				{
 					monster.hp = static_cast<float>(monsterAttrIt->value.GetDouble());
 				}
+				else if (attrName == "anchor_x")
+				{
+					monster.anchor.x = static_cast<float>(monsterAttrIt->value.GetDouble());
+				}
+				else if (attrName == "anchor_y")
+				{
+					monster.anchor.y = static_cast<float>(monsterAttrIt->value.GetDouble());
+				}
+				else if (attrName == "phys_resist")
+				{
+					monster.resistance.physical = monsterAttrIt->value.GetInt();
+				}
+				else if (attrName == "mag_resist")
+				{
+					monster.resistance.magical = monsterAttrIt->value.GetInt();
+				}
+				else if (attrName == "appearing_time")
+				{
+					monster.appearingTime = static_cast<float>(monsterAttrIt->value.GetDouble());
+				}
+				else if (attrName == "disappearing_time")
+				{
+					monster.disappearingTime = static_cast<float>(monsterAttrIt->value.GetDouble());
+				}
+				else if (attrName == "touch_action_time")
+				{
+					monster.touchActionTime = static_cast<float>(monsterAttrIt->value.GetDouble());
+				}
 			}
+		}
+
+		if (isDefaultMonsterExists)
+		{
+			mData.monsters.erase(defaultMonsterID);
+			CCLOG("default monster was erased");
 		}
 	}
 	else

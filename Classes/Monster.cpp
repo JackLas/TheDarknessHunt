@@ -19,10 +19,8 @@ bool Monster::init()
 		{
 			result = true;
 			mCurrentHP = mData.hp;
-
-			const float apearingTime = 0.4f;
 			setOpacity(0);
-			runAction(cocos2d::FadeIn::create(apearingTime));
+			runAction(cocos2d::FadeIn::create(mData.appearingTime));
 		}
 	}
 
@@ -58,6 +56,11 @@ void Monster::onEnter()
 	}
 }
 
+void Monster::setActionListener(MonsterActionListener* aListener)
+{
+	mActionListener = aListener;
+}
+
 const std::string& Monster::getName() const 
 {
 	const std::map<std::string, std::string>& strings = DM->getData().strings;
@@ -80,9 +83,14 @@ float Monster::getCurrentHealthInPercent() const
 	return mCurrentHP / mData.hp * 100;
 }
 
+const sResistance& Monster::getResistance() const
+{
+	return mData.resistance;
+}
+
 void Monster::onTouched()
 {
-	const float actionTime = 0.15f;
+	const float& actionTime = mData.touchActionTime;
 	cocos2d::TintTo* action = cocos2d::TintTo::create(actionTime, cocos2d::Color3B::RED);
 	cocos2d::TintTo* actionReverse = cocos2d::TintTo::create(actionTime, cocos2d::Color3B::WHITE);
 	runAction(cocos2d::Sequence::create(action, actionReverse, nullptr));
@@ -91,11 +99,11 @@ void Monster::onTouched()
 
 	if (mCurrentHP <= 0)
 	{
-		const float actionTime = 1.0f;
-		cocos2d::RotateBy* rotation = cocos2d::RotateBy::create(actionTime, 360);
-		cocos2d::ScaleTo* scaling = cocos2d::ScaleTo::create(actionTime, 0.1f);
-		cocos2d::FadeOut* disapearing = cocos2d::FadeOut::create(actionTime);
-		cocos2d::MoveBy* moving = cocos2d::MoveBy::create(1.0f, cocos2d::Vec2(0, 200));
+		const float& disappearingTime = mData.disappearingTime;
+		cocos2d::RotateBy* rotation = cocos2d::RotateBy::create(disappearingTime, 360);
+		cocos2d::ScaleTo* scaling = cocos2d::ScaleTo::create(disappearingTime, 0.1f);
+		cocos2d::FadeOut* disapearing = cocos2d::FadeOut::create(disappearingTime);
+		cocos2d::MoveBy* moving = cocos2d::MoveBy::create(disappearingTime, cocos2d::Vec2(0, 200));
 		runAction(cocos2d::Sequence::create(
 			cocos2d::Spawn::create(
 				rotation,
@@ -112,9 +120,4 @@ void Monster::onTouched()
 			mActionListener->onMonsterDied();
 		}
 	}
-}
-
-void Monster::setActionListener(MonsterActionListener* aListener)
-{
-	mActionListener = aListener;
 }
