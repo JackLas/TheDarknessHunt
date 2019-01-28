@@ -21,7 +21,7 @@ bool Monster::init()
 		{
 			result = true;
 			mCurrentHP = mData.hp;
-
+			setAnchorPoint(mData.anchor);
 			scheduleUpdate();
 			setOpacity(0);
 			runAction(cocos2d::FadeIn::create(mData.appearingTime));	
@@ -154,10 +154,10 @@ void Monster::startDeathAnimation(cocos2d::FiniteTimeAction* aAnimation, bool aD
 {
 	//setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
 	const float& disappearingTime = mData.disappearingTime;
-	float rotationAngle = 720.0f;
+	float rotationAngle = 540.0f;
 	rotationAngle *= aDirection ? 1 : -1;
 	cocos2d::RotateBy* rotation = cocos2d::RotateBy::create(disappearingTime, rotationAngle);
-	cocos2d::ScaleTo* scaling = cocos2d::ScaleTo::create(disappearingTime, 0.1f);
+	cocos2d::ScaleTo* scaling = cocos2d::ScaleTo::create(disappearingTime, 0.0f);
 	cocos2d::FadeOut* disapearing = cocos2d::FadeOut::create(disappearingTime);
 	runAction(cocos2d::Sequence::create(
 		cocos2d::Spawn::create(

@@ -4,8 +4,6 @@
 		"name": "default",
 		"anchor_x": 0.5,
 		"anchor_y": 0.5,
-		"phys_resist": 10,
-		"mag_resist": 10,
 		"appearing_time": 0.4,
 		"disappearing_time": 1.0,
 		"touch_action_time": 0.15,
@@ -54,7 +52,8 @@
 		"name": "STID_GIANT_BLACK_WIDOW_NAME",
 		"HP": 6.0,
 		"phys_resist": 10,
-		"mag_resist": 10
+		"mag_resist": 10,
+		"anchor_y": 0.6
 	},
 
 	"STONE_GOLEM":
@@ -99,7 +98,8 @@
 		"name": "STID_TREENT_NAME",
 		"HP": 8.0,
 		"phys_resist": 5,
-		"mag_resist": 25
+		"mag_resist": 25,
+		"anchor_y": 0.55
 	},
 
 	"SWAMP_MONSTER":
@@ -108,7 +108,8 @@
 		"name": "STID_SWAMP_MONSTER_NAME",
 		"HP": 8.0,
 		"phys_resist": 25,
-		"mag_resist": 0
+		"mag_resist": 0,
+		"anchor_y": 0.55
 	},
 
 	"CHIMERA":
@@ -153,6 +154,7 @@
 		"name": "STID_ASTAROTH_NAME",
 		"HP": 10.0,
 		"phys_resist": 75,
-		"mag_resist": 75
+		"mag_resist": 75,
+		"anchor_y": 0.35
 	}
 }

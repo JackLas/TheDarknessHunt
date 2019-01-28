@@ -239,7 +239,7 @@ void FightScene::onMonsterDied(Monster* aMonster)
 		destination.x = 0;
 	}
 	
-	float height = getBoundingBox().size.height / 2.0f;
+	float height = getBoundingBox().size.height / 3.0f;
 	const float& animationTime = aMonster->getData().disappearingTime;
 	cocos2d::JumpTo* action = cocos2d::JumpTo::create(animationTime, destination, height, 1);
 	aMonster->startDeathAnimation(action, mIsMonsterDeathAnimationDirectionRight);
