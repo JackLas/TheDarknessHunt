@@ -25,6 +25,7 @@ struct sMonster
 	float appearingTime;
 	float disappearingTime;
 	float touchActionTime;
+	float healingTime;
 
 	float hp;
 	sResistance resistance;
@@ -35,6 +36,7 @@ struct sMonster
 		, disappearingTime(0.0f)
 		, touchActionTime(0.0f)
 		, hp(0.0f)
+		, healingTime(0.0f)
 	{
 	}
 };

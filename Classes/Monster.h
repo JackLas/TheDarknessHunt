@@ -12,6 +12,9 @@ private:
 
 	const sMonster& mData;
 	float mCurrentHP;
+	float mHealingTimer;
+	float mElapsedHealingTime;
+
 	MonsterActionListener* mActionListener; 
 
 	Monster(const sMonster& aMonsterData);
@@ -25,6 +28,8 @@ public:
 	virtual void onEnter() override;
 	void setActionListener(MonsterActionListener* aListener);
 	
+	virtual void update(float aDeltaTime);
+
 	const std::string& getName() const;
 	float getCurrentHealth() const;
 	float getCurrentHealthInPercent() const;

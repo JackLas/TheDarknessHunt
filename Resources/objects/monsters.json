@@ -8,7 +8,8 @@
 		"mag_resist": 10,
 		"appearing_time": 0.4,
 		"disappearing_time": 1.0,
-		"touch_action_time": 0.15
+		"touch_action_time": 0.15,
+		"healing_time": 5.0
 	},
 
 	"FEROCIOUS_RAT":
@@ -38,10 +39,10 @@
 		"mag_resist": 0
 	},
 
-	"ASASEL":
+	"ASAEL":
 	{
 		"sprite": "MONSTER_WASTELAND_SPRIRT",
-		"name": "STID_ASASEL_NAME",
+		"name": "STID_ASAEL_NAME",
 		"HP": 4.0,
 		"phys_resist": 10,
 		"mag_resist": 10

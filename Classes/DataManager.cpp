@@ -291,6 +291,10 @@ void DataManager::loadMonsters(const std::string& aPath)
 				{
 					monster.touchActionTime = static_cast<float>(monsterAttrIt->value.GetDouble());
 				}
+				else if (attrName == "healing_time")
+				{
+					monster.healingTime = static_cast<float>(monsterAttrIt->value.GetDouble());
+				}
 			}
 		}
 

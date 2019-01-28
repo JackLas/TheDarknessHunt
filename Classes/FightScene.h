@@ -44,8 +44,10 @@ public:
 	static cocos2d::Scene* createScene(const std::string& aLevelID);
 	virtual ~FightScene();
 
-	virtual void onMonsterDied() override;
+	virtual void onMonsterDied(const Monster* aMonster) override;
 	virtual void onMonsterSpawned(const Monster* aMonster) override;
+	virtual void onHealthRestored(const Monster* aMonster) override;
+	virtual void onHealingTimerUpdated(const Monster* aMonster, const float& aTimeLeft) override;
 
 };
 

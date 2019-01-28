@@ -1,6 +1,7 @@
 #include "FightScene.h"
 #include "DataManager.h"
 #include "MapScene.h"
+#include <iomanip>
 
 FightScene::FightScene(const std::string& aLevelID)
 	: mLevelID(aLevelID)
@@ -133,7 +134,6 @@ bool FightScene::init()
 			mMagDamageLabel->setString("0.5");
 			mKillsLabel->setString("0");
 			mGoldLabel->setString("0");
-			mTimeToHealLabel->setString("30:00");
 		}
 	}
 
@@ -224,7 +224,7 @@ void FightScene::updateMonster()
 	}
 }
 
-void FightScene::onMonsterDied()
+void FightScene::onMonsterDied(const Monster* aMonster)
 {
 	updateMonster();
 }
@@ -247,5 +247,23 @@ void FightScene::onMonsterSpawned(const Monster* aMonster)
 		std::string value = std::to_string(aMonster->getResistance().magical);
 		value += "%";
 		mMagResistLabel->setString(value);
+	}
+}
+
+void FightScene::onHealthRestored(const Monster* aMonster)
+{
+	if (mMonsterHealthBar != nullptr)
+	{
+		mMonsterHealthBar->setPercent(100.0f);
+	}
+}
+
+void FightScene::onHealingTimerUpdated(const Monster* aMonster, const float& aTimeLeft)
+{
+	if (mTimeToHealLabel != nullptr)
+	{
+		std::stringstream str;
+		str << std::fixed << std::setprecision(1) << aTimeLeft;
+		mTimeToHealLabel->setString(str.str());
 	}
 }

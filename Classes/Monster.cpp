@@ -6,6 +6,8 @@ Monster::Monster(const sMonster& aMonsterData)
 	: mData(aMonsterData)
 	, mCurrentHP(0.0f)
 	, mActionListener(nullptr)
+	, mHealingTimer(0.0f)
+	, mElapsedHealingTime(0.0f)
 {
 }
 
@@ -19,8 +21,10 @@ bool Monster::init()
 		{
 			result = true;
 			mCurrentHP = mData.hp;
+
+			scheduleUpdate();
 			setOpacity(0);
-			runAction(cocos2d::FadeIn::create(mData.appearingTime));
+			runAction(cocos2d::FadeIn::create(mData.appearingTime));	
 		}
 	}
 
@@ -54,11 +58,45 @@ void Monster::onEnter()
 	{
 		mActionListener->onMonsterSpawned(this);
 	}
+	mHealingTimer = mData.healingTime;
 }
 
 void Monster::setActionListener(MonsterActionListener* aListener)
 {
 	mActionListener = aListener;
+}
+
+void Monster::update(float aDeltaTime)
+{
+	mElapsedHealingTime += aDeltaTime;
+	if (mElapsedHealingTime >= 0.1f)
+	{
+		mHealingTimer -= 0.1f;
+		mElapsedHealingTime = 0.0f;
+
+		if (mHealingTimer <= 0.0f)
+		{
+			mCurrentHP = mData.hp;
+			mHealingTimer = mData.healingTime;
+
+			const float actionTime = mData.appearingTime / 2.0f;
+			cocos2d::TintTo* action = cocos2d::TintTo::create(actionTime, cocos2d::Color3B::GREEN);
+			cocos2d::TintTo* actionReverse = cocos2d::TintTo::create(actionTime, cocos2d::Color3B::WHITE);
+			runAction(cocos2d::Sequence::create(action, actionReverse, nullptr));
+
+			if (mActionListener != nullptr)
+			{
+				mActionListener->onHealthRestored(this);
+			}
+		}
+		else
+		{
+			if (mActionListener != nullptr)
+			{
+				mActionListener->onHealingTimerUpdated(this, mHealingTimer);
+			}
+		}
+	}
 }
 
 const std::string& Monster::getName() const 
@@ -99,6 +137,7 @@ void Monster::onTouched()
 
 	if (mCurrentHP <= 0)
 	{
+		unscheduleUpdate();
 		const float& disappearingTime = mData.disappearingTime;
 		cocos2d::RotateBy* rotation = cocos2d::RotateBy::create(disappearingTime, 360);
 		cocos2d::ScaleTo* scaling = cocos2d::ScaleTo::create(disappearingTime, 0.1f);
@@ -112,12 +151,12 @@ void Monster::onTouched()
 				moving,
 				nullptr
 			),
-			cocos2d::CallFunc::create([this]() { removeFromParent(); }),
+			cocos2d::CallFunc::create([this]() { removeFromParentAndCleanup(true); }),
 			nullptr
 		));
 		if (mActionListener != nullptr)
 		{
-			mActionListener->onMonsterDied();
+			mActionListener->onMonsterDied(this);
 		}
 	}
 }
