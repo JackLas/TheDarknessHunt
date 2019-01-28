@@ -8,5 +8,22 @@
 	"STID_BTN_BACK": "Back",
 	"STID_CITY": "City",
 	"STID_TAVERN": "Tavern",
-	"STID_CAMP": "Camp"
+	"STID_CAMP": "Camp",
+
+	"STID_SKELETON_NAME": "Skeleton",
+	"STID_FEROCIOUS_RAT_NAME": "Ferocious rat",
+	"STID_FOMORIAN_NAME": "Fomorian",
+	"STID_CHIMERA_NAME": "Chimera, The Nature Demolisher",
+	"STID_SWAMP_MONSTER_NAME": "Swamp monster",
+	"STID_GIANT_BLACK_WIDOW_NAME": "Giant black widow",
+	"STID_BASILISK_NAME": "Basilisk",
+	"STID_ASTAROTH_NAME": "Astaroth, The Great Servant of Evil",
+	"STID_SHADOW_NAME": "The Shadow",
+	"STID_SCORPIO_NAME": "Giant scorpion",
+	"STID_FOREST_GOLEM_NAME": "Forest Golem",
+	"STID_TREENT_NAME": "The Treent",
+	"STID_ASASEL_NAME": "Asasel, The Spirit of Wasteland",
+	"STID_TROLL_NAME": "Grond, The Guardian of the pass",
+	"STID_STONE_GOLEM_NAME": "Stone Golem",
+	"STID_SASQUATCH_NAME": "Sasquatch"
 }

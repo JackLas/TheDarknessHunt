@@ -8,5 +8,22 @@
 	"STID_BTN_BACK": "Назад",
 	"STID_CITY": "Город",
 	"STID_TAVERN": "Таверна",
-	"STID_CAMP": "Лагерь"
+	"STID_CAMP": "Лагерь",
+
+	"STID_SKELETON_NAME": "Скелет",
+	"STID_FEROCIOUS_RAT_NAME": "Свирепая крыса",
+	"STID_FOMORIAN_NAME": "Фомор",
+	"STID_CHIMERA_NAME": "Химера, Разрушительница природы",
+	"STID_SWAMP_MONSTER_NAME": "Болотный монстр",
+	"STID_GIANT_BLACK_WIDOW_NAME": "Гигантский каракурт",
+	"STID_BASILISK_NAME": "Василиск",
+	"STID_ASTAROTH_NAME": "Астарот, Великий Слуга Зла",
+	"STID_SHADOW_NAME": "Тень",
+	"STID_SCORPIO_NAME": "Гигантский скорпион",
+	"STID_FOREST_GOLEM_NAME": "Лесной голем",
+	"STID_TREENT_NAME": "Древень",
+	"STID_ASASEL_NAME": "Азазель, Дух Пустоши",
+	"STID_TROLL_NAME": "Гронд, Страж перевала",
+	"STID_STONE_GOLEM_NAME": "Каменный голем",
+	"STID_BIGFOOT_NAME": "Сасквоч"
 }
