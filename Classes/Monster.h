@@ -19,7 +19,7 @@ private:
 
 	Monster(const sMonster& aMonsterData);
 protected:
-	virtual bool init();
+	virtual bool init() override;
 
 public:
 	static Monster* create(const sMonster& aMonsterData);
@@ -28,10 +28,10 @@ public:
 	virtual void onEnter() override;
 	void setActionListener(MonsterActionListener* aListener);
 	
-	virtual void update(float aDeltaTime);
+	virtual void update(float aDeltaTime) override;
 
 	const sMonster& getData() const;
-	const std::string& getName() const;
+	const std::string& getName() const override;
 	float getCurrentHealth() const;
 	float getCurrentHealthInPercent() const;
 	const sResistance& getResistance() const;

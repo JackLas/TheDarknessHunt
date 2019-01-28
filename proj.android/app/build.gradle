@@ -8,8 +8,8 @@ android {
         applicationId "com.jack.thedarknesshunt"
         minSdkVersion PROP_MIN_SDK_VERSION
         targetSdkVersion PROP_TARGET_SDK_VERSION
-        versionCode 67
-        versionName "1.0.67"
+        versionCode 82
+        versionName "1.0.82"
 
         externalNativeBuild {
             if (PROP_BUILD_TYPE == 'ndk-build') {

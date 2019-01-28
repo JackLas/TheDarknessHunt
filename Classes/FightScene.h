@@ -33,13 +33,13 @@ private:
 	FightScene(const std::string& aLevelID);
 protected:
 	static FightScene* create(const std::string& aLevelID);
-	virtual bool init();
+	virtual bool init() override;
 	void onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent);
-	virtual void onEnter();
+	virtual void onEnter() override;
 
-	virtual bool onTouchBegan(cocos2d::Touch* aTouch, cocos2d::Event* aEvent);
-	virtual void onTouchMoved(cocos2d::Touch* aTouch, cocos2d::Event* aEvent);
-	virtual void onTouchEnded(cocos2d::Touch* aTouch, cocos2d::Event* aEvent);
+	virtual bool onTouchBegan(cocos2d::Touch* aTouch, cocos2d::Event* aEvent) override;
+	virtual void onTouchMoved(cocos2d::Touch* aTouch, cocos2d::Event* aEvent) override;
+	virtual void onTouchEnded(cocos2d::Touch* aTouch, cocos2d::Event* aEvent) override;
 
 	void updateMonster();
 public:
