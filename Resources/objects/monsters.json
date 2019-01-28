@@ -1,57 +1,113 @@
 {
 	"MONSTER_1":
 	{
-		"sprite": "MONSTER_1",
+		"sprite": "MONSTER_SKELETON",
 		"name": "default",
-		"HP": 3.0
+		"HP": 1.0
 	},
 
 	"MONSTER_2":
 	{
-		"sprite": "MONSTER_2",
+		"sprite": "MONSTER_RAT",
 		"name": "default",
-		"HP": 3.0
+		"HP": 2.0
 	},
 
 	"MONSTER_3":
 	{
-		"sprite": "MONSTER_3",
+		"sprite": "MONSTER_SSGNAAR",
 		"name": "default",
 		"HP": 3.0
 	},
 
 	"MONSTER_4":
 	{
-		"sprite": "MONSTER_4",
+		"sprite": "MONSTER_CHIMERA",
 		"name": "default",
-		"HP": 3.0
+		"HP": 4.0
 	},
 
 	"MONSTER_5":
 	{
-		"sprite": "MONSTER_5",
+		"sprite": "MONSTER_TENTACLER",
 		"name": "default",
-		"HP": 3.0
+		"HP": 5.0
 	},
 
 	"MONSTER_6":
 	{
-		"sprite": "MONSTER_6",
+		"sprite": "MONSTER_SPIDER",
 		"name": "default",
-		"HP": 3.0
+		"HP": 6.0
 	},
 
 	"MONSTER_7":
 	{
-		"sprite": "MONSTER_7",
+		"sprite": "MONSTER_SNAKE",
 		"name": "default",
-		"HP": 3.0
+		"HP": 7.0
 	},
 
 	"MONSTER_8":
 	{
-		"sprite": "MONSTER_8",
+		"sprite": "MONSTER_DEMON",
 		"name": "default",
-		"HP": 3.0
+		"HP": 8.0
+	},
+
+	"MONSTER_9":
+	{
+		"sprite": "MONSTER_SHADOW",
+		"name": "default",
+		"HP": 9.0
+	},
+
+	"MONSTER_10":
+	{
+		"sprite": "MONSTER_SCORPIO",
+		"name": "default",
+		"HP": 10.0
+	},
+
+	"MONSTER_11":
+	{
+		"sprite": "MONSTER_FOREST_GOLEM",
+		"name": "default",
+		"HP": 11.0
+	},
+
+	"MONSTER_12":
+	{
+		"sprite": "MONSTER_TREENT",
+		"name": "default",
+		"HP": 12.0
+	},
+
+	"MONSTER_13":
+	{
+		"sprite": "MONSTER_WASTELAND_SPRIRT",
+		"name": "default",
+		"HP": 13.0
+	},
+
+	"MONSTER_14":
+	{
+		"sprite": "MONSTER_TROLL",
+		"name": "default",
+		"HP": 14.0
+	},
+
+	"MONSTER_15":
+	{
+		"sprite": "MONSTER_STONE_GOLEM",
+		"name": "default",
+		"HP": 15.0
+	},
+
+	"MONSTER_16":
+	{
+		"sprite": "MONSTER_BIGFOOT",
+		"name": "default",
+		"HP": 16.0
 	}
 }
