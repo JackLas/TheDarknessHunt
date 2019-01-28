@@ -99,6 +99,11 @@ void Monster::update(float aDeltaTime)
 	}
 }
 
+const sMonster& Monster::getData() const
+{
+	return mData;
+}
+
 const std::string& Monster::getName() const 
 {
 	const std::map<std::string, std::string>& strings = DM->getData().strings;
@@ -138,25 +143,31 @@ void Monster::onTouched()
 	if (mCurrentHP <= 0)
 	{
 		unscheduleUpdate();
-		const float& disappearingTime = mData.disappearingTime;
-		cocos2d::RotateBy* rotation = cocos2d::RotateBy::create(disappearingTime, 360);
-		cocos2d::ScaleTo* scaling = cocos2d::ScaleTo::create(disappearingTime, 0.1f);
-		cocos2d::FadeOut* disapearing = cocos2d::FadeOut::create(disappearingTime);
-		cocos2d::MoveBy* moving = cocos2d::MoveBy::create(disappearingTime, cocos2d::Vec2(0, 200));
-		runAction(cocos2d::Sequence::create(
-			cocos2d::Spawn::create(
-				rotation,
-				scaling,
-				disapearing,
-				moving,
-				nullptr
-			),
-			cocos2d::CallFunc::create([this]() { removeFromParentAndCleanup(true); }),
-			nullptr
-		));
 		if (mActionListener != nullptr)
 		{
 			mActionListener->onMonsterDied(this);
 		}
 	}
+}
+
+void Monster::startDeathAnimation(cocos2d::FiniteTimeAction* aAnimation, bool aDirection)
+{
+	//setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
+	const float& disappearingTime = mData.disappearingTime;
+	float rotationAngle = 720.0f;
+	rotationAngle *= aDirection ? 1 : -1;
+	cocos2d::RotateBy* rotation = cocos2d::RotateBy::create(disappearingTime, rotationAngle);
+	cocos2d::ScaleTo* scaling = cocos2d::ScaleTo::create(disappearingTime, 0.1f);
+	cocos2d::FadeOut* disapearing = cocos2d::FadeOut::create(disappearingTime);
+	runAction(cocos2d::Sequence::create(
+		cocos2d::Spawn::create(
+			rotation,
+			scaling,
+			disapearing,
+			aAnimation,
+			nullptr
+		),
+		cocos2d::CallFunc::create([this]() { removeFromParentAndCleanup(true); }),
+		nullptr
+	));
 }

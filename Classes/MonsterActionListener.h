@@ -6,7 +6,7 @@ class Monster;
 class MonsterActionListener
 {
 public:
-	virtual void onMonsterDied(const Monster* aMonster) = 0;
+	virtual void onMonsterDied(Monster* aMonster) = 0;
 	virtual void onMonsterSpawned(const Monster* aMonster) = 0;
 	virtual void onHealthRestored(const Monster* aMonster) = 0;
 	virtual void onHealingTimerUpdated(const Monster* aMonster, const float& aTimeLeft) = 0;

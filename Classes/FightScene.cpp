@@ -16,6 +16,7 @@ FightScene::FightScene(const std::string& aLevelID)
 	, mMonsterNameLabel(nullptr)
 	, mTimeToHealLabel(nullptr)
 	, mMonsterHealthBar(nullptr)
+	, mIsMonsterDeathAnimationDirectionRight(false)
 {
 }
 
@@ -224,8 +225,25 @@ void FightScene::updateMonster()
 	}
 }
 
-void FightScene::onMonsterDied(const Monster* aMonster)
+void FightScene::onMonsterDied(Monster* aMonster)
 {
+	mIsMonsterDeathAnimationDirectionRight = !mIsMonsterDeathAnimationDirectionRight;
+
+	cocos2d::Vec2 destination = aMonster->getPosition();
+	if (mIsMonsterDeathAnimationDirectionRight)
+	{
+		destination.x = getBoundingBox().size.width;
+	}
+	else
+	{
+		destination.x = 0;
+	}
+	
+	float height = getBoundingBox().size.height / 2.0f;
+	const float& animationTime = aMonster->getData().disappearingTime;
+	cocos2d::JumpTo* action = cocos2d::JumpTo::create(animationTime, destination, height, 1);
+	aMonster->startDeathAnimation(action, mIsMonsterDeathAnimationDirectionRight);
+
 	updateMonster();
 }
 

@@ -28,6 +28,8 @@ private:
 	cocos2d::Label* mTimeToHealLabel;
 	cocos2d::ui::LoadingBar* mMonsterHealthBar;
 
+	bool mIsMonsterDeathAnimationDirectionRight;
+
 	FightScene(const std::string& aLevelID);
 protected:
 	static FightScene* create(const std::string& aLevelID);
@@ -44,7 +46,7 @@ public:
 	static cocos2d::Scene* createScene(const std::string& aLevelID);
 	virtual ~FightScene();
 
-	virtual void onMonsterDied(const Monster* aMonster) override;
+	virtual void onMonsterDied(Monster* aMonster) override;
 	virtual void onMonsterSpawned(const Monster* aMonster) override;
 	virtual void onHealthRestored(const Monster* aMonster) override;
 	virtual void onHealingTimerUpdated(const Monster* aMonster, const float& aTimeLeft) override;
