@@ -175,7 +175,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\MainMenuScene.h" />
     <ClInclude Include="..\Classes\MapScene.h" />
     <ClInclude Include="..\Classes\Monster.h" />
-    <ClInclude Include="..\Classes\MonsterDeathListener.h" />
+    <ClInclude Include="..\Classes\MonsterActionListener.h" />
     <ClInclude Include="..\Classes\Player.h" />
     <ClInclude Include="..\Classes\PopUpLayer.h" />
     <ClInclude Include="..\Classes\Spawner.h" />

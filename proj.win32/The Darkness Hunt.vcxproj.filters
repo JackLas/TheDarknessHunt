@@ -143,10 +143,10 @@
     <ClInclude Include="..\Classes\Spawner.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\MonsterDeathListener.h">
+    <ClInclude Include="..\Classes\Player.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Player.h">
+    <ClInclude Include="..\Classes\MonsterActionListener.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

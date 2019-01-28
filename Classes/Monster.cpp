@@ -1,10 +1,11 @@
 #include "Monster.h"
 #include "DataManager.h"
+#include "MonsterActionListener.h"
 
 Monster::Monster(const sMonster& aMonsterData)
 	: mData(aMonsterData)
 	, mCurrentHP(0.0f)
-	, mDeathListener(nullptr)
+	, mActionListener(nullptr)
 {
 }
 
@@ -18,12 +19,12 @@ bool Monster::init()
 		{
 			result = true;
 			mCurrentHP = mData.hp;
+
+			const float apearingTime = 0.4f;
+			setOpacity(0);
+			runAction(cocos2d::FadeIn::create(apearingTime));
 		}
 	}
-
-	const float apearingTime = 0.4f;
-	setOpacity(0);
-	runAction(cocos2d::FadeIn::create(apearingTime));
 
 	return result;
 }
@@ -46,6 +47,15 @@ Monster* Monster::create(const sMonster& aMonsterData)
 
 Monster::~Monster()
 {
+}
+
+void Monster::onEnter()
+{
+	Parent::onEnter();
+	if (mActionListener != nullptr)
+	{
+		mActionListener->onMonsterSpawned(this);
+	}
 }
 
 const std::string& Monster::getName() const 
@@ -97,14 +107,14 @@ void Monster::onTouched()
 			cocos2d::CallFunc::create([this]() { removeFromParent(); }),
 			nullptr
 		));
-		if (mDeathListener != nullptr)
+		if (mActionListener != nullptr)
 		{
-			mDeathListener->onMonsterDied();
+			mActionListener->onMonsterDied();
 		}
 	}
 }
 
-void Monster::setDeathListener(MonsterDeathListener* aListener)
+void Monster::setActionListener(MonsterActionListener* aListener)
 {
-	mDeathListener = aListener;
+	mActionListener = aListener;
 }

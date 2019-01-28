@@ -7,9 +7,9 @@
 #include "dataTypes.h"
 #include "Monster.h"
 #include "Spawner.h"
-#include "MonsterDeathListener.h"
+#include "MonsterActionListener.h"
 
-class FightScene : public BaseScene, public MonsterDeathListener
+class FightScene : public BaseScene, public MonsterActionListener
 {
 private:
 	typedef BaseScene Parent;
@@ -44,7 +44,9 @@ public:
 	static cocos2d::Scene* createScene(const std::string& aLevelID);
 	virtual ~FightScene();
 
-	virtual void onMonsterDied();
+	virtual void onMonsterDied() override;
+	virtual void onMonsterSpawned(const Monster* aMonster) override;
+
 };
 
 #endif //FIGHTSCENE_H

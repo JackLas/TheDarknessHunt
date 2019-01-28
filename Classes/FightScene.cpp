@@ -218,7 +218,7 @@ void FightScene::updateMonster()
 	mCurrentMonster = mSpawner.getNextMonster();
 	if (mCurrentMonster != nullptr)
 	{
-		mCurrentMonster->setDeathListener(this);
+		mCurrentMonster->setActionListener(this);
 		addChild(mCurrentMonster);
 		if (mMonsterHealthBar != nullptr)
 		{
@@ -230,4 +230,10 @@ void FightScene::updateMonster()
 void FightScene::onMonsterDied()
 {
 	updateMonster();
+}
+
+void FightScene::onMonsterSpawned(const Monster* aMonster)
+{
+	const std::string& spawnedMonsterName = aMonster->getName();
+	mMonsterNameLabel->setString(spawnedMonsterName);
 }

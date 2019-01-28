@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 #include "dataTypes.h"
-#include "MonsterDeathListener.h"
+class MonsterActionListener;
 
 class Monster: public cocos2d::Sprite
 {
@@ -12,7 +12,7 @@ private:
 
 	const sMonster& mData;
 	float mCurrentHP;
-	MonsterDeathListener* mDeathListener;
+	MonsterActionListener* mActionListener; 
 
 	Monster(const sMonster& aMonsterData);
 protected:
@@ -22,11 +22,13 @@ public:
 	static Monster* create(const sMonster& aMonsterData);
 	virtual ~Monster();
 
+	virtual void onEnter() override;
+
 	const std::string& getName() const;
 	float getCurrentHealth() const;
 	float getCurrentHealthInPercent() const;
 	void onTouched();
-	void setDeathListener(MonsterDeathListener* aListener);
+	void setActionListener(MonsterActionListener* aListener);
 };
 
 #endif //MONSTER_H
