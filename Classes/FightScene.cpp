@@ -129,14 +129,11 @@ bool FightScene::init()
 				}
 			}
 
-			mPhysDamageLabel->setString("phys_damage");
-			mMagDamageLabel->setString("mag_damage");
-			mPhysResistLabel->setString("phys_resist");
-			mMagResistLabel->setString("mag_resist");
-			mKillsLabel->setString("kills");
-			mGoldLabel->setString("gold");
-			mMonsterNameLabel->setString("monster name");
-			mTimeToHealLabel->setString("time");
+			mPhysDamageLabel->setString("0.5");
+			mMagDamageLabel->setString("0.5");
+			mKillsLabel->setString("0");
+			mGoldLabel->setString("0");
+			mTimeToHealLabel->setString("30:00");
 		}
 	}
 
@@ -235,5 +232,20 @@ void FightScene::onMonsterDied()
 void FightScene::onMonsterSpawned(const Monster* aMonster)
 {
 	const std::string& spawnedMonsterName = aMonster->getName();
-	mMonsterNameLabel->setString(spawnedMonsterName);
+	if (mMonsterNameLabel != nullptr)
+	{
+		mMonsterNameLabel->setString(spawnedMonsterName);
+	}
+	if (mPhysResistLabel != nullptr)
+	{
+		std::string value = std::to_string(aMonster->getResistance().physical);
+		value += "%";
+		mPhysResistLabel->setString(value);
+	}
+	if (mMagResistLabel != nullptr)
+	{
+		std::string value = std::to_string(aMonster->getResistance().magical);
+		value += "%";
+		mMagResistLabel->setString(value);
+	}
 }
