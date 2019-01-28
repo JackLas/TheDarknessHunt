@@ -4,7 +4,9 @@
 	"spawnpoint_y": 0.4,
 	"monsters":
 	[
-		"MONSTER_1",
-		"MONSTER_2"
+		"FOREST_GOLEM",
+		"TREENT",
+		"SWAMP_MONSTER",
+		"CHIMERA"
 	]
 }

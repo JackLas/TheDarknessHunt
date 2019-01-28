@@ -4,22 +4,9 @@
 	"spawnpoint_y": 0.4,
 	"monsters":
 	[
-		"MONSTER_1",
-		"MONSTER_2",
-		"MONSTER_3",
-		"MONSTER_4",
-		"MONSTER_5",
-		"MONSTER_6",
-		"MONSTER_7",
-		"MONSTER_8",
-		"MONSTER_9",
-		"MONSTER_10",
-		"MONSTER_11",
-		"MONSTER_12",
-		"MONSTER_13",
-		"MONSTER_14",
-		"MONSTER_15",
-		"MONSTER_16",
-		"MONSTER_PIN"
+		"SKELETON",
+		"FOMORIAN",
+		"SHADOW",
+		"ASTAROTH"
 	]
 }

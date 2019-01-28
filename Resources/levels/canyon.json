@@ -4,6 +4,9 @@
 	"spawnpoint_y": 0.4,
 	"monsters":
 	[
-		"MONSTER_1"
+		"GIANT_BLACK_WIDOW",
+		"STONE_GOLEM",
+		"SASQUATCH",
+		"TROLL"
 	]
 }
