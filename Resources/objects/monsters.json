@@ -37,14 +37,14 @@
 	"STONE_GOLEM":
 	{
 		"sprite": "MONSTER_STONE_GOLEM",
-		"name": "default",
+		"name": "STID_STONE_GOLEM_NAME",
 		"HP": 6.0
 	},
 
 	"SASQUATCH":
 	{
 		"sprite": "MONSTER_BIGFOOT",
-		"name": "default",
+		"name": "STID_SASQUATCH_NAME",
 		"HP": 6.0
 	},
 
