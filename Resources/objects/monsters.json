@@ -109,5 +109,12 @@
 		"sprite": "MONSTER_BIGFOOT",
 		"name": "default",
 		"HP": 16.0
+	},
+
+	"MONSTER_PIN":
+	{
+		"sprite": "MR_PIN",
+		"name": "default",
+		"HP": 20.0
 	}
 }
