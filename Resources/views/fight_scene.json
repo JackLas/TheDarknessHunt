@@ -29,11 +29,11 @@
 						"label":
 						{
 							"font": "FONT_LARGE",
-							"text": "default",
 							"name": "text",
 							"anchor_x": 0,
-							"anchor_y": 0,
-							"pos_x": 1.2
+							"anchor_y": 0.15,
+							"pos_x": 1.2,
+							"color": {"r": 212, "g": 237, "b": 237}
 						}
 					}
 				},
@@ -49,11 +49,11 @@
 						"label":
 						{
 							"font": "FONT_LARGE",
-							"text": "default",
 							"name": "text",
 							"anchor_x": 0,
-							"anchor_y": 0,
-							"pos_x": 1.2
+							"anchor_y": 0.15,
+							"pos_x": 1.2,
+							"color": {"r": 212, "g": 237, "b": 237}
 						}
 					}
 				},
@@ -69,11 +69,11 @@
 						"label":
 						{
 							"font": "FONT_LARGE",
-							"text": "default",
 							"name": "text",
 							"anchor_x": 0,
-							"anchor_y": 0,
-							"pos_x": 1.2
+							"anchor_y": 0.15,
+							"pos_x": 1.2,
+							"color": {"r": 212, "g": 237, "b": 237}
 						}
 					}
 				},
@@ -89,11 +89,11 @@
 						"label":
 						{
 							"font": "FONT_LARGE",
-							"text": "default",
 							"name": "text",
 							"anchor_x": 0,
-							"anchor_y": 0,
-							"pos_x": 1.2
+							"anchor_y": 0.15,
+							"pos_x": 1.2,
+							"color": {"r": 212, "g": 237, "b": 237}
 						}
 					}
 				},
@@ -109,11 +109,11 @@
 						"label":
 						{
 							"font": "FONT_LARGE",
-							"text": "default",
 							"name": "text",
 							"anchor_x": 0,
-							"anchor_y": 0,
-							"pos_x": 1.2
+							"anchor_y": 0.15,
+							"pos_x": 1.2,
+							"color": {"r": 212, "g": 237, "b": 237}
 						}
 					}
 				},
@@ -129,11 +129,11 @@
 						"label":
 						{
 							"font": "FONT_LARGE",
-							"text": "default",
 							"name": "text",
 							"anchor_x": 0,
-							"anchor_y": 0,
-							"pos_x": 1.2
+							"anchor_y": 0.15,
+							"pos_x": 1.2,
+							"color": {"r": 212, "g": 237, "b": 237}
 						}
 					}
 				}
@@ -152,19 +152,19 @@
 				"label":
 				{
 					"font": "FONT_LARGE",
-					"text": "default",
 					"name": "mob_name",
 					"pos_x": 0.5,
-					"pos_y": 0.6
+					"pos_y": 0.57,
+					"color": {"r": 165, "g": 45, "b": 39}
 				},
 
 				"label":
 				{
 					"font": "FONT_LARGE",
-					"text": "default",
 					"name": "time_to_heal",
 					"pos_x": 0.12,
-					"pos_y": 0.25
+					"pos_y": 0.25,
+					"color": {"r": 58, "g": 89, "b": 65}
 				},
 
 				"sprite":
