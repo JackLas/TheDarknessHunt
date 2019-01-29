@@ -114,7 +114,7 @@
 					"pos_y": 0.45,
 					"title":
 					{
-						"font": "LARGE_FONT",
+						"font": "FONT_LARGE",
 						"text": "STID_BTN_BACK"
 					}
 				}

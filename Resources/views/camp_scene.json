@@ -14,7 +14,7 @@
 			"name": "back",
 			"title":
 			{
-				"font": "LARGE_FONT",
+				"font": "FONT_LARGE",
 				"text": "STID_BTN_BACK"
 			},
 			"pos_x": 0.5,
@@ -23,7 +23,7 @@
 
 		"label":
 		{
-			"font": "LARGE_FONT",
+			"font": "FONT_LARGE",
 			"text": "STID_CAMP",
 			"pos_x": 0.75,
 			"pos_y": 0.90,

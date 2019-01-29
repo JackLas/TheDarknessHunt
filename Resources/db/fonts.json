@@ -1,4 +1,5 @@
 {
-	"LARGE_FONT" : "fonts/times_new_roman_48/font.fnt",
-	"SMALL_FONT" : "fonts/times_new_roman_24/font.fnt" 
+	"FONT_LARGE" : "fonts/tamburin_modern/60/font.fnt",
+	"FONT_MIDDLE" : "fonts/tamburin_modern/45/font.fnt",
+	"FONT_SMALL" : "fonts/tamburin_modern/30/font.fnt"
 }

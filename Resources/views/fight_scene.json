@@ -28,7 +28,7 @@
 					{
 						"label":
 						{
-							"font": "LARGE_FONT",
+							"font": "FONT_LARGE",
 							"text": "default",
 							"name": "text",
 							"anchor_x": 0,
@@ -48,7 +48,7 @@
 					{
 						"label":
 						{
-							"font": "LARGE_FONT",
+							"font": "FONT_LARGE",
 							"text": "default",
 							"name": "text",
 							"anchor_x": 0,
@@ -68,7 +68,7 @@
 					{
 						"label":
 						{
-							"font": "LARGE_FONT",
+							"font": "FONT_LARGE",
 							"text": "default",
 							"name": "text",
 							"anchor_x": 0,
@@ -88,7 +88,7 @@
 					{
 						"label":
 						{
-							"font": "LARGE_FONT",
+							"font": "FONT_LARGE",
 							"text": "default",
 							"name": "text",
 							"anchor_x": 0,
@@ -108,7 +108,7 @@
 					{
 						"label":
 						{
-							"font": "LARGE_FONT",
+							"font": "FONT_LARGE",
 							"text": "default",
 							"name": "text",
 							"anchor_x": 0,
@@ -128,7 +128,7 @@
 					{
 						"label":
 						{
-							"font": "LARGE_FONT",
+							"font": "FONT_LARGE",
 							"text": "default",
 							"name": "text",
 							"anchor_x": 0,
@@ -151,7 +151,7 @@
 			{
 				"label":
 				{
-					"font": "LARGE_FONT",
+					"font": "FONT_LARGE",
 					"text": "default",
 					"name": "mob_name",
 					"pos_x": 0.5,
@@ -160,7 +160,7 @@
 
 				"label":
 				{
-					"font": "LARGE_FONT",
+					"font": "FONT_LARGE",
 					"text": "default",
 					"name": "time_to_heal",
 					"pos_x": 0.12,
