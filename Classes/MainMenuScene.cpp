@@ -5,6 +5,7 @@
 #include "Player.h"
 
 MainMenuScene::MainMenuScene()
+	: mEasterCounter(0)
 {
 }
 
@@ -45,31 +46,14 @@ bool MainMenuScene::init()
 		cocos2d::Sprite* logo = getChildByName<cocos2d::Sprite*>("logo");
 		if (logo != nullptr)
 		{
-
 			cocos2d::MoveBy* action = cocos2d::MoveBy::create(0.8f, cocos2d::Vec2(0.0f, getContentSize().height * -0.01f));
 			logo->runAction(cocos2d::RepeatForever::create(cocos2d::Sequence::create(action, action->reverse(), nullptr)));
 		}
 
-		// --- Testing elapsed time between launchings game ---
-		time_t elapsedTime = Player::getInstance()->getTimeBetweenGameLaunchings();
-		std::string timeStr;
-		timeStr += std::to_string(elapsedTime / 86400);
-		elapsedTime = elapsedTime % 86400;
-		timeStr += "::" + std::to_string(elapsedTime / 3600);
-		elapsedTime = elapsedTime % 3600;
-		timeStr += ":" + std::to_string(elapsedTime / 60);
-		elapsedTime = elapsedTime % 60;
-		timeStr += ":" + std::to_string(elapsedTime) + "\n\n\n";
-
-		auto fontIt = DM->getData().fonts.find("SMALL_FONT");
-		if (fontIt != DM->getData().fonts.end())
-		{ 
-			cocos2d::Label* timeLabel = cocos2d::Label::createWithBMFont(fontIt->second, timeStr);
-			timeLabel->setAnchorPoint(cocos2d::Vec2::ANCHOR_BOTTOM_LEFT);
-			addChild(timeLabel);
-		}
-
-		// --- end of test ---
+		auto touchListener = cocos2d::EventListenerTouchOneByOne::create();
+		touchListener->setSwallowTouches(true);
+		touchListener->onTouchBegan = CC_CALLBACK_2(MainMenuScene::onTouchBegan, this);
+		_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 	}
 
 	return result;
@@ -93,8 +77,14 @@ void MainMenuScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::
 		{
 			if (btnName == "btnPlay")
 			{
-				//cocos2d::Director::getInstance()->pushScene(MapScene::createScene());
-				cocos2d::Director::getInstance()->replaceScene(MapScene::createScene());
+				if (mEasterCounter == 5)
+				{
+					showEaster();
+				}
+				else
+				{
+					cocos2d::Director::getInstance()->replaceScene(MapScene::createScene());
+				}
 			}
 			else if (btnName == "btnOptions")
 			{
@@ -120,9 +110,62 @@ void MainMenuScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::
 				if (locale != btnName)
 				{
 					locale = btnName;
-					//reload strings
+					//reload strings here
 				}
 			}
 		}
 	}
+}
+
+bool MainMenuScene::onTouchBegan(cocos2d::Touch* aTouch, cocos2d::Event* aEvent)
+{
+	cocos2d::Sprite* logo = getChildByName<cocos2d::Sprite*>("logo");
+	if (logo != nullptr)
+	{
+		const cocos2d::Vec2 touchPosition = convertTouchToNodeSpace(aTouch);
+		if (logo->getBoundingBox().containsPoint(touchPosition))
+		{
+			if (mEasterCounter < 5)
+			{
+				mEasterCounter++;
+			}
+			else
+			{
+				mEasterCounter = 0;
+			}
+		}
+	}
+	return false;
+}
+
+void MainMenuScene::showEaster()
+{
+	const auto& images = DM->getData().images;
+	auto frameNameIt = images.find("MR_PIN");
+	if (frameNameIt != images.end())
+	{
+		const std::string& frameName = frameNameIt->second;
+		cocos2d::Sprite* mrPin = cocos2d::Sprite::createWithSpriteFrameName(frameName);
+		if (mrPin != nullptr)
+		{
+			const cocos2d::Size& sceneSize = getBoundingBox().size;
+			const cocos2d::Size& mrPinSize = mrPin->getBoundingBox().size;
+
+			mrPin->setPosition(sceneSize.width + (mrPinSize.width / 2.0f), sceneSize.height / 3.0f);
+			cocos2d::Vec2 endPosition(mrPinSize.width / -2.0f, sceneSize.height / 2.0f);
+			float jumpHeight = sceneSize.height / 4.0f;
+			float animTime = 1.2f;
+			mrPin->runAction(cocos2d::Sequence::create(
+				cocos2d::Spawn::create(
+					cocos2d::JumpTo::create(animTime, endPosition, jumpHeight, 1),
+					cocos2d::RotateBy::create(animTime, -360.0f),
+					nullptr
+				),
+				cocos2d::CallFunc::create([mrPin]() { mrPin->removeFromParent(); }),
+				nullptr
+			));
+			addChild(mrPin);
+		}
+	}
+	
 }

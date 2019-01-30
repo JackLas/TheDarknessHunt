@@ -15,8 +15,12 @@ private:
 	CREATE_FUNC(MainMenuScene);
 	void onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent);
 
+	virtual bool onTouchBegan(cocos2d::Touch* aTouch, cocos2d::Event* aEvent) override;
+
+	void showEaster();
+	short int mEasterCounter;
 protected:
-	virtual bool init();
+	virtual bool init() override;
 
 public:
 	static cocos2d::Scene* createScene();
