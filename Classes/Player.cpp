@@ -34,7 +34,7 @@ Player* Player::getInstance()
 	return &player;
 }
 
-const std::time_t& Player::getTimeBetweenGameLaunchings()
+const std::time_t& Player::getTimeBetweenGameLaunchings() const 
 {
 	return mTimeBetweenGameLaunchings;
 }
@@ -44,7 +44,33 @@ void Player::setMapPosition(const cocos2d::Vec2& aPosition)
 	mMapPosition = aPosition;
 }
 
-const cocos2d::Vec2& Player::getMapPosition()
+const cocos2d::Vec2& Player::getMapPosition() const 
 {
 	return mMapPosition;
+}
+
+void Player::addKill(const std::string& aLevelID, const unsigned int aAmount)
+{
+	const auto levelIt = mKills.find(aLevelID);
+	if (levelIt != mKills.end())
+	{
+		levelIt->second += aAmount;
+	}
+	else
+	{
+		mKills[aLevelID] = aAmount;
+	}
+}
+
+const unsigned int& Player::getKills(const std::string& aLevelID)
+{
+	const auto levelIt = mKills.find(aLevelID);
+	if (levelIt != mKills.end())
+	{
+		return levelIt->second;
+	}
+	else
+	{
+		return (mKills[aLevelID] = 0);
+	}
 }

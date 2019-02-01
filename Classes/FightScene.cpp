@@ -1,6 +1,7 @@
 #include "FightScene.h"
 #include "DataManager.h"
 #include "MapScene.h"
+#include "Player.h"
 #include <iomanip>
 
 FightScene::FightScene(const std::string& aLevelID)
@@ -112,6 +113,8 @@ bool FightScene::init()
 				if (labelParent != nullptr)
 				{
 					mKillsLabel = labelParent->getChildByName<cocos2d::Label*>("text");
+					const unsigned int& kills = PLAYER->getKills(mLevelID);
+					mKillsLabel->setString(std::to_string(kills));
 				}
 				labelParent = bar->getChildByName("gold");
 				if (labelParent != nullptr)
@@ -133,7 +136,6 @@ bool FightScene::init()
 
 			mPhysDamageLabel->setString("0.5");
 			mMagDamageLabel->setString("0.5");
-			mKillsLabel->setString("0");
 			mGoldLabel->setString("0");
 		}
 	}
@@ -243,6 +245,10 @@ void FightScene::onMonsterDied(Monster* aMonster)
 	const float& animationTime = aMonster->getData().disappearingTime;
 	cocos2d::JumpTo* action = cocos2d::JumpTo::create(animationTime, destination, height, 1);
 	aMonster->startDeathAnimation(action, mIsMonsterDeathAnimationDirectionRight);
+
+	PLAYER->addKill(mLevelID);
+	const unsigned int& kills = PLAYER->getKills(mLevelID);
+	mKillsLabel->setString(std::to_string(kills));
 
 	updateMonster();
 }
