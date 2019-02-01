@@ -30,6 +30,8 @@ struct sMonster
 	float hp;
 	sResistance resistance;
 
+	unsigned int goldReward;
+
 	sMonster()
 		: anchor(cocos2d::Vec2::ANCHOR_MIDDLE)
 		, appearingTime(0.0f)
@@ -37,6 +39,7 @@ struct sMonster
 		, touchActionTime(0.0f)
 		, hp(0.0f)
 		, healingTime(0.0f)
+		, goldReward(0)
 	{
 	}
 };

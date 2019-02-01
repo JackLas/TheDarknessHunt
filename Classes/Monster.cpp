@@ -131,6 +131,11 @@ const sResistance& Monster::getResistance() const
 	return mData.resistance;
 }
 
+unsigned int Monster::getGoldReward() const
+{
+	return mData.goldReward;
+}
+
 void Monster::onTouched()
 {
 	const float& actionTime = mData.touchActionTime;

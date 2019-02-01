@@ -7,7 +7,11 @@
 		"appearing_time": 0.4,
 		"disappearing_time": 1.0,
 		"touch_action_time": 0.15,
-		"healing_time": 5.0
+		"healing_time": 5.0,
+		"reward":
+		{
+			"gold": 24
+		}
 	},
 
 	"FEROCIOUS_RAT":

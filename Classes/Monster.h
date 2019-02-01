@@ -35,6 +35,7 @@ public:
 	float getCurrentHealth() const;
 	float getCurrentHealthInPercent() const;
 	const sResistance& getResistance() const;
+	unsigned int getGoldReward() const;
 
 	void onTouched();
 	void startDeathAnimation(cocos2d::FiniteTimeAction* aAnimation, bool aDirection);

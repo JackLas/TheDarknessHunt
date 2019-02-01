@@ -295,6 +295,18 @@ void DataManager::loadMonsters(const std::string& aPath)
 				{
 					monster.healingTime = static_cast<float>(monsterAttrIt->value.GetDouble());
 				}
+				else if (attrName == "reward")
+				{
+					rapidjson::Value& reward = monsterAttrIt->value;
+					for (auto rewardIt = reward.MemberBegin(); rewardIt != reward.MemberEnd(); ++rewardIt)
+					{
+						const std::string rewardName = rewardIt->name.GetString();
+						if (rewardName == "gold")
+						{
+							monster.goldReward = static_cast<unsigned int>(rewardIt->value.GetInt());
+						}
+					}
+				}
 			}
 		}
 
