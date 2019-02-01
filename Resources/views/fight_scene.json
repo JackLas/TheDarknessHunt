@@ -15,7 +15,7 @@
 			"pos_x": 0.5, 
 			"pos_y": 1.0,			
 			"anchor_y": 1.0,
-			"z_order": 100,
+			"z_order": 10,
 			"children":
 			{
 				"sprite":
@@ -146,7 +146,7 @@
 			"name": "bottom_bar",
 			"pos_x": 0.5,
 			"anchor_y": 0.0,
-			"z_order": 100,
+			"z_order": 12,
 			"children":
 			{
 				"label":
@@ -202,7 +202,7 @@
 			"name": "button_map",
 			"pos_x": 0.9,
 			"pos_y": 0.185,
-			"z_order": 100
+			"z_order": 12
 		}
 	}
 }
