@@ -6,6 +6,7 @@
 
 MainMenuScene::MainMenuScene()
 	: mEasterCounter(0)
+	, mIsSettingsChanged(false)
 {
 }
 
@@ -100,7 +101,14 @@ void MainMenuScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::
 			if (btnName == "btnOK")
 			{
 				optionsLayer->hide();
-				DM->saveSettings();
+				
+				if (mIsSettingsChanged)
+				{
+					DM->saveSettings();
+					DM->reloadStrings();
+					cocos2d::Director::getInstance()->replaceScene(MainMenuScene::createScene());
+					mIsSettingsChanged = false;
+				}
 			}
 			else if (btnName == "en" || btnName == "ru")
 			{
@@ -110,7 +118,7 @@ void MainMenuScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::
 				if (locale != btnName)
 				{
 					locale = btnName;
-					//reload strings here
+					mIsSettingsChanged = true;
 				}
 			}
 		}

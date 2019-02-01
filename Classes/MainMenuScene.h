@@ -19,6 +19,8 @@ private:
 
 	void showEaster();
 	short int mEasterCounter;
+
+	bool mIsSettingsChanged;
 protected:
 	virtual bool init() override;
 

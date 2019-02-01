@@ -150,12 +150,12 @@ bool DataManager::loadViewFromJson(cocos2d::Node* aParent, const std::string& aJ
 	return mViewBuilder.loadFromJson(aParent, aJson);
 }
 
-//
-//void DataManager::reloadStrings()
-//{
-//	mData.strings.clear();
-//	loadStrings("locale/" + mSettings.locale + ".json");
-//}
+
+void DataManager::reloadStrings()
+{
+	mData.strings.clear();
+	loadResources("locale/" + mSettings.locale + ".json", mData.strings);
+}
 
 const std::string& DataManager::getResourceById(const std::string& aID, std::map<std::string, std::string>& aContainer)
 {

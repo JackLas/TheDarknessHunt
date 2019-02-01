@@ -25,8 +25,11 @@ private:
 public:
 	static DataManager* getInstance();
 	const sData& getData() const;
+
 	sSettings& getSettings();
 	void saveSettings();
+
+	void reloadStrings();
 
 	bool loadViewFromJson(cocos2d::Node* aParent, const std::string& aJson);
 
