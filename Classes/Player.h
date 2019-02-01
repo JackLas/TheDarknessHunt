@@ -10,6 +10,7 @@ private:
 	std::time_t mTimeBetweenGameLaunchings;
 	cocos2d::Vec2 mMapPosition;
 	std::map<std::string, unsigned int> mKills; 
+	unsigned int mGold;
 
 	Player();
 public:
@@ -21,6 +22,8 @@ public:
 	const cocos2d::Vec2& getMapPosition() const;
 	void addKill(const std::string& aLevelID, const unsigned int aAmount = 1);
 	const unsigned int& getKills(const std::string& aLevelID);
+	void addGold(const unsigned int aAmount);
+	const unsigned int& getGold();
 };
 
 #define PLAYER Player::getInstance()

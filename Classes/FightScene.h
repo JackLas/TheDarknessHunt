@@ -24,6 +24,7 @@ private:
 	cocos2d::Label* mMagResistLabel;
 	cocos2d::Label* mKillsLabel;
 	cocos2d::Label* mGoldLabel;
+	cocos2d::Vec2 mGoldIconPosition;
 	cocos2d::Label* mMonsterNameLabel;
 	cocos2d::Label* mTimeToHealLabel;
 	cocos2d::ui::LoadingBar* mMonsterHealthBar;
@@ -41,7 +42,10 @@ protected:
 	virtual void onTouchMoved(cocos2d::Touch* aTouch, cocos2d::Event* aEvent) override;
 	virtual void onTouchEnded(cocos2d::Touch* aTouch, cocos2d::Event* aEvent) override;
 
-	void updateMonster();
+	void givePlayerReward(const Monster* aMonster);
+	void updateGoldLabel();
+	void updateKillsLabel();
+	void respawnMonster();
 public:
 	static cocos2d::Scene* createScene(const std::string& aLevelID);
 	virtual ~FightScene();

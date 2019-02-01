@@ -113,13 +113,16 @@ bool FightScene::init()
 				if (labelParent != nullptr)
 				{
 					mKillsLabel = labelParent->getChildByName<cocos2d::Label*>("text");
-					const unsigned int& kills = PLAYER->getKills(mLevelID);
-					mKillsLabel->setString(std::to_string(kills));
 				}
 				labelParent = bar->getChildByName("gold");
 				if (labelParent != nullptr)
 				{
 					mGoldLabel = labelParent->getChildByName<cocos2d::Label*>("text");
+					
+					cocos2d::Vec2 barPosition;
+					barPosition.x = bar->getBoundingBox().getMinX();
+					barPosition.y = bar->getBoundingBox().getMinY();
+					mGoldIconPosition = barPosition + labelParent->getPosition();
 				} 
 			}
 			bar = getChildByName("bottom_bar");
@@ -133,10 +136,11 @@ bool FightScene::init()
 					mMonsterHealthBar = healthBar->getChildByName<cocos2d::ui::LoadingBar*>("core");
 				}
 			}
+			updateKillsLabel();
+			updateGoldLabel();
 
 			mPhysDamageLabel->setString("0.5");
 			mMagDamageLabel->setString("0.5");
-			mGoldLabel->setString("0");
 		}
 	}
 
@@ -171,7 +175,7 @@ void FightScene::onEnter()
 		btnMap->runAction(cocos2d::FadeIn::create(appearingTime));
 	}
 
-	updateMonster();
+	respawnMonster();
 }
 
 void FightScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent)
@@ -213,7 +217,74 @@ void FightScene::onTouchEnded(cocos2d::Touch* aTouch, cocos2d::Event* aEvent)
 	}
 }
 
-void FightScene::updateMonster()
+void FightScene::givePlayerReward(const Monster* aMonster)
+{
+	const auto& images = DM->getData().images;
+	const auto& frameNameIt = images.find("ICON_COIN");
+	if (frameNameIt != images.end())
+	{
+		const float actionTime = 1.0f;
+		cocos2d::Vec2 coinSpawnPosition;
+		coinSpawnPosition.x = aMonster->getBoundingBox().getMidX();
+		coinSpawnPosition.y = aMonster->getBoundingBox().getMidY();
+
+		cocos2d::Size sceneSize = getBoundingBox().size;
+		const float minJumpDestinationX = sceneSize.width * 0.1f;
+		const float maxJumpDestinationX = sceneSize.width - (sceneSize.width * 0.1f);
+
+		cocos2d::Node* bottomBar = getChildByName("bottom_bar");
+		const float minJumpDestinationY = bottomBar->getBoundingBox().getMaxY();
+		const float maxJumpDestinationY = minJumpDestinationY + sceneSize.height * 0.05f;
+
+		const float jumpHeight = sceneSize.height / 3.0f;
+
+		const int numOfAnimationCoins = 4;
+		unsigned int rewardByCoin = aMonster->getGoldReward() / numOfAnimationCoins;
+		for (int i = 0; i < 4; ++i)
+		{
+			cocos2d::Sprite* coin = cocos2d::Sprite::createWithSpriteFrameName(frameNameIt->second);
+			cocos2d::Vec2 jumpDestination;
+			jumpDestination.x = cocos2d::RandomHelper::random_real<float>(minJumpDestinationX, maxJumpDestinationX);
+			jumpDestination.y = cocos2d::RandomHelper::random_real<float>(minJumpDestinationY, maxJumpDestinationY);
+			coin->setPosition(coinSpawnPosition);
+			coin->setLocalZOrder(11);
+			coin->setOpacity(0.0f);
+
+			coin->runAction(cocos2d::Sequence::create(
+				cocos2d::DelayTime::create(cocos2d::RandomHelper::random_real<float>(0.0f, 0.5f)),
+				cocos2d::Spawn::create(
+					cocos2d::FadeIn::create(actionTime / 1.5f),
+					cocos2d::JumpTo::create(actionTime, jumpDestination, jumpHeight, 1),
+					nullptr
+				),
+				cocos2d::DelayTime::create(cocos2d::RandomHelper::random_real<float>(1.0f, 1.5f)),
+				cocos2d::MoveTo::create(0.5f, mGoldIconPosition),
+				cocos2d::CallFunc::create([this, coin, rewardByCoin]() { 
+					coin->removeFromParent();
+					PLAYER->addGold(rewardByCoin);
+					updateGoldLabel();
+				}),
+				nullptr
+			));
+
+			addChild(coin);
+		}
+	}
+}
+
+void FightScene::updateGoldLabel()
+{
+	const unsigned int& gold = PLAYER->getGold();
+	mGoldLabel->setString(std::to_string(gold));
+}
+
+void FightScene::updateKillsLabel()
+{
+	const unsigned int& kills = PLAYER->getKills(mLevelID);
+	mKillsLabel->setString(std::to_string(kills));
+}
+
+void FightScene::respawnMonster()
 {
 	mCurrentMonster = mSpawner.getNextMonster();
 	if (mCurrentMonster != nullptr)
@@ -247,10 +318,11 @@ void FightScene::onMonsterDied(Monster* aMonster)
 	aMonster->startDeathAnimation(action, mIsMonsterDeathAnimationDirectionRight);
 
 	PLAYER->addKill(mLevelID);
-	const unsigned int& kills = PLAYER->getKills(mLevelID);
-	mKillsLabel->setString(std::to_string(kills));
+	updateKillsLabel();
 
-	updateMonster();
+	givePlayerReward(aMonster);
+
+	respawnMonster();
 }
 
 void FightScene::onMonsterSpawned(const Monster* aMonster)

@@ -4,6 +4,7 @@
 
 Player::Player()
 	: mTimeBetweenGameLaunchings(0)
+	, mGold(0)
 {
 	typedef std::chrono::system_clock clock;
 
@@ -73,4 +74,14 @@ const unsigned int& Player::getKills(const std::string& aLevelID)
 	{
 		return (mKills[aLevelID] = 0);
 	}
+}
+
+void Player::addGold(const unsigned int aAmount)
+{
+	mGold += aAmount;
+}
+
+const unsigned int& Player::getGold()
+{
+	return mGold;
 }
