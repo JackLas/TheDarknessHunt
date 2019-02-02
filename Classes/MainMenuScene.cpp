@@ -110,6 +110,10 @@ void MainMenuScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::
 					mIsSettingsChanged = false;
 				}
 			}
+			else if (btnName == "btn_reset")
+			{
+				PLAYER->resetProgress();
+			}
 			else if (btnName == "en" || btnName == "ru")
 			{
 				cocos2d::Node* flagSelected = optionsLayer->getChildByName("flag_selected");

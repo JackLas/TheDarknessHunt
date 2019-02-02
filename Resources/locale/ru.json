@@ -4,6 +4,7 @@
 	"STID_MAIN_MENU_BTN_EXIT": "Выход",
 	"STID_MAIN_MENU_BTN_OPTIONS": "Опции",
 	"STID_OPTIONS_BTN_OK": "ОК",
+	"STID_OPTIONS_BTN_RESET": "Сбросить прогресс",  
 	"STID_OPTIONS_LABEL_LANGUAGE": "Язык",
 	"STID_BTN_BACK": "Назад",
 	"STID_CITY": "Город",

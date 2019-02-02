@@ -122,6 +122,21 @@
 					"pos_x": 0.5,
 					"pos_y": 0.72,
 					"color":{"r": 0, "g": 0, "b": 0}
+				},
+
+				"button":
+				{
+					"normal_image_frame_name": "BUTTON",
+
+					"name": "btn_reset",
+					"pos_x": 0.5,
+					"pos_y": 0.85,
+
+					"title":
+					{
+						"font": "FONT_MIDDLE",
+						"text": "STID_OPTIONS_BTN_RESET"
+					}
 				}
 			}
 		}
