@@ -222,6 +222,14 @@ bool ViewBuilder::SpriteComponent::init(
 				result = true;
 			}
 		}
+		else if (attrName == "flip_x")
+		{
+			sprite->setFlippedX(aAttrIt->value.GetBool());
+		}
+		else if (attrName == "flip_y")
+		{
+			sprite->setFlippedY(aAttrIt->value.GetBool());
+		}
 	}
 
 	return result;
