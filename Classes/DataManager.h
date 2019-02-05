@@ -32,6 +32,7 @@ public:
 	void reloadStrings();
 
 	bool loadViewFromJson(cocos2d::Node* aParent, const std::string& aJson);
+	cocos2d::Node* createViewFromJson(const std::string& aJson);
 
 	const std::string& getStringById(const std::string& aID);
 	const std::string& getFrameNameById(const std::string& aID);

@@ -150,6 +150,10 @@ bool DataManager::loadViewFromJson(cocos2d::Node* aParent, const std::string& aJ
 	return mViewBuilder.loadFromJson(aParent, aJson);
 }
 
+cocos2d::Node* DataManager::createViewFromJson(const std::string& aJson)
+{
+	return mViewBuilder.createViewFromJson(aJson);
+}
 
 void DataManager::reloadStrings()
 {

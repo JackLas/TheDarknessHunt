@@ -6,10 +6,12 @@
 ViewBuilder::ViewBuilder()
 {
 	mComponents["node"] = new NodeComponent(mComponents);
+	mComponents["layer"] = new LayerComponent(mComponents);
 	mComponents["sprite"] = new SpriteComponent(mComponents);
 	mComponents["label"] = new LabelComponent(mComponents);
 	mComponents["button"] = new ButtonComponent(mComponents);
 	mComponents["pop_up_layer"] = new PopUpLayerComponent(mComponents);
+	mComponents["scrollview"] = new ScrollViewComponent(mComponents);
 	mComponents["map_scrollview"] = new MapScrollViewComponent(mComponents);
 	mComponents["loading_bar"] = new LoadingBarComponent(mComponents);
 }
@@ -46,6 +48,40 @@ bool ViewBuilder::loadFromJson(cocos2d::Node* aParent, const std::string& aJson)
 		CCLOG("'%s' parsing error", aJson.c_str());
 	}
 
+	return result;
+}
+
+cocos2d::Node* ViewBuilder::createViewFromJson(const std::string& aJson)
+{
+	rapidjson::Document json;
+	const std::string content = cocos2d::FileUtils::getInstance()->getStringFromFile(aJson);
+	json.Parse(content.c_str());
+	cocos2d::Node* result = nullptr;
+
+	if (!json.HasParseError())
+	{
+		std::string type = "node";
+		if (json.HasMember("type"))
+		{
+			type = json["type"].GetString();
+		}
+
+		auto componentIt = mComponents.find(type);
+		if (componentIt != mComponents.end())
+		{
+			ViewComponent* component = componentIt->second;
+			result = component->create(json);
+
+			for (auto it = json.MemberBegin(); it != json.MemberEnd(); ++it)
+			{
+				componentIt->second->init(nullptr, result, it);
+			}
+		}
+	}
+	else
+	{
+		CCLOG("'%s' parsing error", aJson.c_str());
+	}
 	return result;
 }
 
@@ -121,28 +157,33 @@ bool ViewBuilder::NodeComponent::init(
 	else if (attrName == "visible")
 	{
 		aObject->setVisible(aAttrIt->value.GetBool());
+		result = true;
 	}
 	else if (attrName == "color")
 	{
 		cocos2d::Color3B color = getColorFromValue(aAttrIt->value);
 		aObject->setColor(color);
+		result = true;
 	}
 	else if (attrName == "anchor_x")
 	{
 		cocos2d::Vec2 anchor = aObject->getAnchorPoint();
 		anchor.x = static_cast<float>(aAttrIt->value.GetDouble());
 		aObject->setAnchorPoint(anchor);
+		result = true;
 	}
 	else if (attrName == "anchor_y")
 	{
 		cocos2d::Vec2 anchor = aObject->getAnchorPoint();
 		anchor.y = static_cast<float>(aAttrIt->value.GetDouble());
 		aObject->setAnchorPoint(anchor);
+		result = true;
 	}
 	else if (attrName == "z_order")
 	{
 		int zOrder = aAttrIt->value.GetInt();
 		aObject->setLocalZOrder(zOrder);
+		result = true;
 	}
 	else if (attrName == "children")
 	{
@@ -192,6 +233,17 @@ void ViewBuilder::NodeComponent::loadChildren(
 	}
 }
 
+ViewBuilder::LayerComponent::LayerComponent(
+	const std::map<std::string, ViewComponent*>& aComponents)
+	: NodeComponent(aComponents)
+{
+}
+
+cocos2d::Node* ViewBuilder::LayerComponent::create(const rapidjson::Value& aAttr)
+{
+	return cocos2d::Layer::create();
+}
+
 ViewBuilder::SpriteComponent::SpriteComponent(
 	const std::map<std::string, ViewComponent*>& aComponents)
 	: NodeComponent(aComponents)
@@ -225,10 +277,12 @@ bool ViewBuilder::SpriteComponent::init(
 		else if (attrName == "flip_x")
 		{
 			sprite->setFlippedX(aAttrIt->value.GetBool());
+			result = true;
 		}
 		else if (attrName == "flip_y")
 		{
 			sprite->setFlippedY(aAttrIt->value.GetBool());
+			result = true;
 		}
 	}
 
@@ -367,7 +421,6 @@ bool ViewBuilder::PopUpLayerComponent::init(
 	rapidjson::Value::MemberIterator aAttrIt)
 {
 	bool result = false;
-	
 	if (!NodeComponent::init(aParent, aObject, aAttrIt))
 	{
 		const std::string attrName = aAttrIt->name.GetString();
@@ -378,25 +431,32 @@ bool ViewBuilder::PopUpLayerComponent::init(
 			result = true;
 		}
 	}
-
 	return result;
+}
+
+ViewBuilder::ScrollViewComponent::ScrollViewComponent(
+	const std::map<std::string, ViewComponent*>& aComponents)
+	: NodeComponent(aComponents)
+{
+
 }
 
 ViewBuilder::MapScrollViewComponent::MapScrollViewComponent(
 	const std::map<std::string, ViewComponent*>& aComponents)
-	: NodeComponent(aComponents)
+	: ScrollViewComponent(aComponents)
 {
 }
 
-cocos2d::Node* ViewBuilder::MapScrollViewComponent::create(
+cocos2d::Node* ViewBuilder::ScrollViewComponent::create(
 	const rapidjson::Value& aAttr)
 {
-	return cocos2d::ui::ScrollView::create();
+	cocos2d::ui::ScrollView* scrollview = cocos2d::ui::ScrollView::create();
+	scrollview->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
+	return scrollview;
 }
 
-bool ViewBuilder::MapScrollViewComponent::init(
-	const cocos2d::Node* aParent, 
-	cocos2d::Node* aObject, 
+bool ViewBuilder::ScrollViewComponent::init(const cocos2d::Node* aParent,
+	cocos2d::Node* aObject,
 	rapidjson::Value::MemberIterator aAttrIt)
 {
 	bool result = false;
@@ -409,23 +469,41 @@ bool ViewBuilder::MapScrollViewComponent::init(
 			cocos2d::Size currentSize = aObject->getContentSize();
 			currentSize.width = aParent->getContentSize().width * static_cast<float>(aAttrIt->value.GetDouble());
 			aObject->setContentSize(currentSize);
+			result = true;
 		}
 		else if (attrName == "content_height")
 		{
 			cocos2d::Size currentSize = aObject->getContentSize();
 			currentSize.height = aParent->getContentSize().height * static_cast<float>(aAttrIt->value.GetDouble());
 			aObject->setContentSize(currentSize);
+			result = true;
 		}
-		else if (attrName == "parts")
+	}
+
+	return result;
+}
+
+bool ViewBuilder::MapScrollViewComponent::init(
+	const cocos2d::Node* aParent, 
+	cocos2d::Node* aObject, 
+	rapidjson::Value::MemberIterator aAttrIt)
+{
+	bool result = false;
+
+	if (!ScrollViewComponent::init(aParent, aObject, aAttrIt))
+	{
+		const std::string attrName = aAttrIt->name.GetString();
+		if (attrName == "parts")
 		{
 			loadParts(static_cast<cocos2d::ui::ScrollView*>(aObject), aAttrIt->value);
+			result = true;
 		}
 	}
 
 	cocos2d::ui::ScrollView* scrollView = static_cast<cocos2d::ui::ScrollView*>(aObject);
 	scrollView->setScrollBarEnabled(false);
 	scrollView->setDirection(cocos2d::ui::ScrollView::Direction::VERTICAL);
-	scrollView->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
+
 
 	return result;
 }

@@ -39,6 +39,13 @@ private:
 		void loadChildren(cocos2d::Node* aParent, rapidjson::Value& aChildIt);
 	};
 
+	class LayerComponent: public NodeComponent
+	{
+	public:
+		LayerComponent(const std::map<std::string, ViewComponent*>& aComponents);
+		virtual cocos2d::Node* create(const rapidjson::Value& aAttr) override; 
+	};
+
 	class SpriteComponent: public NodeComponent
 	{
 	public:
@@ -79,11 +86,20 @@ private:
 							rapidjson::Value::MemberIterator aAttrIt) override;
 	};
 
-	class MapScrollViewComponent: public NodeComponent
+	class ScrollViewComponent: public NodeComponent
+	{
+	public:
+		ScrollViewComponent(const std::map<std::string, ViewComponent*>& aComponents);
+		virtual cocos2d::Node* create(const rapidjson::Value& aAttr) override;
+		virtual bool init(const cocos2d::Node* aParent,
+			cocos2d::Node* aObject,
+			rapidjson::Value::MemberIterator aAttrIt) override;
+	};
+
+	class MapScrollViewComponent: public ScrollViewComponent
 	{
 	public:
 		MapScrollViewComponent(const std::map<std::string, ViewComponent*>& aComponents);
-		virtual cocos2d::Node* create(const rapidjson::Value& aAttr) override;
 		virtual bool init(  const cocos2d::Node* aParent,
 							cocos2d::Node* aObject,
 							rapidjson::Value::MemberIterator aAttrIt) override;
@@ -102,6 +118,7 @@ public:
 	ViewBuilder();
 	~ViewBuilder();
 	bool loadFromJson(cocos2d::Node* aParent, const std::string& aJson);
+	cocos2d::Node* createViewFromJson(const std::string& aJson);
 };
 
 #endif //VIEWBUILDER_H
