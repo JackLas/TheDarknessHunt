@@ -1,0 +1,61 @@
+{
+	"type": "sprite",
+	"frame_name": "TEAMMATE_INVENTORY_TEMPLATE_BG",
+
+	"children":
+	{
+		"button":
+		{
+			"normal_image_frame_name": "ITEM_FRAME",
+			"pos_x": 0.138,
+			"pos_y": 0.5
+		},
+
+		"button":
+		{
+			"normal_image_frame_name": "ITEM_FRAME",
+			"pos_x": 0.35394,
+			"pos_y": 0.5
+		},
+
+		"sprite":
+		{
+			"frame_name": "ICON_PHYS_DAMAGE",
+			"name": "phys_damage",
+			"pos_x": 0.55,
+			"pos_y": 0.68,
+			"children":
+			{
+				"label":
+				{
+					"font": "FONT_LARGE",
+					"name": "text",
+					"anchor_x": 0,
+					"anchor_y": 0.15,
+					"pos_x": 1.2,
+					"color": {"r": 212, "g": 237, "b": 237}
+				}
+			}
+		},
+
+		"sprite":
+		{
+			"frame_name": "ICON_MAG_DAMAGE",
+			"name": "mag_damage",
+			"pos_x": 0.55,
+			"pos_y": 0.32,
+			"children":
+			{
+				"label":
+				{
+					"font": "FONT_LARGE",
+					"name": "text",
+					"anchor_x": 0,
+					"anchor_y": 0.15,
+					"pos_x": 1.2,
+					"color": {"r": 212, "g": 237, "b": 237}
+				}
+			}
+		}
+	}
+}
