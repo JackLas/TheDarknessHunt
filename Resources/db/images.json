@@ -40,6 +40,7 @@
 	"BUTTON" : "UI/button.png",
 	"FLAG_RU": "UI/ru_flag.png",
 	"FLAG_EN": "UI/en_flag.png",
+	"FLAG_UA": "UI/ua_flag.png",
 	"FLAG_SELECTED": "UI/selected_flag.png",
 	"FIGHT_BAR_LARGE": "UI/fight_bar_large.png",
 	"FIGHT_BAR_SMALL": "UI/fight_bar_small.png",
@@ -55,6 +56,12 @@
 	"ICON_MAG_DAMAGE": "UI/icon_magical_damage.png",
 	"ICON_MAG_RESIST": "UI/icon_magical_resistance.png",
 	"ICON_COIN": "UI/icon_coin.png",
+	"TEAMMATE_INVENTORY_TEMPLATE_BG": "UI/teammate_inventory.png",
+	"ITEM_FRAME": "UI/item_frame.png",
+
+	"ITEM_ART_AMULET": "items/artifacts/amulet.png",
+	"ITEM_WEAPON_SWORD": "items/weapons/sword.png",
+	"ITEM_WEAPON_STAFF": "items/weapons/staff.png",
 
 	"MR_PIN": "MrPin.png"
 }
