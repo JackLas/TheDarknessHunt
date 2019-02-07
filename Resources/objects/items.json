@@ -1,0 +1,20 @@
+{
+	"STRANGE_AMULET":
+	{
+		"sprite_frame_name": "ITEM_ART_AMULET",
+		"physical_damage": 100,
+		"magical_damage": 100
+	},
+
+	"OLD_SWORD":
+	{
+		"sprite_frame_name": "ITEM_WEAPON_SWORD",
+		"physical_damage": 1
+	},
+
+	"OLD_STAFF":
+	{
+		"sprite_frame_name": "ITEM_WEAPON_STAFF",
+		"magical_damage": 1
+	}
+}
