@@ -6,5 +6,6 @@
 	"CAMP_SCENE": "views/camp_scene.json",
 	"FIGHT_SCENE": "views/fight_scene.json",
 
-	"TEMPLATE_TEAMMATE_INVENTORY": "views/templates/teammate_inventory.json"
+	"TEMPLATE_TEAMMATE_INVENTORY": "views/templates/teammate_inventory.json",
+	"TEMPLATE_INVENTORY_ROW": "views/templates/inventory_row.json"
 }

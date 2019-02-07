@@ -1,0 +1,35 @@
+{
+	"type": "sprite",
+	"frame_name": "INVENTORY_ROW_BG",
+	"anchor_y": 1.0,
+	"children":
+	{
+		"button":
+		{
+			"normal_image_frame_name": "ITEM_FRAME",
+			"pos_x": 0.126,
+			"pos_y": 0.5
+		},
+
+		"button":
+		{
+			"normal_image_frame_name": "ITEM_FRAME",
+			"pos_x": 0.374,
+			"pos_y": 0.5
+		},
+
+		"button":
+		{
+			"normal_image_frame_name": "ITEM_FRAME",
+			"pos_x": 0.625,
+			"pos_y": 0.5
+		},
+
+		"button":
+		{
+			"normal_image_frame_name": "ITEM_FRAME",
+			"pos_x": 0.874,
+			"pos_y": 0.5
+		}
+	}
+}
