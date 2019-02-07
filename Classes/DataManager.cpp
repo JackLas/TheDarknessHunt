@@ -15,6 +15,7 @@ DataManager::DataManager()
 
 	loadLevels("db/levels.json");
 	loadMonsters("objects/monsters.json");
+	loadItems("objects/items.json");
 }
 
 DataManager* DataManager::getInstance()
@@ -318,6 +319,41 @@ void DataManager::loadMonsters(const std::string& aPath)
 		{
 			mData.monsters.erase(defaultMonsterID);
 			CCLOG("default monster was erased");
+		}
+	}
+	else
+	{
+		CCLOG("'%s' parsing error", aPath.c_str());
+	}
+}
+
+void DataManager::loadItems(const std::string& aPath)
+{
+	rapidjson::Document itemsConfig;
+	std::string configContent = cocos2d::FileUtils::getInstance()->getStringFromFile(aPath);
+	itemsConfig.Parse(configContent.c_str());
+	if (!itemsConfig.HasParseError())
+	{
+		for (auto itemIt = itemsConfig.MemberBegin(); itemIt != itemsConfig.MemberEnd(); ++itemIt)
+		{
+			rapidjson::Value& itemValue = itemIt->value;
+			sItem& item = mData.items[itemIt->name.GetString()];
+			for (auto itemAttrIt = itemValue.MemberBegin(); itemAttrIt != itemValue.MemberEnd(); ++itemAttrIt)
+			{
+				std::string attrName = itemAttrIt->name.GetString();
+				if (attrName == "sprite_frame_name")
+				{
+					item.frameNameID = itemAttrIt->value.GetString();
+				} 
+				else if (attrName == "physical_damage")
+				{
+					item.damage.physical = itemAttrIt->value.GetInt();
+				}
+				else if (attrName == "magical_damage")
+				{
+					item.damage.magical = itemAttrIt->value.GetInt();
+				}
+			}
 		}
 	}
 	else

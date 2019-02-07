@@ -21,6 +21,7 @@ private:
 	const std::string& getResourceById(const std::string& aID, std::map<std::string, std::string>& aContainer);
 	void loadLevels(const std::string& aPath);
 	void loadMonsters(const std::string& aPath);
+	void loadItems(const std::string& aPath);
 
 public:
 	static DataManager* getInstance();

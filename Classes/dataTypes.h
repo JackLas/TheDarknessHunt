@@ -5,6 +5,24 @@
 #include <string>
 #include <map>
 
+struct sDamage
+{
+	int physical;
+	int magical;
+
+	sDamage()
+		: physical(0)
+		, magical(0)
+	{
+	}
+};
+
+struct sItem
+{
+	std::string frameNameID;
+	sDamage damage;
+};
+
 struct sResistance
 {
 	int physical;
@@ -59,6 +77,7 @@ struct sData
 	std::map<std::string, std::string> views;
 	std::map<std::string, sLevel> levels;
 	std::map<std::string, sMonster> monsters;
+	std::map<std::string, sItem> items;
 	cocos2d::Size designResolution;
 	cocos2d::Size desktopResolution;
 };
