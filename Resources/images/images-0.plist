@@ -19,6 +19,36 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
+            <key>UI/btn_camp_map.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{92,92}</string>
+                <key>spriteSourceSize</key>
+                <string>{96,96}</string>
+                <key>textureRect</key>
+                <string>{{1953,1853},{92,92}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>UI/btn_inventory.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{92,92}</string>
+                <key>spriteSourceSize</key>
+                <string>{96,96}</string>
+                <key>textureRect</key>
+                <string>{{1953,1949},{92,92}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
             <key>UI/btn_map.png</key>
             <dict>
                 <key>aliases</key>
@@ -304,36 +334,6 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>items/weapons/staff.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{-2,-4}</string>
-                <key>spriteSize</key>
-                <string>{86,86}</string>
-                <key>spriteSourceSize</key>
-                <string>{100,100}</string>
-                <key>textureRect</key>
-                <string>{{1953,1853},{86,86}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>items/weapons/sword.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{-2,-1}</string>
-                <key>spriteSize</key>
-                <string>{86,84}</string>
-                <key>spriteSourceSize</key>
-                <string>{100,100}</string>
-                <key>textureRect</key>
-                <string>{{1953,1943},{86,84}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
             <key>locations/camp.png</key>
             <dict>
                 <key>aliases</key>
@@ -438,7 +438,7 @@
             <key>size</key>
             <string>{2048,2042}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:8bcd5966e76253a4536553233aab18f1:80d411cc7bacacfe8d9b2d5ea785be44:bc0c1e1cbc1691dcfc01b9eebb129a40$</string>
+            <string>$TexturePacker:SmartUpdate:9311aa1981692b35f572ab76f4d69d70:f69b0506b446193d07c19c05a8897191:bc0c1e1cbc1691dcfc01b9eebb129a40$</string>
             <key>textureFileName</key>
             <string>images-0.webp</string>
         </dict>

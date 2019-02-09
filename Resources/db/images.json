@@ -60,6 +60,10 @@
 	"ITEM_FRAME": "UI/item_frame.png",
 	"INVENTORY_ROW_BG": "UI/inventory_row_bg.png",
 	"INVENTORY_BG": "UI/inventory_bg.png",
+	"BTN_PLAYER": "UI/btn_player.png",
+	"BTN_CAMP_MAP": "UI/btn_camp_map.png",
+	"BTN_TEAMMATES": "UI/btn_teammate.png",
+	"BTN_INVENTORY": "UI/btn_inventory.png",
 
 	"ITEM_ART_AMULET": "items/artifacts/amulet.png",
 	"ITEM_WEAPON_SWORD": "items/weapons/sword.png",
