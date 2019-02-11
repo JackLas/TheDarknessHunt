@@ -1,6 +1,7 @@
 {
 	"type": "sprite",
 	"frame_name": "INVENTORY_ROW_BG",
+	"name": "row",
 	"anchor_y": 1.0,
 	"children":
 	{
