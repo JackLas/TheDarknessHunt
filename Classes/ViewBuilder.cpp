@@ -14,6 +14,7 @@ ViewBuilder::ViewBuilder()
 	mComponents["scrollview"] = new ScrollViewComponent(mComponents);
 	mComponents["map_scrollview"] = new MapScrollViewComponent(mComponents);
 	mComponents["loading_bar"] = new LoadingBarComponent(mComponents);
+	mComponents["view"] = new ViewObjectComponent(mComponents);
 }
 
 ViewBuilder::~ViewBuilder()
@@ -555,4 +556,26 @@ cocos2d::Node* ViewBuilder::LoadingBarComponent::create(const rapidjson::Value& 
 	}
 
 	return result;
+}
+
+ViewBuilder::ViewObjectComponent::ViewObjectComponent(
+	const std::map<std::string, ViewComponent*>& aComponents)
+	: NodeComponent(aComponents)
+{
+}
+
+cocos2d::Node* ViewBuilder::ViewObjectComponent::create(const rapidjson::Value& aAttr)
+{
+	cocos2d::Node* object = nullptr;
+	if (aAttr.HasMember("view_id"))
+	{
+		const std::string viewID = aAttr["view_id"].GetString();
+		auto viewIt = DM->getData().views.find(viewID);
+		if (viewIt != DM->getData().views.end())
+		{
+			const std::string& viewPath = viewIt->second;
+			object = DM->createViewFromJson(viewPath);
+		}
+	}
+	return object;
 }
