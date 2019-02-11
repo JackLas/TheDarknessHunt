@@ -478,6 +478,12 @@ bool ViewBuilder::ScrollViewComponent::init(const cocos2d::Node* aParent,
 			aObject->setContentSize(currentSize);
 			result = true;
 		}
+		else if (attrName == "scroll_bar_enabled")
+		{
+			cocos2d::ui::ScrollView* scrollview = static_cast<cocos2d::ui::ScrollView*>(aObject);
+			bool state = aAttrIt->value.GetBool();
+			scrollview->setScrollBarEnabled(state);
+		}
 	}
 
 	return result;
@@ -501,7 +507,6 @@ bool ViewBuilder::MapScrollViewComponent::init(
 	}
 
 	cocos2d::ui::ScrollView* scrollView = static_cast<cocos2d::ui::ScrollView*>(aObject);
-	scrollView->setScrollBarEnabled(false);
 	scrollView->setDirection(cocos2d::ui::ScrollView::Direction::VERTICAL);
 
 

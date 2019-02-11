@@ -116,7 +116,7 @@ private:
 	std::map<std::string, ViewComponent*> mComponents;
 public:
 	ViewBuilder();
-	~ViewBuilder();
+	virtual ~ViewBuilder();
 	bool loadFromJson(cocos2d::Node* aParent, const std::string& aJson);
 	cocos2d::Node* createViewFromJson(const std::string& aJson);
 };
