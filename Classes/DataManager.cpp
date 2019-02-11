@@ -353,6 +353,10 @@ void DataManager::loadItems(const std::string& aPath)
 				{
 					item.damage.magical = itemAttrIt->value.GetInt();
 				}
+				else if (attrName == "price")
+				{
+					item.price = itemAttrIt->value.GetInt();
+				}
 			}
 		}
 	}
