@@ -17,6 +17,8 @@ protected:
 	virtual void onEnter();
 	void setButtonTouchListener(const std::function<void(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent)>& aCallback);
 
+	cocos2d::Node* findChildByName(const std::vector<std::string>& aSearchingSequence);
+
 public:
 	virtual ~BaseScene();
 };

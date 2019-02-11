@@ -47,3 +47,20 @@ void BaseScene::setButtonTouchListener(const std::function<void(cocos2d::Ref* aS
 {
 	initButtons(getChildren(), aCallback);
 }
+
+cocos2d::Node* BaseScene::findChildByName(const std::vector<std::string>& aSearchingSequence)
+{
+	cocos2d::Node* child = this;
+	for (auto& childName : aSearchingSequence)
+	{
+		if (child != nullptr)
+		{
+			child = child->getChildByName(childName);
+		}
+		else
+		{
+			break;
+		}
+	}
+	return (child == this) ? nullptr : child;
+}
