@@ -7,6 +7,7 @@
 		"button":
 		{
 			"normal_image_frame_name": "ITEM_FRAME",
+			"name": "left_slot",
 			"pos_x": 0.138,
 			"pos_y": 0.5
 		},
@@ -14,6 +15,7 @@
 		"button":
 		{
 			"normal_image_frame_name": "ITEM_FRAME",
+			"name": "right_slot",
 			"pos_x": 0.35394,
 			"pos_y": 0.5
 		},
