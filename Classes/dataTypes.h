@@ -21,6 +21,13 @@ struct sItem
 {
 	std::string frameNameID;
 	sDamage damage;
+	int price;
+
+	sItem()
+		: price(0)
+	{
+
+	}
 };
 
 struct sResistance
