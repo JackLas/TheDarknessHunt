@@ -201,7 +201,7 @@
 			"normal_image_frame_name": "BUTTON_MAP",
 			"name": "button_map",
 			"pos_x": 0.9,
-			"pos_y": 0.185,
+			"pos_y": 0.165,
 			"z_order": 12
 		}
 	}
