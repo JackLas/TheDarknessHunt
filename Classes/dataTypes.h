@@ -17,6 +17,9 @@ struct sDamage
 	}
 };
 
+sDamage& operator+=(sDamage& aLeft, const sDamage& aRight);
+sDamage& operator-=(sDamage& aLeft, const sDamage& aRight);
+
 struct sItem
 {
 	std::string frameNameID;
