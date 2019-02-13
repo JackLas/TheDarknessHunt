@@ -4,6 +4,21 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>UI/btn_player.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{80,96}</string>
+                <key>spriteSourceSize</key>
+                <string>{96,96}</string>
+                <key>textureRect</key>
+                <string>{{1939,1349},{80,96}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
             <key>UI/btn_teammate.png</key>
             <dict>
                 <key>aliases</key>
@@ -15,39 +30,9 @@
                 <key>spriteSourceSize</key>
                 <string>{96,96}</string>
                 <key>textureRect</key>
-                <string>{{1939,1653},{96,80}}</string>
+                <string>{{1939,1449},{96,80}}</string>
                 <key>textureRotated</key>
                 <true/>
-            </dict>
-            <key>UI/button_wide.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{300,70}</string>
-                <key>spriteSourceSize</key>
-                <string>{300,70}</string>
-                <key>textureRect</key>
-                <string>{{1939,1349},{300,70}}</string>
-                <key>textureRotated</key>
-                <true/>
-            </dict>
-            <key>items/weapons/staff.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{-2,-4}</string>
-                <key>spriteSize</key>
-                <string>{86,86}</string>
-                <key>spriteSourceSize</key>
-                <string>{100,100}</string>
-                <key>textureRect</key>
-                <string>{{1939,1753},{86,86}}</string>
-                <key>textureRotated</key>
-                <false/>
             </dict>
             <key>items/weapons/sword.png</key>
             <dict>
@@ -60,9 +45,9 @@
                 <key>spriteSourceSize</key>
                 <string>{100,100}</string>
                 <key>textureRect</key>
-                <string>{{1939,1843},{86,84}}</string>
+                <string>{{1939,1549},{86,84}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>locations/forest.png</key>
             <dict>
@@ -168,7 +153,7 @@
             <key>size</key>
             <string>{2030,2040}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:7ac579af39f6f2f7cb52102e6f45cafd:439916cb692ba74e078c002d7d5c7ade:bc0c1e1cbc1691dcfc01b9eebb129a40$</string>
+            <string>$TexturePacker:SmartUpdate:0e94235963982831ac9c8a61f93e7a1d:3ae9ad7597d4cde0dde7d65feb77ca6b:bc0c1e1cbc1691dcfc01b9eebb129a40$</string>
             <key>textureFileName</key>
             <string>images-1.webp</string>
         </dict>

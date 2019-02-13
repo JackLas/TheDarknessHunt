@@ -65,6 +65,7 @@
 	"BTN_INVENTORY": "UI/btn_inventory.png",
 	"BUTTON_WIDE": "UI/button_wide.png",
 	"PLAYER_DAMAGE_TITLE": "UI/player_damage_title.png",
+	"SELECTED_ITEM_FRAME": "UI/selected_item_frame.png",
 
 	"ITEM_ART_AMULET": "items/artifacts/amulet.png",
 	"ITEM_WEAPON_SWORD": "items/weapons/sword.png",
