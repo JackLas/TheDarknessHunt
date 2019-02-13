@@ -23,6 +23,7 @@ sDamage& operator-=(sDamage& aLeft, const sDamage& aRight);
 struct sItem
 {
 	std::string frameNameID;
+	std::string name;
 	sDamage damage;
 	int price;
 

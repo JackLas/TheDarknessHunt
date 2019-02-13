@@ -10,6 +10,11 @@
 	"STID_CITY": "Город",
 	"STID_TAVERN": "Таверна",
 	"STID_CAMP": "Лагерь",
+	"STID_BTN_EQUIP": "Экипировать",
+	"STID_BTN_CLEAR": "Очистить слот",
+	"STID_BTN_SELL": "Продать",
+	"STID_CLICK_DMG_LABEL": "Урон за клик",
+	"STID_PASSIVE_DMG_LABEL": "Пассивный урон",
 
 	"STID_SKELETON_NAME": "Скелет",
 	"STID_FEROCIOUS_RAT_NAME": "Свирепая крыса",
@@ -26,5 +31,11 @@
 	"STID_ASAEL_NAME": "Азаэль, Дух пустыни",
 	"STID_TROLL_NAME": "Гронд, Страж перевала",
 	"STID_STONE_GOLEM_NAME": "Каменный голем",
-	"STID_SASQUATCH_NAME": "Сасквоч"
+	"STID_SASQUATCH_NAME": "Сасквоч",
+
+	"STID_STRANGE_AMULET_NAME": "Странный амулет",
+	"STID_OLD_SWORD_NAME": "Старый меч",
+	"STID_OLD_STAFF_NAME": "Старый посох",
+
+	"STID_EMPTY_INVENTORY_MSG": "Ваш инвентарь пуст"
 }

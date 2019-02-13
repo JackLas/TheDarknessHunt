@@ -357,6 +357,10 @@ void DataManager::loadItems(const std::string& aPath)
 				{
 					item.price = itemAttrIt->value.GetInt();
 				}
+				else if (attrName == "name")
+				{
+					item.name = itemAttrIt->value.GetString();
+				}
 			}
 		}
 	}
@@ -368,7 +372,10 @@ void DataManager::loadItems(const std::string& aPath)
 
 const std::string& DataManager::getStringById(const std::string& aID)
 {
-	return getResourceById(aID, mData.strings);
+	auto strIt = mData.strings.find(aID);
+	return (strIt != mData.strings.end()) 
+		? strIt->second 
+		: aID;
 }
 
 const std::string& DataManager::getFrameNameById(const std::string& aID)

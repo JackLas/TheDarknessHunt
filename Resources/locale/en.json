@@ -10,6 +10,11 @@
 	"STID_CITY": "City",
 	"STID_TAVERN": "Tavern",
 	"STID_CAMP": "Camp",
+	"STID_BTN_EQUIP": "Equip",
+	"STID_BTN_CLEAR": "Clear slot",
+	"STID_BTN_SELL": "Sell",
+	"STID_CLICK_DMG_LABEL": "Click damage",
+	"STID_PASSIVE_DMG_LABEL": "Passive damage",
 
 	"STID_SKELETON_NAME": "Skeleton",
 	"STID_FEROCIOUS_RAT_NAME": "Ferocious rat",
@@ -26,5 +31,11 @@
 	"STID_ASAEL_NAME": "Asael, The Spirit of Wasteland",
 	"STID_TROLL_NAME": "Grond, The Guardian of the pass",
 	"STID_STONE_GOLEM_NAME": "Stone Golem",
-	"STID_SASQUATCH_NAME": "Sasquatch"
+	"STID_SASQUATCH_NAME": "Sasquatch",
+
+	"STID_STRANGE_AMULET_NAME": "Strange amulet",
+	"STID_OLD_SWORD_NAME": "Old sword",
+	"STID_OLD_STAFF_NAME": "Old staff",
+
+	"STID_EMPTY_INVENTORY_MSG": "Your inventory is empty"
 }

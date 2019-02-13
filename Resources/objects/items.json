@@ -2,6 +2,7 @@
 	"STRANGE_AMULET":
 	{
 		"sprite_frame_name": "ITEM_ART_AMULET",
+		"name": "STID_STRANGE_AMULET_NAME",
 		"physical_damage": 100,
 		"magical_damage": 100,
 		"price": 25000
@@ -10,6 +11,7 @@
 	"OLD_SWORD":
 	{
 		"sprite_frame_name": "ITEM_WEAPON_SWORD",
+		"name": "STID_OLD_SWORD_NAME",
 		"physical_damage": 1,
 		"price": 100
 	},
@@ -17,6 +19,7 @@
 	"OLD_STAFF":
 	{
 		"sprite_frame_name": "ITEM_WEAPON_STAFF",
+		"name": "STID_OLD_STAFF_NAME",
 		"magical_damage": 1,
 		"price": 100
 	}
