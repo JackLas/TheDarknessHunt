@@ -3,16 +3,24 @@
 
 #include "cocos2d.h"
 #include <ctime>
+#include "dataTypes.h"
 
-struct sDamage
+enum class eSlotID
 {
-	int physical;
-	int magical;
+	UNKNOWN_SLOT = 0,
+	LEFT_SLOT,
+	RIGHT_SLOT
+};
 
-	sDamage()
-		: physical(0)
-		, magical(0)
+struct sTeammate
+{
+	std::map<eSlotID, std::string> itemSlot;
+	sDamage damage;
+
+	sTeammate()
 	{
+		itemSlot[eSlotID::LEFT_SLOT];
+		itemSlot[eSlotID::RIGHT_SLOT];
 	}
 };
 
@@ -29,7 +37,11 @@ private:
 	cocos2d::Vec2 mMapPosition;
 	std::map<std::string, unsigned int> mKills; 
 	unsigned int mGold;
-	sDamage mDamage;
+	std::map<eSlotID, std::string> mEquipedItems;
+	sDamage mClickDamage;
+	sDamage mPassiveDamage;
+	std::vector<sTeammate> mTeam;
+	std::vector<std::string> mInventory;
 
 	Player();
 	void loadData();
@@ -48,6 +60,18 @@ public:
 	const unsigned int& getKills(const std::string& aLevelID);
 	void addGold(const unsigned int aAmount);
 	const unsigned int& getGold();
+	const std::vector<sTeammate>& getTeam() const;
+	const std::vector<std::string>& getInventory() const;
+	bool equipItem(int aTeammateIndex, eSlotID aSlot, int aItemIndex);
+	bool clearSlot(int aTeammateIndex, eSlotID aSlot);
+	bool equipItem(eSlotID aSlot, int aItemIndex);
+	bool clearSlot(eSlotID aSlot);
+	bool sellItem(int aItemIndex);
+	const std::string& getEquipedItem(eSlotID aSlotID);
+	const std::string& getEquipedItem(int aTeammateIndex, eSlotID aSlotID);
+	const sDamage& getClickDamage() const;
+	const sDamage& getTeammateDamage(int aTeammateIndex) const;
+	const sDamage& getPassiveDamage() const;
 };
 
 #define PLAYER Player::getInstance()

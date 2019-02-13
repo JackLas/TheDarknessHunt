@@ -161,6 +161,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\PopUpLayer.cpp" />
     <ClCompile Include="..\Classes\Spawner.cpp" />
     <ClCompile Include="..\Classes\TavernScene.cpp" />
+    <ClCompile Include="..\Classes\utils.cpp" />
     <ClCompile Include="..\Classes\ViewBuilder.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

@@ -8,26 +8,344 @@
 			"pos_y": 0.5
 		},
 
-		"button":
+		"sprite":
 		{
-			"normal_image_frame_name": "BUTTON",
-			"name": "back",
-			"title":
-			{
-				"font": "FONT_LARGE",
-				"text": "STID_BTN_BACK"
-			},
+			"frame_name": "FIGHT_BAR_SMALL",
+			"name": "top_bar",
+			"anchor_y": 1.0,
 			"pos_x": 0.5,
-			"pos_y": 0.1
+			"pos_y": 1.0,
+			"flip_y": true,
+			"z_order": 10,
+
+			"children":
+			{
+				"button":
+				{
+					"normal_image_frame_name": "BTN_PLAYER",
+					"name": "player",
+					"pos_x": 0.15,
+					"pos_y": 0.65
+				},
+
+				"button":
+				{
+					"normal_image_frame_name": "BTN_TEAMMATES",
+					"name": "teammates",
+					"pos_x": 0.375,
+					"pos_y": 0.65
+				},
+
+				"button":
+				{
+					"normal_image_frame_name": "BTN_INVENTORY",
+					"name": "inventory",
+					"pos_x": 0.625,
+					"pos_y": 0.65
+				},
+
+				"button":
+				{
+					"normal_image_frame_name": "BUTTON_MAP",
+					"name": "map",
+					"pos_x": 0.85,
+					"pos_y": 0.65
+				}
+			}
 		},
 
-		"label":
+		"sprite":
 		{
-			"font": "FONT_LARGE",
-			"text": "STID_CAMP",
-			"pos_x": 0.75,
-			"pos_y": 0.90,
-			"color":{"r": 0, "g": 0, "b":0}
+			"frame_name": "FIGHT_BAR_SMALL",
+			"name": "bottom_bar",
+			"anchor_y": 0,
+			"pos_x": 0.5,
+			"z_order": 10,
+			"children":
+			{
+				"sprite":
+				{
+					"frame_name": "ICON_COIN",
+					"name": "gold",
+					"pos_x": 0.15,
+					"pos_y": 0.35,
+					"children":
+					{
+						"label":
+						{
+							"font": "FONT_LARGE",
+							"name": "text",
+							"anchor_x": 0,
+							"anchor_y": 0.15,
+							"pos_x": 1.2,
+							"color": {"r": 212, "g": 237, "b": 237}
+						}
+					}
+				}
+			}
+		},
+
+		"layer":
+		{
+			"name": "player_layer",
+			"z_order": 1,
+			"visible": false,
+			"children":
+			{
+				"sprite":
+				{
+					"frame_name": "PLAYER_DAMAGE_TITLE",
+					"pos_x": 0.5,
+					"pos_y": 0.8,
+
+					"children":
+					{
+						"label":
+						{
+							"font": "FONT_LARGE",
+							"text": "STID_CLICK_DMG_LABEL",
+							"pos_x": 0.5,
+							"pos_y": 0.7,
+							"color": {"r": 212, "g": 237, "b": 237}
+						}
+					}
+				},
+
+				"view":
+				{
+					"view_id": "TEMPLATE_TEAMMATE_INVENTORY",
+					"name": "player_damage",
+					"pos_x": 0.5,
+					"pos_y": 0.73
+				}
+			}
+		},
+
+		"layer":
+		{
+			"name": "teammate_layer",
+			"z_order": 1,
+			"visible": false,
+			"children":
+			{
+				"scrollview":
+				{
+					"name": "list",
+					"pos_x": 0.5,
+					"pos_y": 0.525, 
+					"content_width": 1.0,
+					"content_height": 0.6,
+					"scroll_bar_enabled": true
+				},
+
+				"sprite":
+				{
+					"frame_name": "PLAYER_DAMAGE_TITLE",
+					"flip_y": true,
+					"pos_x": 0.5,
+					"pos_y": 0.9,
+
+					"children": 
+					{
+						"label":
+						{
+							"font": "FONT_LARGE",
+							"text": "STID_PASSIVE_DMG_LABEL",
+							"pos_x": 0.5,
+							"pos_y": 0.25,
+							"color": {"r": 212, "g": 237, "b": 237}
+						}
+					}
+				},
+
+				"sprite":
+				{
+					"frame_name": "PLAYER_DAMAGE_TITLE",
+					"name": "passive_damage",
+					"pos_x": 0.5,
+					"pos_y": 0.15,
+
+					"children":
+					{
+						"sprite":
+						{
+							"frame_name": "ICON_PHYS_DAMAGE",
+							"name": "phys_damage",
+							"pos_x": 0.35,
+							"pos_y": 0.72,
+							"children":
+							{
+								"label":
+								{
+									"font": "FONT_LARGE",
+									"name": "text",
+									"anchor_x": 0,
+									"anchor_y": 0.15,
+									"pos_x": 1.2,
+									"color": {"r": 212, "g": 237, "b": 237}
+								}
+							}
+						},
+
+						"sprite":
+						{
+							"frame_name": "ICON_MAG_DAMAGE",
+							"name": "mag_damage",
+							"pos_x": 0.35,
+							"pos_y": 0.38,
+							"children":
+							{
+								"label":
+								{
+									"font": "FONT_LARGE",
+									"name": "text",
+									"anchor_x": 0,
+									"anchor_y": 0.15,
+									"pos_x": 1.2,
+									"color": {"r": 212, "g": 237, "b": 237}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+
+		"layer":
+		{
+			"name": "inventory_layer",
+			"z_order": 1,
+			"visible": false,
+			"children":
+			{
+				"sprite":
+				{
+					"frame_name": "INVENTORY_BG",
+					"pos_x": 0.5,
+					"pos_y": 0.5
+				},
+
+				"scrollview":
+				{
+					"name": "list",
+					"pos_x": 0.5,
+					"pos_y": 0.62, 
+					"content_width": 1.0,
+					"content_height": 0.45,
+					"scroll_bar_enabled": true
+				},
+
+				"label":
+				{
+					"font": "FONT_LARGE",
+					"text": "STID_EMPTY_INVENTORY_MSG",
+					"name": "msg_empty",
+					"pos_x": 0.5,
+					"pos_y": 0.62,
+					"color": {"r": 40, "g": 34, "b": 31}
+				},
+
+				"sprite":
+				{
+					"frame_name": "ITEM_FRAME",
+					"name": "item_preview_frame",
+					"pos_x": 0.2,
+					"pos_y": 0.265
+				},
+
+				"sprite":
+				{
+					"name": "item_preview",
+					"pos_x": 0.2,
+					"pos_y": 0.265
+				},
+
+				"label": 
+				{
+					"font": "FONT_MIDDLE",
+					"name": "item_title",
+					"pos_x": 0.13,
+					"pos_y": 0.335,
+					"text": "default",
+					"anchor_x": 0.0,
+					"color": {"r": 40, "g": 34, "b": 31}
+				},
+
+				"sprite":
+				{
+					"frame_name": "ICON_PHYS_DAMAGE",
+					"pos_x": 0.33,
+					"pos_y": 0.29
+				},
+
+				"label":
+				{
+					"font": "FONT_MIDDLE",
+					"name": "phys_dmg_label",
+					"text": "default",
+					"pos_x": 0.37,
+					"pos_y": 0.29,
+					"anchor_x": 0.0,
+					"color": {"r": 40, "g": 34, "b": 31}
+				},
+
+				"sprite":
+				{
+					"frame_name": "ICON_MAG_DAMAGE",
+					"pos_x": 0.33,
+					"pos_y": 0.24
+				},
+
+				"label":
+				{
+					"font": "FONT_MIDDLE",
+					"name": "mag_dmg_label",
+					"text": "default",
+					"pos_x": 0.37,
+					"pos_y": 0.24,
+					"anchor_x": 0.0,
+					"color": {"r": 40, "g": 34, "b": 31}
+				},
+
+				"button":
+				{
+					"normal_image_frame_name": "BUTTON_WIDE",
+					"name": "btn_equip",
+					"title": 
+					{
+						"font": "FONT_MIDDLE",
+						"text": "STID_BTN_EQUIP"
+					},
+					"pos_x": 0.3,
+					"pos_y": 0.185
+				},
+
+				"button":
+				{
+					"normal_image_frame_name": "BUTTON_WIDE",
+					"name": "btn_clear",
+					"title": 
+					{
+						"font": "FONT_MIDDLE",
+						"text": "STID_BTN_CLEAR"
+					},
+					"pos_x": 0.7,
+					"pos_y": 0.185
+				},
+
+				"button":
+				{
+					"normal_image_frame_name": "BUTTON_WIDE",
+					"name": "btn_sell",
+					"title": 
+					{
+						"font": "FONT_MIDDLE",
+						"text": "STID_BTN_SELL"
+					},
+					"pos_x": 0.5,
+					"pos_y": 0.185
+				}
+			}
 		}
 	}
 }

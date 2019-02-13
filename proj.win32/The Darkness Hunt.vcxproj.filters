@@ -46,6 +46,9 @@
     <Filter Include="src\objects">
       <UniqueIdentifier>{200d4ead-b82e-4f0c-a907-16ab86b09b25}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\DataManager\ViewBuilder">
+      <UniqueIdentifier>{c58f6988-e56d-4201-9f91-87749063036e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -59,9 +62,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\DataManager.cpp">
       <Filter>src\DataManager</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\ViewBuilder.cpp">
-      <Filter>src\scenes</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\PopUpLayer.cpp">
       <Filter>src\UI\PopUpLayer</Filter>
@@ -93,6 +93,12 @@
     <ClCompile Include="..\Classes\Player.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ViewBuilder.cpp">
+      <Filter>src\DataManager\ViewBuilder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\utils.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -110,17 +116,11 @@
     <ClInclude Include="..\Classes\DataManager.h">
       <Filter>src\DataManager</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\ViewBuilder.h">
-      <Filter>src\scenes</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\PopUpLayer.h">
       <Filter>src\UI\PopUpLayer</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\MapScene.h">
       <Filter>src\scenes\MapScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\viewObjectType.h">
-      <Filter>src\scenes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\BaseScene.h">
       <Filter>src\scenes\BaseScene</Filter>
@@ -148,6 +148,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\MonsterActionListener.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ViewBuilder.h">
+      <Filter>src\DataManager\ViewBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\viewObjectType.h">
+      <Filter>src\DataManager\ViewBuilder</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
