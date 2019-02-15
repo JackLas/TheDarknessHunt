@@ -5,6 +5,18 @@
 #include <string>
 #include <map>
 
+struct sTavernConfig
+{
+	std::vector<std::string> welcomeSTIDs;
+	std::vector<std::string> hireSTIDs;
+	int baseHirePrice;
+
+	sTavernConfig()
+		: baseHirePrice(0)
+	{
+	}
+};
+
 struct sDamage
 {
 	int physical;
@@ -89,6 +101,7 @@ struct sData
 	std::map<std::string, sLevel> levels;
 	std::map<std::string, sMonster> monsters;
 	std::map<std::string, sItem> items;
+	sTavernConfig tavernData;
 	cocos2d::Size designResolution;
 	cocos2d::Size desktopResolution;
 };

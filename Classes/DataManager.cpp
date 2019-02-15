@@ -6,7 +6,7 @@
 DataManager::DataManager()
 	: mDefaultStr("default")
 {
-	loadMainConfig("main_config.json");
+	loadMainConfig("configs/main_config.json");
 	loadSettings();
 	loadResources("db/images.json", mData.images);							
 	loadResources("db/fonts.json", mData.fonts);							
@@ -16,6 +16,7 @@ DataManager::DataManager()
 	loadLevels("db/levels.json");
 	loadMonsters("objects/monsters.json");
 	loadItems("objects/items.json");
+	loadTavernConfig("configs/tavern_config.json");
 }
 
 DataManager* DataManager::getInstance()
@@ -361,6 +362,42 @@ void DataManager::loadItems(const std::string& aPath)
 				{
 					item.name = itemAttrIt->value.GetString();
 				}
+			}
+		}
+	}
+	else
+	{
+		CCLOG("'%s' parsing error", aPath.c_str());
+	}
+}
+
+void DataManager::loadTavernConfig(const std::string& aPath)
+{
+	rapidjson::Document tavernConfig;
+	std::string configContent = cocos2d::FileUtils::getInstance()->getStringFromFile(aPath);
+	tavernConfig.Parse(configContent.c_str());
+	if (!tavernConfig.HasParseError())
+	{
+		for (auto it = tavernConfig.MemberBegin(); it != tavernConfig.MemberEnd(); ++it)
+		{
+			std::string name = it->name.GetString();
+			if (name == "welcome_quotes")
+			{
+				for (auto& id: it->value.GetArray())
+				{
+					mData.tavernData.welcomeSTIDs.push_back(id.GetString());
+				}
+			}
+			else if (name == "hiring_quotes")
+			{
+				for (auto& id: it->value.GetArray())
+				{
+					mData.tavernData.hireSTIDs.push_back(id.GetString());
+				}
+			}
+			else if (name == "hire_base_price")
+			{
+				mData.tavernData.baseHirePrice = it->value.GetInt();
 			}
 		}
 	}

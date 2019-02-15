@@ -22,6 +22,7 @@ private:
 	void loadLevels(const std::string& aPath);
 	void loadMonsters(const std::string& aPath);
 	void loadItems(const std::string& aPath);
+	void loadTavernConfig(const std::string& aPath);
 
 public:
 	static DataManager* getInstance();

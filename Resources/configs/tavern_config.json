@@ -1,0 +1,18 @@
+{
+	"welcome_quotes":
+	[
+		"STID_TEVERN_WELCOME_1",
+		"STID_TEVERN_WELCOME_2",
+		"STID_TEVERN_WELCOME_3"
+	],
+
+	"hiring_quotes":
+	[
+		"STID_TAVERN_HIRING_1",
+		"STID_TAVERN_HIRING_2",
+		"STID_TAVERN_HIRING_3",
+		"STID_TAVERN_HIRING_4"
+	],
+
+	"hire_base_price": 100
+}
