@@ -85,7 +85,7 @@ void MapScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::Touch
 		if (map != nullptr)
 		{
 			const cocos2d::Vec2& mapPosition = map->getInnerContainerPosition();
-			Player::getInstance()->setMapPosition(mapPosition);
+			PLAYER->setMapPosition(mapPosition);
 		}
 	}
 }
