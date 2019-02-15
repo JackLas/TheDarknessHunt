@@ -15,6 +15,7 @@ ViewBuilder::ViewBuilder()
 	mComponents["map_scrollview"] = new MapScrollViewComponent(mComponents);
 	mComponents["loading_bar"] = new LoadingBarComponent(mComponents);
 	mComponents["view"] = new ViewObjectComponent(mComponents);
+	mComponents["label_button"] = new LabelButtonComponent(mComponents);
 }
 
 ViewBuilder::~ViewBuilder()
@@ -92,7 +93,7 @@ ViewBuilder::ViewComponent::ViewComponent(
 {
 }
 
-cocos2d::Color3B ViewBuilder::ViewComponent::getColorFromValue(const rapidjson::Value& aAttrIt)
+cocos2d::Color3B ViewBuilder::ViewComponent::getColorFromValue(const rapidjson::Value& aAttrIt) const
 {
 	cocos2d::Color3B color = cocos2d::Color3B::WHITE;
 
@@ -118,7 +119,7 @@ ViewBuilder::NodeComponent::NodeComponent(
 {
 }
 
-cocos2d::Node* ViewBuilder::NodeComponent::create(const rapidjson::Value& aAttr)
+cocos2d::Node* ViewBuilder::NodeComponent::create(const rapidjson::Value& aAttr) const
 {
 	return cocos2d::Node::create();
 }
@@ -126,7 +127,7 @@ cocos2d::Node* ViewBuilder::NodeComponent::create(const rapidjson::Value& aAttr)
 bool ViewBuilder::NodeComponent::init(
 	const cocos2d::Node* aParent, 
 	cocos2d::Node* aObject, 
-	rapidjson::Value::MemberIterator aAttrIt)
+	rapidjson::Value::MemberIterator aAttrIt) const
 {
 	cocos2d::Size contentSize;
 	if (aParent != nullptr)
@@ -195,41 +196,40 @@ bool ViewBuilder::NodeComponent::init(
 	return result;
 }
 
-void ViewBuilder::NodeComponent::addToParent(cocos2d::Node* aParent, cocos2d::Node* aChild)
+void ViewBuilder::NodeComponent::addToParent(cocos2d::Node* aParent, cocos2d::Node* aChild) const
 {
 	aParent->addChild(aChild);
 }
 
 cocos2d::Node* ViewBuilder::NodeComponent::initChild(
-	cocos2d::Node* aParent, rapidjson::Value::MemberIterator aChildIt)
+	cocos2d::Node* aParent, rapidjson::Value::MemberIterator aChildIt, const ViewComponent* aComponent) const
 {
-	cocos2d::Node* result = nullptr;
-	std::string childType = aChildIt->name.GetString();
-	auto componentIt = mComponents.find(childType);
-	if (componentIt != mComponents.end())
+	cocos2d::Node* child = aComponent->create(aChildIt->value);
+	if (child != nullptr)
 	{
-		cocos2d::Node* child = componentIt->second->create(aChildIt->value);
-		if (child != nullptr)
+		for (auto attrIt = aChildIt->value.MemberBegin(); attrIt != aChildIt->value.MemberEnd(); ++attrIt)
 		{
-			for (auto attrIt = aChildIt->value.MemberBegin(); attrIt != aChildIt->value.MemberEnd(); ++attrIt)
-			{
-				componentIt->second->init(aParent, child, attrIt);
-			}
-			result = child;
+			aComponent->init(aParent, child, attrIt);
 		}
 	}
-	return result;
+	return child;
 }
 
 void ViewBuilder::NodeComponent::loadChildren(
-	cocos2d::Node* aParent, rapidjson::Value& aChildrenValue)
+	cocos2d::Node* aParent, rapidjson::Value& aChildrenValue) const
 {
 	for (auto it = aChildrenValue.MemberBegin(); it != aChildrenValue.MemberEnd(); ++it)
 	{
-		cocos2d::Node* child = initChild(aParent, it);
-		if (child != nullptr)
+		std::string childType = it->name.GetString();
+		auto componentIt = mComponents.find(childType);
+		if (componentIt != mComponents.end())
 		{
-			aParent->addChild(child);
+			cocos2d::Node* child = initChild(aParent, it, componentIt->second);
+			if (child != nullptr)
+			{
+				componentIt->second->addToParent(aParent, child);
+				//aParent->addChild(child);
+			}
 		}
 	}
 }
@@ -240,7 +240,7 @@ ViewBuilder::LayerComponent::LayerComponent(
 {
 }
 
-cocos2d::Node* ViewBuilder::LayerComponent::create(const rapidjson::Value& aAttr)
+cocos2d::Node* ViewBuilder::LayerComponent::create(const rapidjson::Value& aAttr) const
 {
 	return cocos2d::Layer::create();
 }
@@ -251,14 +251,14 @@ ViewBuilder::SpriteComponent::SpriteComponent(
 {
 }
 
-cocos2d::Node* ViewBuilder::SpriteComponent::create(const rapidjson::Value& aAttr)
+cocos2d::Node* ViewBuilder::SpriteComponent::create(const rapidjson::Value& aAttr) const
 {
 	return cocos2d::Sprite::create();
 }
 
 bool ViewBuilder::SpriteComponent::init(
 	const cocos2d::Node* aParent, cocos2d::Node* aObject, 
-	rapidjson::Value::MemberIterator aAttrIt)
+	rapidjson::Value::MemberIterator aAttrIt) const
 {
 	bool result = false;
 
@@ -295,7 +295,7 @@ ViewBuilder::LabelComponent::LabelComponent(const std::map<std::string, ViewComp
 {
 }
 
-cocos2d::Node* ViewBuilder::LabelComponent::create(const rapidjson::Value& aAttr)
+cocos2d::Node* ViewBuilder::LabelComponent::create(const rapidjson::Value& aAttr) const
 {
 	cocos2d::Label* label = nullptr;
 
@@ -323,7 +323,7 @@ cocos2d::Node* ViewBuilder::LabelComponent::create(const rapidjson::Value& aAttr
 bool ViewBuilder::LabelComponent::init(
 	const cocos2d::Node* aParent, 
 	cocos2d::Node* aObject, 
-	rapidjson::Value::MemberIterator aAttrIt)
+	rapidjson::Value::MemberIterator aAttrIt) const
 {
 	bool result = false;
 
@@ -349,7 +349,7 @@ ViewBuilder::ButtonComponent::ButtonComponent(
 {
 }
 
-cocos2d::Node* ViewBuilder::ButtonComponent::create(const rapidjson::Value& aAttr)
+cocos2d::Node* ViewBuilder::ButtonComponent::create(const rapidjson::Value& aAttr) const
 {
 	std::string normalFrameName;
 	if (aAttr.HasMember("normal_image_frame_name"))
@@ -377,7 +377,7 @@ cocos2d::Node* ViewBuilder::ButtonComponent::create(const rapidjson::Value& aAtt
 bool ViewBuilder::ButtonComponent::init(
 	const cocos2d::Node* aParent, 
 	cocos2d::Node* aObject, 
-	rapidjson::Value::MemberIterator aAttrIt)
+	rapidjson::Value::MemberIterator aAttrIt) const
 {
 	bool result = false;
 	aObject->setTag(static_cast<int>(eViewObjectType::OBJECT_TYPE_BUTTON));
@@ -411,7 +411,7 @@ ViewBuilder::PopUpLayerComponent::PopUpLayerComponent(
 {
 }
 
-cocos2d::Node* ViewBuilder::PopUpLayerComponent::create(const rapidjson::Value& aAttr)
+cocos2d::Node* ViewBuilder::PopUpLayerComponent::create(const rapidjson::Value& aAttr) const
 {
 	return PopUpLayer::create();
 }
@@ -419,7 +419,7 @@ cocos2d::Node* ViewBuilder::PopUpLayerComponent::create(const rapidjson::Value& 
 bool ViewBuilder::PopUpLayerComponent::init(
 	const cocos2d::Node* aParent,
 	cocos2d::Node* aObject, 
-	rapidjson::Value::MemberIterator aAttrIt)
+	rapidjson::Value::MemberIterator aAttrIt) const
 {
 	bool result = false;
 	if (!NodeComponent::init(aParent, aObject, aAttrIt))
@@ -449,7 +449,7 @@ ViewBuilder::MapScrollViewComponent::MapScrollViewComponent(
 }
 
 cocos2d::Node* ViewBuilder::ScrollViewComponent::create(
-	const rapidjson::Value& aAttr)
+	const rapidjson::Value& aAttr) const
 {
 	cocos2d::ui::ScrollView* scrollview = cocos2d::ui::ScrollView::create();
 	scrollview->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
@@ -458,7 +458,7 @@ cocos2d::Node* ViewBuilder::ScrollViewComponent::create(
 
 bool ViewBuilder::ScrollViewComponent::init(const cocos2d::Node* aParent,
 	cocos2d::Node* aObject,
-	rapidjson::Value::MemberIterator aAttrIt)
+	rapidjson::Value::MemberIterator aAttrIt) const
 {
 	bool result = false;
 
@@ -493,7 +493,7 @@ bool ViewBuilder::ScrollViewComponent::init(const cocos2d::Node* aParent,
 bool ViewBuilder::MapScrollViewComponent::init(
 	const cocos2d::Node* aParent, 
 	cocos2d::Node* aObject, 
-	rapidjson::Value::MemberIterator aAttrIt)
+	rapidjson::Value::MemberIterator aAttrIt) const
 {
 	bool result = false;
 
@@ -515,7 +515,7 @@ bool ViewBuilder::MapScrollViewComponent::init(
 }
 
 void ViewBuilder::MapScrollViewComponent::loadParts(
-	cocos2d::ui::ScrollView* aParent, rapidjson::Value& aPartsValue)
+	cocos2d::ui::ScrollView* aParent, rapidjson::Value& aPartsValue) const
 {
 	const cocos2d::Size& contentSize = aParent->getContentSize();
 	cocos2d::Size innerContainerSize = aParent->getInnerContainerSize();
@@ -523,17 +523,23 @@ void ViewBuilder::MapScrollViewComponent::loadParts(
 
 	for (auto it = aPartsValue.MemberBegin(); it != aPartsValue.MemberEnd(); ++it)
 	{
-		cocos2d::Node* child = initChild(aParent, it);
-		if (child != nullptr)
+		std::string childType = it->name.GetString();
+		auto componentIt = mComponents.find(childType);
+		if (componentIt != mComponents.end())
 		{
-			child->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_BOTTOM);
-			const cocos2d::Size& childSize = child->getContentSize();
-			cocos2d::Size childPos = innerContainerSize;
-			childPos.width *= 0.5f;
-			child->setPosition(childPos);
-			innerContainerSize.height += childSize.height;
-			aParent->addChild(child);
+			cocos2d::Node* child = initChild(aParent, it, componentIt->second);
+			if (child != nullptr)
+			{
+				child->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_BOTTOM);
+				const cocos2d::Size& childSize = child->getContentSize();
+				cocos2d::Size childPos = innerContainerSize;
+				childPos.width *= 0.5f;
+				child->setPosition(childPos);
+				innerContainerSize.height += childSize.height;
+				aParent->addChild(child);
+			}
 		}
+
 	}
 	aParent->setInnerContainerSize(innerContainerSize);
 }
@@ -544,7 +550,7 @@ ViewBuilder::LoadingBarComponent::LoadingBarComponent(
 {
 }
 
-cocos2d::Node* ViewBuilder::LoadingBarComponent::create(const rapidjson::Value& aAttr)
+cocos2d::Node* ViewBuilder::LoadingBarComponent::create(const rapidjson::Value& aAttr) const
 {
 	cocos2d::Node* result = nullptr;
 
@@ -564,7 +570,7 @@ ViewBuilder::ViewObjectComponent::ViewObjectComponent(
 {
 }
 
-cocos2d::Node* ViewBuilder::ViewObjectComponent::create(const rapidjson::Value& aAttr)
+cocos2d::Node* ViewBuilder::ViewObjectComponent::create(const rapidjson::Value& aAttr) const
 {
 	cocos2d::Node* object = nullptr;
 	if (aAttr.HasMember("view_id"))
@@ -578,4 +584,30 @@ cocos2d::Node* ViewBuilder::ViewObjectComponent::create(const rapidjson::Value& 
 		}
 	}
 	return object;
+}
+
+ViewBuilder::LabelButtonComponent::LabelButtonComponent(
+	const std::map<std::string, ViewComponent*>& aComponents)
+	: LabelComponent(aComponents)
+{
+}
+
+void ViewBuilder::LabelButtonComponent::addToParent(cocos2d::Node* aParent, cocos2d::Node* aChild) const
+{
+	cocos2d::ui::Button* btn = cocos2d::ui::Button::create();
+	if (btn != nullptr)
+	{
+		btn->setTag(static_cast<int>(eViewObjectType::OBJECT_TYPE_BUTTON));
+		btn->setName(aChild->getName());
+		btn->setAnchorPoint(aChild->getAnchorPoint());
+		aChild->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
+		btn->setPosition(aChild->getPosition());
+		aChild->setPosition(cocos2d::Vec2::ZERO);
+		btn->setLocalZOrder(aChild->getLocalZOrder());
+		aChild->setLocalZOrder(0);
+		btn->setVisible(aChild->isVisible());
+		aChild->setVisible(true);
+		btn->setTitleLabel(static_cast<cocos2d::Label*>(aChild));	
+		aParent->addChild(btn);
+	}
 }
