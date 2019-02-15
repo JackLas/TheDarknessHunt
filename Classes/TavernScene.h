@@ -9,11 +9,15 @@ class TavernScene : public BaseScene
 private:
 	typedef BaseScene Parent;
 
+	cocos2d::Node* mCurrentVisibleLayer;
+
 	TavernScene();
 protected:
 	CREATE_FUNC(TavernScene);
 	virtual bool init();
 
+	bool replaceVisibleLayer(const std::string& aLayerName);
+	void initHireLayer();
 	void onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent);
 
 public:

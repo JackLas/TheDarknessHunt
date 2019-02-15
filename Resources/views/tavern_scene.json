@@ -10,24 +10,112 @@
 
 		"button":
 		{
-			"normal_image_frame_name": "BUTTON",
-			"name": "back",
-			"title":
-			{
-				"font": "FONT_LARGE",
-				"text": "STID_BTN_BACK"
-			},
-			"pos_x": 0.5,
-			"pos_y": 0.5
+			"normal_image_frame_name": "BUTTON_MAP",
+			"name": "btn_map",
+			"pos_x": 0.9,
+			"pos_y": 0.06,
+			"z_order": 10
 		},
 
-		"label":
+		"layer":
 		{
-			"font": "FONT_LARGE",
-			"text": "STID_TAVERN",
-			"pos_x": 0.5,
-			"pos_y": 0.7,
-			"color":{"r": 0, "g": 0, "b":0}
+			"name": "welcome_layer",
+			"visible": false,
+			"children":
+			{
+				"label":
+				{
+					"name": "welcome",
+					"font": "FONT_LARGE",
+					"width": 0.8,
+					"anchor_x": 0.0,
+					"anchor_y": 1.0,
+					"pos_x": 0.1,
+					"pos_y": 0.95,
+					"color": {"r": 40, "g": 34, "b": 31}
+				},
+
+				"label_button":
+				{
+					"name": "btn_hire",
+					"font": "FONT_LARGE",
+					"text": "STID_TAVERN_HAVE_JOB",
+					"anchor_x": 0.0,
+					"pos_x": 0.12,
+					"pos_y": 0.7,
+					"width": 0.8,
+					"color": {"r": 40, "g": 34, "b": 31}
+				},
+
+				"label_button":
+				{
+					"name": "btn_tell",
+					"font": "FONT_LARGE",
+					"text": "STID_TAVERN_TELL_ABOUT",
+					"anchor_x": 0.0,
+					"pos_x": 0.12,
+					"pos_y": 0.58,
+					"width": 0.8,
+					"color": {"r": 40, "g": 34, "b": 31}
+				}
+			}
+		},
+
+		"layer":
+		{
+			"name": "hire_layer",
+			"visible": false,
+			"children":
+			{
+				"label": 
+				{
+					"font": "FONT_LARGE",
+					"name": "description",
+					"anchor_y": 1.0,
+					"pos_x": 0.5,
+					"pos_y": 0.95,
+					"width": 0.8,
+					"color": {"r": 40, "g": 34, "b": 31}
+				},
+
+				"label_button":
+				{
+					"font": "FONT_LARGE",
+					"text": "STID_TAVERN_POS_ANSWER",
+					"name": "btn_hire_positive",
+					"anchor_x": 0.0,
+					"pos_x": 0.1,
+					"pos_y": 0.5,
+					"color": {"r": 40, "g": 34, "b": 31}
+				},
+
+				"label":
+				{
+					"font": "FONT_LARGE",
+					"name": "price",
+					"anchor_x": 0.0,
+					"pos_x": 0.13,
+					"pos_y": 0.457,
+					"color": {"r": 40, "g": 34, "b": 31}
+				},
+
+				"label_button":
+				{
+					"font": "FONT_LARGE",
+					"text": "STID_TAVERN_NEG_ANSWER",
+					"name": "btn_hire_negative",
+					"anchor_x": 1.0,
+					"pos_x": 0.9,
+					"pos_y": 0.5,
+					"color": {"r": 40, "g": 34, "b": 31}
+				}
+			}
+		},
+
+		"layer":
+		{
+			"name": "tell_layer",
+			"visible": false
 		}
 	}
 }
