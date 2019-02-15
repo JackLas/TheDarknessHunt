@@ -49,16 +49,17 @@
 	"STID_LEVEL_DESCRIPTION_FOREST": "The forest always seemed unsafe and scary place, even before monsters attack. However, it had a lotta wild animals, by which hunters earned gold and fed common people. Now that place considered cursed.",
 	"STID_LEVEL_DESCRIPTION_CASTLE": "Many years ago that castle belonged to King, which engaged in necromancy when got old, trying to prolong his life. One day his ritual got out of control and he vaporised. Travelers says that monsters began appearing exactly form the castle.",
 
-	"STID_TEVERN_WELCOME_1": "Welcome back!",
+	"STID_TAVERN_WELCOME_1": "Welcome back!",
 	"STID_TAVERN_WELCOME_2": "You've been on the run all day. Relax! Take a seat.",
 	"STID_TAVERN_WELCOME_3": "Warm your frozen boots by the fire!",
 	"STID_TAVERN_HELP": "What can I help you?",
-	"STID_TAVERN_HAVE_JOB": "I have some job. I'm looking for people who wanna kill that cursed monsters. Do you know someone?",
+	"STID_TAVERN_HAVE_JOB": " - I have some job. I am looking for people, who wanna kill that cursed monsters. Do you know someone?",
 	"STID_TAVERN_HIRING_1": "Actually, I know one man. He has lost his family because of monsters. They killed his wife and son then burned his house. Now he has nothing except rage and desire to destroy monsters.",
 	"STID_TAVERN_HIRING_2": "Ya know, some guards from city fortress complain that they earn not enough gold for their work. I think, you can interest they.",
 	"STID_TAVERN_HIRING_3": "You can ask hunters 'bout that. Ya know, monsters destroy a lotta wild animals, so hunters have less work now.",
 	"STID_TAVERN_HIRING_4": "Uh... Do you see that strange man sitting in the shadows near the wall? People says that he used to service in the King's army many years ago. For sure he can handle sword... or bow... or whatever... so he may come in handy.",
 	"STID_TAVERN_HIRE": "Hire",
-	"STID_TAVERN_TELL_ABOUT": "Tell me about ...",
-	"STID_TAVERN_THANKS": "Got it, thanks"
+	"STID_TAVERN_TELL_ABOUT": " - Tell me about ...",
+	"STID_TAVERN_POS_ANSWER": " - Got it, thanks",
+	"STID_TAVERN_NEG_ANSWER": " - Never mind"
 }
