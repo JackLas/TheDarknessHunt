@@ -103,7 +103,7 @@
 				{
 					"font": "FONT_LARGE",
 					"text": "STID_TAVERN_NEG_ANSWER",
-					"name": "btn_hire_negative",
+					"name": "btn_back",
 					"anchor_x": 1.0,
 					"pos_x": 0.9,
 					"pos_y": 0.5,
@@ -116,6 +116,17 @@
 		{
 			"name": "tell_layer",
 			"visible": false
+		},
+
+		"label":
+		{
+			"font": "FONT_LARGE",
+			"text": "default",
+			"name": "message",
+			"pos_x": 0.5,
+			"pos_y": 0.1,
+			"opacity": 0,
+			"color": {"r": 165, "g": 45, "b": 39}
 		}
 	}
 }

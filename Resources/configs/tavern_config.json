@@ -19,5 +19,7 @@
 		"STID_TAVERN_NO_HIRING_1"
 	],
 
-	"hire_base_price": 100
+	"hire_base_price": 100,
+	"message_appearing_time": 0.5,
+	"message_showing_time": 1.5
 }

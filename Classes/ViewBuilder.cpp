@@ -197,7 +197,7 @@ bool ViewBuilder::NodeComponent::init(
 		}
 		else if (opacity > 256)
 		{
-			opacity = 256;
+			opacity = 255;
 		}
 		else
 		{

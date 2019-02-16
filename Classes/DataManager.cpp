@@ -414,6 +414,14 @@ void DataManager::loadTavernConfig(const std::string& aPath)
 			{
 				mData.tavernData.baseHirePrice = it->value.GetInt();
 			}
+			else if (name == "message_appearing_time")
+			{
+				mData.tavernData.messageAppearingTime = it->value.GetFloat();
+			}
+			else if (name == "message_showing_time")
+			{
+				mData.tavernData.messageShowingTime = it->value.GetFloat();
+			}
 		}
 	}
 	else

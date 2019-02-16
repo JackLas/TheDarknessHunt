@@ -11,9 +11,13 @@ struct sTavernConfig
 	std::vector<std::string> hireSTIDs;
 	std::vector<std::string> noHireSTIDs;
 	int baseHirePrice;
+	float messageAppearingTime;
+	float messageShowingTime;
 
 	sTavernConfig()
 		: baseHirePrice(0)
+		, messageAppearingTime(0.0f)
+		, messageShowingTime(0.0f)
 	{
 	}
 };

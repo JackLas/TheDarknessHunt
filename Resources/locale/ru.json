@@ -56,5 +56,7 @@
 	"STID_TAVERN_NO_HIRING_1": "Нет, извини. Приходи позже. Уверен, сейчас полно людей, которые хотят защитить свой дом.",
 	"STID_TAVERN_TELL_ABOUT": " - Расскажи о ...",
 	"STID_TAVERN_POS_ANSWER": " - Понятно, спасибо",
-	"STID_TAVERN_NEG_ANSWER": " - Забудь"
+	"STID_TAVERN_NEG_ANSWER": " - Забудь",
+
+	"STID_NO_GOLD": "У меня недостаточно золота"
 }

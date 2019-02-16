@@ -102,10 +102,10 @@ void TavernScene::initHireLayer()
 			priceLabel->setString(std::to_string(mHirePrice));
 			priceLabel->setVisible(isHire);
 			
-			cocos2d::Sprite* goldIcon = nullptr;
+			const std::string iconName = "gold_icon";
+			cocos2d::Sprite* goldIcon = layer->getChildByName<cocos2d::Sprite*>(iconName);
 			if (isHire)
 			{
-				goldIcon = layer->getChildByName<cocos2d::Sprite*>("gold_icon");
 				if (goldIcon == nullptr)
 				{
 					const auto& images = DM->getData().images;
@@ -115,6 +115,7 @@ void TavernScene::initHireLayer()
 						goldIcon = cocos2d::Sprite::createWithSpriteFrameName(imageIt->second);
 						if (goldIcon != nullptr)
 						{
+							goldIcon->setName(iconName);
 							goldIcon->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_LEFT);
 							layer->addChild(goldIcon);
 						}
@@ -137,6 +138,24 @@ void TavernScene::initHireLayer()
 		{
 			btnHire->setVisible(isHire);
 		}
+	}
+}
+
+void TavernScene::showMessage(const std::string& aMsgSTID)
+{
+	const std::string& msg = DM->getStringById(aMsgSTID);
+	cocos2d::Label* msgLabel = getChildByName<cocos2d::Label*>("message");
+	if (msgLabel != nullptr)
+	{
+		msgLabel->setString(msg);
+		const float& appearingTime = DM->getData().tavernData.messageAppearingTime;
+		const float& showingTime = DM->getData().tavernData.messageShowingTime;
+		msgLabel->runAction(cocos2d::Sequence::create(
+			cocos2d::FadeIn::create(appearingTime),
+			cocos2d::DelayTime::create(showingTime),
+			cocos2d::FadeOut::create(appearingTime),
+			nullptr
+		));
 	}
 }
 
@@ -168,8 +187,12 @@ void TavernScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::To
 			{
 				PLAYER->hireTeammate();
 			}
+			else
+			{
+				showMessage("STID_NO_GOLD");
+			}
 		}
-		else if (btnName == "btn_hire_negative")
+		else if (btnName == "btn_back")
 		{
 			replaceVisibleLayer("welcome_layer");
 		}

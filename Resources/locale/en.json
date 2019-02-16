@@ -61,5 +61,7 @@
 	"STID_TAVERN_NO_HIRING_1": "Nope sorry. Come back later. I'm sure there is a lotta people, who wanna protect their home.",
 	"STID_TAVERN_TELL_ABOUT": " - Tell me about ...",
 	"STID_TAVERN_POS_ANSWER": " - Got it, thanks",
-	"STID_TAVERN_NEG_ANSWER": " - Never mind"
+	"STID_TAVERN_NEG_ANSWER": " - Never mind",
+
+	"STID_NO_GOLD": "I don't have enough gold"
 }
