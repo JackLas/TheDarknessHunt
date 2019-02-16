@@ -221,7 +221,8 @@ void CampScene::initTeammateLayer()
 			const float templateHeightWithGap = templateHeight + (templateHeight * 0.1f);
 			listSize.height = templateHeightWithGap * PLAYER->getTeam().size();
 			scrollView->setInnerContainerSize(listSize);
-			cocos2d::Vec2 templatePosition(listSize.width / 2.0f, listSize.height);
+			const cocos2d::Size& scrollViewInnerSize = scrollView->getInnerContainerSize();
+			cocos2d::Vec2 templatePosition(scrollViewInnerSize.width / 2.0f, scrollViewInnerSize.height);
 
 			for (unsigned int i = 0; i < PLAYER->getTeam().size(); ++i)
 			{
