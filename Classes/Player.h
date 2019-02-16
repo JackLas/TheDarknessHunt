@@ -46,6 +46,9 @@ private:
 	Player();
 	void loadData();
 
+	int getTeamSize() const;
+	int getMaxTeamSize() const;
+
 public:
 	static Player* getInstance();
 	~Player();
@@ -73,6 +76,9 @@ public:
 	const sDamage& getTeammateDamage(int aTeammateIndex) const;
 	const sDamage& getPassiveDamage() const;
 	int getCurrentHirePriceMultiplier() const;
+	bool isNeedTeammate() const;
+	bool spendGold(const unsigned int aAmount);
+	void hireTeammate();
 };
 
 #define PLAYER Player::getInstance()

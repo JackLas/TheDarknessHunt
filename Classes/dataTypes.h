@@ -9,6 +9,7 @@ struct sTavernConfig
 {
 	std::vector<std::string> welcomeSTIDs;
 	std::vector<std::string> hireSTIDs;
+	std::vector<std::string> noHireSTIDs;
 	int baseHirePrice;
 
 	sTavernConfig()
@@ -91,9 +92,11 @@ struct sLevel
 	cocos2d::Vec2 spawnPoint;
 	std::vector<std::string> monsters;
 	int hirePriceMultiplier;
+	int additionalTeammates;
 
 	sLevel()
 		: hirePriceMultiplier(1)
+		, additionalTeammates(0)
 	{
 	}
 };

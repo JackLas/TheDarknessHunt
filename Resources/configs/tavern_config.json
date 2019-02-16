@@ -14,5 +14,10 @@
 		"STID_TAVERN_HIRING_4"
 	],
 
+	"no_hiring_quotes":
+	[
+		"STID_TAVERN_NO_HIRING_1"
+	],
+
 	"hire_base_price": 100
 }

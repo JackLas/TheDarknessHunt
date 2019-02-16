@@ -5,6 +5,7 @@
 
 TavernScene::TavernScene()
 	: mCurrentVisibleLayer(nullptr)
+	, mHirePrice(0)
 {
 }
 
@@ -70,47 +71,71 @@ bool TavernScene::replaceVisibleLayer(const std::string& aLayerName)
 
 void TavernScene::initHireLayer()
 {
+	bool isHire = PLAYER->isNeedTeammate();
 	cocos2d::Node* layer = getChildByName("hire_layer");
 	if (layer != nullptr)
 	{
 		cocos2d::Label* description = layer->getChildByName<cocos2d::Label*>("description");
 		if (description != nullptr)
 		{
-			const auto& hireQuotes = DM->getData().tavernData.hireSTIDs;
-			int index = cocos2d::RandomHelper::random_int<int>(0, hireQuotes.size() - 1);
-			std::string descriptionStr = DM->getStringById(hireQuotes[index]);
-			description->setString(descriptionStr);
+			if (isHire)
+			{
+				const auto& hireQuotes = DM->getData().tavernData.hireSTIDs;
+				int index = cocos2d::RandomHelper::random_int<int>(0, hireQuotes.size() - 1);
+				const std::string& descriptionStr = DM->getStringById(hireQuotes[index]);
+				description->setString(descriptionStr);
+			}
+			else
+			{
+				const auto& noHireQuotes = DM->getData().tavernData.noHireSTIDs;
+				int index = cocos2d::RandomHelper::random_int<int>(0, noHireQuotes.size() - 1);
+				const std::string& descriptionStr = DM->getStringById(noHireQuotes[index]);
+				description->setString(descriptionStr);
+			}
 		}
 
 		cocos2d::Label* priceLabel = layer->getChildByName<cocos2d::Label*>("price");
 		if (priceLabel != nullptr)
 		{
-			int price = DM->getData().tavernData.baseHirePrice;
-			price *= PLAYER->getCurrentHirePriceMultiplier();
-			priceLabel->setString(std::to_string(price));
+			mHirePrice = DM->getData().tavernData.baseHirePrice;
+			mHirePrice *= PLAYER->getCurrentHirePriceMultiplier();
+			priceLabel->setString(std::to_string(mHirePrice));
+			priceLabel->setVisible(isHire);
 			
-			cocos2d::Sprite* goldIcon = layer->getChildByName<cocos2d::Sprite*>("gold_icon");
-			if (goldIcon == nullptr)
+			cocos2d::Sprite* goldIcon = nullptr;
+			if (isHire)
 			{
-				const auto& images = DM->getData().images;
-				auto imageIt = images.find("ICON_COIN");
-				if (imageIt != images.end())
+				goldIcon = layer->getChildByName<cocos2d::Sprite*>("gold_icon");
+				if (goldIcon == nullptr)
 				{
-					goldIcon = cocos2d::Sprite::createWithSpriteFrameName(imageIt->second);
-					if (goldIcon != nullptr)
+					const auto& images = DM->getData().images;
+					auto imageIt = images.find("ICON_COIN");
+					if (imageIt != images.end())
 					{
-						goldIcon->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_LEFT);
-						layer->addChild(goldIcon);
+						goldIcon = cocos2d::Sprite::createWithSpriteFrameName(imageIt->second);
+						if (goldIcon != nullptr)
+						{
+							goldIcon->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_LEFT);
+							layer->addChild(goldIcon);
+						}
 					}
 				}
 			}
+			
 			if (goldIcon != nullptr)
 			{
 				cocos2d::Vec2 iconPos;
 				iconPos.x = priceLabel->getBoundingBox().getMaxX() + (goldIcon->getBoundingBox().size.width * 0.1f);
 				iconPos.y = priceLabel->getPosition().y;
 				goldIcon->setPosition(iconPos);
+				goldIcon->setVisible(isHire);
 			}
+		}
+
+		cocos2d::Node* btnHire = layer->getChildByName("btn_hire_positive");
+		if (btnHire != nullptr)
+		{
+			btnHire->setVisible(isHire);
 		}
 	}
 }
@@ -139,6 +164,10 @@ void TavernScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::To
 		else if (btnName == "btn_hire_positive")
 		{
 			replaceVisibleLayer("welcome_layer");
+			if (PLAYER->spendGold(mHirePrice))
+			{
+				PLAYER->hireTeammate();
+			}
 		}
 		else if (btnName == "btn_hire_negative")
 		{

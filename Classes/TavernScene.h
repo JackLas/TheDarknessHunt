@@ -10,6 +10,7 @@ private:
 	typedef BaseScene Parent;
 
 	cocos2d::Node* mCurrentVisibleLayer;
+	unsigned int mHirePrice;
 
 	TavernScene();
 protected:

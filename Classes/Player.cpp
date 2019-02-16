@@ -41,13 +41,6 @@ Player::Player()
 	mEquipedItems[eSlotID::RIGHT_SLOT];
 
 	//--- for tests ---
-	mTeam.push_back(std::move(sTeammate()));
-	mTeam.push_back(std::move(sTeammate()));
-	mTeam.push_back(std::move(sTeammate()));
-	mTeam.push_back(std::move(sTeammate()));
-	mTeam.push_back(std::move(sTeammate()));
-	mTeam.push_back(std::move(sTeammate()));
-	mTeam.push_back(std::move(sTeammate()));
 
 	//while(false)
 	for (int i = 0; i <= 26; ++i)
@@ -422,4 +415,47 @@ int Player::getCurrentHirePriceMultiplier() const
 	}
 
 	return result;
+}
+
+int Player::getTeamSize() const
+{
+	return mTeam.size();
+}
+
+int Player::getMaxTeamSize() const
+{
+	int result = 0;
+	const auto& levelsData = DM->getData().levels;
+	for (auto& levelKills : mKills)
+	{
+		const std::string& levelID = levelKills.first;
+		const auto levelIt = levelsData.find(levelID);
+		if (levelIt != levelsData.end())
+		{
+			result += levelIt->second.additionalTeammates;
+		}
+	}
+
+	return result;
+}
+
+bool Player::isNeedTeammate() const
+{
+	return getTeamSize() < getMaxTeamSize();
+}
+
+bool Player::spendGold(const unsigned int aAmount)
+{
+	bool result = false;
+	if (mGold >= aAmount)
+	{
+		mGold -= aAmount;
+		result = true;
+	}
+	return result;
+}
+
+void Player::hireTeammate()
+{
+	mTeam.push_back(sTeammate());
 }

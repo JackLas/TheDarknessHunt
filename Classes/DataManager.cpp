@@ -217,6 +217,10 @@ void DataManager::loadLevels(const std::string& aPath)
 					{
 						currentLevel.hirePriceMultiplier = levelAttrIt->value.GetInt();
 					}
+					else if (levelAttrName == "additional_teammates")
+					{
+						currentLevel.additionalTeammates = levelAttrIt->value.GetInt();
+					}
 				}
 			}
 			else
@@ -397,6 +401,13 @@ void DataManager::loadTavernConfig(const std::string& aPath)
 				for (auto& id: it->value.GetArray())
 				{
 					mData.tavernData.hireSTIDs.push_back(id.GetString());
+				}
+			}
+			else if (name == "no_hiring_quotes")
+			{
+				for (auto& id : it->value.GetArray())
+				{
+					mData.tavernData.noHireSTIDs.push_back(id.GetString());
 				}
 			}
 			else if (name == "hire_base_price")
