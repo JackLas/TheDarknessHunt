@@ -187,6 +187,24 @@ bool ViewBuilder::NodeComponent::init(
 		aObject->setLocalZOrder(zOrder);
 		result = true;
 	}
+	else if (attrName == "opacity")
+	{
+		int configOpacity = aAttrIt->value.GetInt();
+		unsigned char opacity = 0;
+		if (opacity < 0)
+		{
+			opacity = 0;
+		}
+		else if (opacity > 256)
+		{
+			opacity = 256;
+		}
+		else
+		{
+			opacity = static_cast<unsigned char>(configOpacity);
+		}
+		aObject->setOpacity(opacity);
+	}
 	else if (attrName == "children")
 	{
 		loadChildren(aObject, aAttrIt->value);
