@@ -72,6 +72,7 @@ public:
 	const sDamage& getClickDamage() const;
 	const sDamage& getTeammateDamage(int aTeammateIndex) const;
 	const sDamage& getPassiveDamage() const;
+	int getCurrentHirePriceMultiplier() const;
 };
 
 #define PLAYER Player::getInstance()

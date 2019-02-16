@@ -8,5 +8,6 @@
 		"STONE_GOLEM",
 		"SASQUATCH",
 		"TROLL"
-	]
+	],
+	"hire_price_multiplier": 25
 }

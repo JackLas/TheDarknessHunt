@@ -213,6 +213,10 @@ void DataManager::loadLevels(const std::string& aPath)
 							currentLevel.monsters.emplace_back(monsterIt->GetString());
 						}
 					}
+					else if (levelAttrName == "hire_price_multiplier")
+					{
+						currentLevel.hirePriceMultiplier = levelAttrIt->value.GetInt();
+					}
 				}
 			}
 			else

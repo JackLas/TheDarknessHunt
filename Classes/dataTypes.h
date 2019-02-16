@@ -90,6 +90,12 @@ struct sLevel
 	std::string background;
 	cocos2d::Vec2 spawnPoint;
 	std::vector<std::string> monsters;
+	int hirePriceMultiplier;
+
+	sLevel()
+		: hirePriceMultiplier(1)
+	{
+	}
 };
 
 struct sData

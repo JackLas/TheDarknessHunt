@@ -8,5 +8,6 @@
 		"TREENT",
 		"SWAMP_MONSTER",
 		"CHIMERA"
-	]
+	],
+	"hire_price_multiplier": 15
 }

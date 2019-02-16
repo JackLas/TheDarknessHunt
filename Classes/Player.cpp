@@ -406,3 +406,20 @@ const sDamage& Player::getPassiveDamage() const
 {
 	return mPassiveDamage;
 }
+
+int Player::getCurrentHirePriceMultiplier() const
+{
+	int result = 1;
+	const auto& levelsData = DM->getData().levels;
+	for (auto& levelKills : mKills)
+	{
+		const std::string& levelID = levelKills.first;
+		const auto levelIt = levelsData.find(levelID);
+		if (levelIt != levelsData.end())
+		{
+			result *= levelIt->second.hirePriceMultiplier;
+		}
+	}
+
+	return result;
+}
