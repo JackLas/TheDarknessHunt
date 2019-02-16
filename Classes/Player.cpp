@@ -192,7 +192,7 @@ void Player::addKill(const std::string& aLevelID, const unsigned int aAmount)
 	mIsNeedSaving = true;
 }
 
-const unsigned int& Player::getKills(const std::string& aLevelID)
+unsigned int Player::getKills(const std::string& aLevelID) const
 {
 	const auto levelIt = mKills.find(aLevelID);
 	if (levelIt != mKills.end())
@@ -201,7 +201,7 @@ const unsigned int& Player::getKills(const std::string& aLevelID)
 	}
 	else
 	{
-		return (mKills[aLevelID] = 0);
+		return 0;
 	}
 }
 
@@ -211,7 +211,7 @@ void Player::addGold(const unsigned int aAmount)
 	mIsNeedSaving = true;
 }
 
-const unsigned int& Player::getGold()
+unsigned int Player::getGold() const
 {
 	return mGold;
 }

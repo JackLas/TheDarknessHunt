@@ -57,9 +57,9 @@ public:
 	void setMapPosition(const cocos2d::Vec2& aPosition);
 	const cocos2d::Vec2& getMapPosition() const;
 	void addKill(const std::string& aLevelID, const unsigned int aAmount = 1);
-	const unsigned int& getKills(const std::string& aLevelID);
+	unsigned int getKills(const std::string& aLevelID) const;
 	void addGold(const unsigned int aAmount);
-	const unsigned int& getGold();
+	unsigned int getGold() const;
 	const std::vector<sTeammate>& getTeam() const;
 	const std::vector<std::string>& getInventory() const;
 	bool equipItem(int aTeammateIndex, eSlotID aSlot, int aItemIndex);
