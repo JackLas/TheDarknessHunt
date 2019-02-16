@@ -1,6 +1,7 @@
 #include "TavernScene.h"
 #include "DataManager.h"
 #include "MapScene.h"
+#include "Player.h"
 
 TavernScene::TavernScene()
 	: mCurrentVisibleLayer(nullptr)
@@ -85,6 +86,7 @@ void TavernScene::initHireLayer()
 		if (priceLabel != nullptr)
 		{
 			int price = DM->getData().tavernData.baseHirePrice;
+			price *= PLAYER->getCurrentHirePriceMultiplier();
 			priceLabel->setString(std::to_string(price));
 			
 			cocos2d::Sprite* goldIcon = layer->getChildByName<cocos2d::Sprite*>("gold_icon");
