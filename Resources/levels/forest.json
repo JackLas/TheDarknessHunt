@@ -9,5 +9,6 @@
 		"SWAMP_MONSTER",
 		"CHIMERA"
 	],
-	"hire_price_multiplier": 15
+	"hire_price_multiplier": 15,
+	"additional_teammates": 1
 }
