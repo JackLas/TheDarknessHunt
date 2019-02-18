@@ -19,6 +19,7 @@ protected:
 
 	bool replaceVisibleLayer(const std::string& aLayerName);
 	void initHireLayer();
+	void initTellLayer();
 	void showMessage(const std::string& aMsgSTID);
 	void onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent);
 

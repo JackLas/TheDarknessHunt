@@ -141,6 +141,18 @@ void TavernScene::initHireLayer()
 	}
 }
 
+void TavernScene::initTellLayer()
+{
+	cocos2d::Node* layer = getChildByName("tell_layer");
+	if (layer != nullptr)
+	{
+		cocos2d::Node* list = layer->getChildByName("list");
+		if(list != nullptr)
+		{
+		}
+	}
+}
+
 void TavernScene::showMessage(const std::string& aMsgSTID)
 {
 	const std::string& msg = DM->getStringById(aMsgSTID);
@@ -178,7 +190,10 @@ void TavernScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::To
 		}
 		else if (btnName == "btn_tell")
 		{
-			replaceVisibleLayer("tell_layer");
+			if (replaceVisibleLayer("tell_layer"))
+			{
+				initTellLayer();
+			}
 		}
 		else if (btnName == "btn_hire_positive")
 		{

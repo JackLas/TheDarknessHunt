@@ -115,7 +115,30 @@
 		"layer":
 		{
 			"name": "tell_layer",
-			"visible": false
+			"visible": false,
+			"children":
+			{
+				"label_button":
+				{
+					"font": "FONT_LARGE",
+					"text": "STID_TAVERN_NEG_ANSWER",
+					"name": "btn_back",
+					"anchor_x": 1.0,
+					"pos_x": 0.9,
+					"pos_y": 0.5,
+					"color": {"r": 40, "g": 34, "b": 31}
+				},
+
+				"scrollview":
+				{
+					"name": "list",
+					"content_width": 0.8,
+					"content_height": 0.4,
+					"pos_x": 0.5,
+					"pos_y": 0.72,
+					"scroll_bar_enabled": true
+				}
+			}
 		},
 
 		"label":
