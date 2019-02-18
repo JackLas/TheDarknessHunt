@@ -1,4 +1,6 @@
 {
+	"name": "STID_LEVEL_NAME_FOREST",
+	"description": "STID_LEVEL_DESCRIPTION_FOREST",
 	"background": "LEVEL_BG_FOREST",
 	"spawnpoint_x": 0.5,
 	"spawnpoint_y": 0.4,

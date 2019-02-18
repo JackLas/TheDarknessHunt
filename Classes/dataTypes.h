@@ -92,6 +92,8 @@ struct sMonster
 
 struct sLevel
 {
+	std::string name;
+	std::string description;
 	std::string background;
 	cocos2d::Vec2 spawnPoint;
 	std::vector<std::string> monsters;

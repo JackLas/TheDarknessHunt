@@ -221,6 +221,14 @@ void DataManager::loadLevels(const std::string& aPath)
 					{
 						currentLevel.additionalTeammates = levelAttrIt->value.GetInt();
 					}
+					else if(levelAttrName == "name")
+					{
+						currentLevel.name = levelAttrIt->value.GetString();
+					}
+					else if (levelAttrName == "description")
+					{
+						currentLevel.description = levelAttrIt->value.GetString();
+					}
 				}
 			}
 			else
