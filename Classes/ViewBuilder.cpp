@@ -460,12 +460,6 @@ ViewBuilder::ScrollViewComponent::ScrollViewComponent(
 
 }
 
-ViewBuilder::MapScrollViewComponent::MapScrollViewComponent(
-	const std::map<std::string, ViewComponent*>& aComponents)
-	: ScrollViewComponent(aComponents)
-{
-}
-
 cocos2d::Node* ViewBuilder::ScrollViewComponent::create(
 	const rapidjson::Value& aAttr) const
 {
@@ -502,10 +496,17 @@ bool ViewBuilder::ScrollViewComponent::init(const cocos2d::Node* aParent,
 			cocos2d::ui::ScrollView* scrollview = static_cast<cocos2d::ui::ScrollView*>(aObject);
 			bool state = aAttrIt->value.GetBool();
 			scrollview->setScrollBarEnabled(state);
+			result = true;
 		}
 	}
 
 	return result;
+}
+
+ViewBuilder::MapScrollViewComponent::MapScrollViewComponent(
+	const std::map<std::string, ViewComponent*>& aComponents)
+	: ScrollViewComponent(aComponents)
+{
 }
 
 bool ViewBuilder::MapScrollViewComponent::init(
