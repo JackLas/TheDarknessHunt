@@ -18,7 +18,7 @@
 	{
 		"sprite": "MONSTER_RAT",
 		"name": "STID_FEROCIOUS_RAT_NAME",
-		"HP": 4.0,
+		"HP": 100,
 		"phys_resist": 0,
 		"mag_resist": 0
 	},
@@ -27,17 +27,17 @@
 	{
 		"sprite": "MONSTER_SNAKE",
 		"name": "STID_BASILISK_NAME",
-		"HP": 4.0,
+		"HP": 100,
 		"phys_resist": 0,
-		"mag_resist": 5
+		"mag_resist": 20
 	},
 
 	"SCORPIO":
 	{
 		"sprite": "MONSTER_SCORPIO",
 		"name": "STID_SCORPIO_NAME",
-		"HP": 4.0,
-		"phys_resist": 5,
+		"HP": 100,
+		"phys_resist": 20,
 		"mag_resist": 0
 	},
 
@@ -45,16 +45,16 @@
 	{
 		"sprite": "MONSTER_WASTELAND_SPRIRT",
 		"name": "STID_ASAEL_NAME",
-		"HP": 4.0,
-		"phys_resist": 10,
-		"mag_resist": 10
+		"HP": 100,
+		"phys_resist": 20,
+		"mag_resist": 20
 	},
 
 	"GIANT_BLACK_WIDOW":
 	{
 		"sprite": "MONSTER_SPIDER",
 		"name": "STID_GIANT_BLACK_WIDOW_NAME",
-		"HP": 6.0,
+		"HP": 6,
 		"phys_resist": 10,
 		"mag_resist": 10,
 		"anchor_y": 0.6
@@ -64,7 +64,7 @@
 	{
 		"sprite": "MONSTER_STONE_GOLEM",
 		"name": "STID_STONE_GOLEM_NAME",
-		"HP": 6.0,
+		"HP": 6,
 		"phys_resist": 15,
 		"mag_resist": 10
 	},
@@ -73,7 +73,7 @@
 	{
 		"sprite": "MONSTER_BIGFOOT",
 		"name": "STID_SASQUATCH_NAME",
-		"HP": 6.0,
+		"HP": 6,
 		"phys_resist": 10,
 		"mag_resist": 15
 	},
@@ -82,7 +82,7 @@
 	{
 		"sprite": "MONSTER_TROLL",
 		"name": "STID_TROLL_NAME",
-		"HP": 6.0,
+		"HP": 6,
 		"phys_resist": 20,
 		"mag_resist": 20
 	},
@@ -91,7 +91,7 @@
 	{
 		"sprite": "MONSTER_FOREST_GOLEM",
 		"name": "STID_FOREST_GOLEM_NAME",
-		"HP": 8.0,
+		"HP": 8,
 		"phys_resist": 20,
 		"mag_resist": 20
 	},
@@ -100,7 +100,7 @@
 	{
 		"sprite": "MONSTER_TREENT",
 		"name": "STID_TREENT_NAME",
-		"HP": 8.0,
+		"HP": 8,
 		"phys_resist": 5,
 		"mag_resist": 25,
 		"anchor_y": 0.55
@@ -110,7 +110,7 @@
 	{
 		"sprite": "MONSTER_TENTACLER",
 		"name": "STID_SWAMP_MONSTER_NAME",
-		"HP": 8.0,
+		"HP": 8,
 		"phys_resist": 25,
 		"mag_resist": 0,
 		"anchor_y": 0.55
@@ -120,7 +120,7 @@
 	{
 		"sprite": "MONSTER_CHIMERA",
 		"name": "STID_CHIMERA_NAME",
-		"HP": 8.0,
+		"HP": 8,
 		"phys_resist": 30,
 		"mag_resist": 30
 	},
@@ -129,7 +129,7 @@
 	{
 		"sprite": "MONSTER_SKELETON",
 		"name": "STID_SKELETON_NAME",
-		"HP": 10.0,
+		"HP": 10,
 		"phys_resist": 20,
 		"mag_resist": 50
 	},
@@ -138,7 +138,7 @@
 	{
 		"sprite": "MONSTER_SSGNAAR",
 		"name": "STID_FOMORIAN_NAME",
-		"HP": 10.0,
+		"HP": 10,
 		"phys_resist": 50,
 		"mag_resist": 40
 	},
@@ -147,7 +147,7 @@
 	{
 		"sprite": "MONSTER_SHADOW",
 		"name": "STID_SHADOW_NAME",
-		"HP": 10.0,
+		"HP": 10,
 		"phys_resist": 75,
 		"mag_resist": 10
 	},
@@ -156,7 +156,7 @@
 	{
 		"sprite": "MONSTER_DEMON",
 		"name": "STID_ASTAROTH_NAME",
-		"HP": 10.0,
+		"HP": 10,
 		"phys_resist": 75,
 		"mag_resist": 75,
 		"anchor_y": 0.35

@@ -106,16 +106,10 @@ const sMonster& Monster::getData() const
 
 const std::string& Monster::getName() const 
 {
-	const std::map<std::string, std::string>& strings = DM->getData().strings;
-	const auto& nameIt = strings.find(mData.nameSTID);
-	if (nameIt != strings.end())
-	{
-		return nameIt->second;
-	}
-	return mData.nameSTID;
+	return DM->getStringById(mData.nameSTID);
 }
 
-float Monster::getCurrentHealth() const
+int Monster::getCurrentHealth() const
 {
 	return mCurrentHP;
 }
@@ -123,7 +117,9 @@ float Monster::getCurrentHealth() const
 
 float Monster::getCurrentHealthInPercent() const
 {
-	return mCurrentHP / mData.hp * 100;
+	float percent = static_cast<float>(mCurrentHP) / mData.hp;
+	percent *= 100;
+	return percent;
 }
 
 const sResistance& Monster::getResistance() const
@@ -136,14 +132,15 @@ unsigned int Monster::getGoldReward() const
 	return mData.goldReward;
 }
 
-void Monster::onTouched()
+void Monster::takeDamage(const sDamage& aDealtDamage)
 {
 	const float& actionTime = mData.touchActionTime;
 	cocos2d::TintTo* action = cocos2d::TintTo::create(actionTime, cocos2d::Color3B::RED);
 	cocos2d::TintTo* actionReverse = cocos2d::TintTo::create(actionTime, cocos2d::Color3B::WHITE);
 	runAction(cocos2d::Sequence::create(action, actionReverse, nullptr));
 
-	--mCurrentHP;
+	const sDamage realDealtDamage = aDealtDamage * mData.resistance;
+	mCurrentHP -= realDealtDamage;
 
 	if (mCurrentHP <= 0)
 	{

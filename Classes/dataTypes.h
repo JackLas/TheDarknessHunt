@@ -34,9 +34,6 @@ struct sDamage
 	}
 };
 
-sDamage& operator+=(sDamage& aLeft, const sDamage& aRight);
-sDamage& operator-=(sDamage& aLeft, const sDamage& aRight);
-
 struct sItem
 {
 	std::string frameNameID;
@@ -73,7 +70,7 @@ struct sMonster
 	float touchActionTime;
 	float healingTime;
 
-	float hp;
+	int hp;
 	sResistance resistance;
 
 	unsigned int goldReward;
@@ -83,7 +80,7 @@ struct sMonster
 		, appearingTime(0.0f)
 		, disappearingTime(0.0f)
 		, touchActionTime(0.0f)
-		, hp(0.0f)
+		, hp(0)
 		, healingTime(0.0f)
 		, goldReward(0)
 	{
@@ -130,6 +127,11 @@ struct sSettings
 	{
 	}
 };
+
+sDamage& operator+=(sDamage& aLeft, const sDamage& aRight);
+sDamage& operator-=(sDamage& aLeft, const sDamage& aRight);
+sDamage operator*(const sDamage& aLeft, const sResistance& aRight);
+int& operator-=(int& aLeft, const sDamage& aRight);
 
 #endif //DATATYPES_H
 

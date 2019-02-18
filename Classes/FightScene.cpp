@@ -238,10 +238,11 @@ void FightScene::onTouchEnded(cocos2d::Touch* aTouch, cocos2d::Event* aEvent)
 	{
 		if (mCurrentMonster->getBoundingBox().containsPoint(touchPosition))
 		{
-			mCurrentMonster->onTouched();
+			mCurrentMonster->takeDamage(PLAYER->getClickDamage());
 			if (mMonsterHealthBar != nullptr)
 			{
-				mMonsterHealthBar->setPercent(mCurrentMonster->getCurrentHealthInPercent());
+				const float percent = mCurrentMonster->getCurrentHealthInPercent();
+				mMonsterHealthBar->setPercent(percent);
 			}
 		}
 	}
@@ -321,10 +322,6 @@ void FightScene::respawnMonster()
 	{
 		mCurrentMonster->setActionListener(this);
 		addChild(mCurrentMonster);
-		if (mMonsterHealthBar != nullptr)
-		{
-			mMonsterHealthBar->setPercent(mCurrentMonster->getCurrentHealthInPercent());
-		}
 	}
 }
 
@@ -373,6 +370,11 @@ void FightScene::onMonsterSpawned(const Monster* aMonster)
 		std::string value = std::to_string(aMonster->getResistance().magical);
 		value += "%";
 		mMagResistLabel->setString(value);
+	}
+	if (mMonsterHealthBar != nullptr)
+	{
+		const float percent = aMonster->getCurrentHealthInPercent();
+		mMonsterHealthBar->setPercent(percent);
 	}
 }
 

@@ -283,7 +283,7 @@ void DataManager::loadMonsters(const std::string& aPath)
 				}
 				else if (attrName == "HP")
 				{
-					monster.hp = static_cast<float>(monsterAttrIt->value.GetDouble());
+					monster.hp = monsterAttrIt->value.GetInt();
 				}
 				else if (attrName == "anchor_x")
 				{

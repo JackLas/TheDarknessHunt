@@ -11,7 +11,7 @@ private:
 	typedef cocos2d::Sprite Parent;
 
 	const sMonster& mData;
-	float mCurrentHP;
+	int mCurrentHP;
 	float mHealingTimer;
 	float mElapsedHealingTime;
 
@@ -32,12 +32,12 @@ public:
 
 	const sMonster& getData() const;
 	const std::string& getName() const override;
-	float getCurrentHealth() const;
+	int getCurrentHealth() const;
 	float getCurrentHealthInPercent() const;
 	const sResistance& getResistance() const;
 	unsigned int getGoldReward() const;
 
-	void onTouched();
+	void takeDamage(const sDamage& aDealtDamage);
 	void startDeathAnimation(cocos2d::FiniteTimeAction* aAnimation, bool aDirection);
 };
 

@@ -12,15 +12,15 @@
 	{
 		"sprite_frame_name": "ITEM_WEAPON_SWORD",
 		"name": "STID_OLD_SWORD_NAME",
-		"physical_damage": 1,
-		"price": 100
+		"physical_damage": 25,
+		"price": 1000
 	},
 
 	"OLD_STAFF":
 	{
 		"sprite_frame_name": "ITEM_WEAPON_STAFF",
 		"name": "STID_OLD_STAFF_NAME",
-		"magical_damage": 1,
-		"price": 100
+		"magical_damage": 25,
+		"price": 1000
 	}
 }
