@@ -1,6 +1,6 @@
 {
-	"LEVEL_WASTELAND": "levels/wasteland.json",
-	"LEVEL_CANYON": "levels/canyon.json",
-	"LEVEL_FOREST": "levels/forest.json",
-	"LEVEL_CASTLE": "levels/castle.json"
+	"LEVEL_WASTELAND": "configs/levels/wasteland.json",
+	"LEVEL_CANYON": "configs/levels/canyon.json",
+	"LEVEL_FOREST": "configs/levels/forest.json",
+	"LEVEL_CASTLE": "configs/levels/castle.json"
 }
