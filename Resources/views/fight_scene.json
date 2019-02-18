@@ -23,7 +23,7 @@
 					"frame_name": "ICON_COIN",
 					"name": "gold",
 					"pos_x": 0.55,
-					"pos_y": 0.85,
+					"pos_y": 0.88,
 					"children":
 					{
 						"label":
@@ -38,12 +38,22 @@
 					}
 				},
 
+				"label":
+				{
+					"font": "FONT_LARGE",
+					"text": "STID_PASSIVE_DMG_LABEL",
+					"anchor_x": 0.0,
+					"pos_x": 0.55,
+					"pos_y": 0.69,
+					"color": {"r": 212, "g": 237, "b": 237}
+				},
+
 				"sprite":
 				{
 					"frame_name": "ICON_PHYS_DAMAGE",
-					"name": "phys_damage",
+					"name": "passive_phys_damage",
 					"pos_x": 0.55,
-					"pos_y": 0.6,
+					"pos_y": 0.5,
 					"children":
 					{
 						"label":
@@ -61,9 +71,9 @@
 				"sprite":
 				{
 					"frame_name": "ICON_MAG_DAMAGE",
-					"name": "mag_damage",
+					"name": "passive_mag_damage",
 					"pos_x": 0.55,
-					"pos_y": 0.35,
+					"pos_y": 0.28,
 					"children":
 					{
 						"label":
@@ -83,7 +93,37 @@
 					"frame_name": "ICON_KILLS",
 					"name": "kills",
 					"pos_x": 0.1,
-					"pos_y": 0.85,
+					"pos_y": 0.88,
+					"children":
+					{
+						"label":
+						{
+							"font": "FONT_LARGE",
+							"name": "text",
+							"anchor_x": 0,
+							"anchor_y": 0.15,
+							"pos_x": 1.2,
+							"color": {"r": 212, "g": 237, "b": 237}
+						}
+					}
+				},
+
+				"label":
+				{
+					"font": "FONT_LARGE",
+					"text": "STID_CLICK_DMG_LABEL",
+					"anchor_x": 0.0,
+					"pos_x": 0.1,
+					"pos_y": 0.69,
+					"color": {"r": 212, "g": 237, "b": 237}
+				},
+
+				"sprite":
+				{
+					"frame_name": "ICON_PHYS_DAMAGE",
+					"name":"click_phys_damage",
+					"pos_x": 0.1,
+					"pos_y": 0.5,
 					"children":
 					{
 						"label":
@@ -100,30 +140,10 @@
 
 				"sprite":
 				{
-					"frame_name": "ICON_PHYS_RESIST",
-					"name":"phys_resist",
+					"frame_name": "ICON_MAG_DAMAGE",
+					"name": "click_mag_damage",
 					"pos_x": 0.1,
-					"pos_y": 0.6,
-					"children":
-					{
-						"label":
-						{
-							"font": "FONT_LARGE",
-							"name": "text",
-							"anchor_x": 0,
-							"anchor_y": 0.15,
-							"pos_x": 1.2,
-							"color": {"r": 212, "g": 237, "b": 237}
-						}
-					}
-				},
-
-				"sprite":
-				{
-					"frame_name": "ICON_MAG_RESIST",
-					"name": "mag_resist",
-					"pos_x": 0.1,
-					"pos_y": 0.35,
+					"pos_y": 0.28,
 					"children":
 					{
 						"label":
@@ -142,11 +162,58 @@
 
 		"sprite":
 		{
+			"frame_name": "PLAYER_DAMAGE_TITLE",
+			"name": "resist_bar",
+			"anchor_y": 1.0,
+			"pos_x": 0.5,
+			"pos_y": 0.88,
+			"flip_y": true,
+			"z_order": 9,
+			"children":
+			{
+				"sprite":
+				{
+					"frame_name": "ICON_PHYS_RESIST",
+					"pos_x": 0.1,
+					"pos_y": 0.3
+				},
+
+				"label":
+				{
+					"font": "FONT_LARGE",
+					"name": "phys_resist_label",
+					"anchor_x": 0.0,
+					"pos_x": 0.15,
+					"pos_y": 0.3,
+					"color": {"r": 40, "g": 34, "b": 31}
+				},
+
+				"sprite":
+				{
+					"frame_name": "ICON_MAG_RESIST",
+					"pos_x": 0.5,
+					"pos_y": 0.3
+				},
+
+				"label":
+				{
+					"font": "FONT_LARGE",
+					"name": "mag_resist_label",
+					"anchor_x": 0.0,
+					"pos_x": 0.55,
+					"pos_y": 0.3,
+					"color": {"r": 40, "g": 34, "b": 31}
+				}
+			}
+		},
+
+		"sprite":
+		{
 			"frame_name": "FIGHT_BAR_SMALL",
 			"name": "bottom_bar",
 			"pos_x": 0.5,
 			"anchor_y": 0.0,
-			"z_order": 12,
+			"z_order": 10,
 			"children":
 			{
 				"label":
@@ -202,7 +269,7 @@
 			"name": "button_map",
 			"pos_x": 0.9,
 			"pos_y": 0.165,
-			"z_order": 12
+			"z_order": 10
 		}
 	}
 }

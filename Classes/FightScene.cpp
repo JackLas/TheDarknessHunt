@@ -8,8 +8,6 @@ FightScene::FightScene(const std::string& aLevelID)
 	: mLevelID(aLevelID)
 	, mSpawner(mLevelID)
 	, mCurrentMonster(nullptr)
-	, mPhysDamageLabel(nullptr)
-	, mMagDamageLabel(nullptr)
 	, mPhysResistLabel(nullptr)
 	, mMagResistLabel(nullptr)
 	, mKillsLabel(nullptr)
@@ -31,14 +29,13 @@ FightScene* FightScene::create(const std::string& aLevelID)
     if (pRet && pRet->init()) 
     { 
         pRet->autorelease(); 
-        return pRet; 
     } 
     else 
     { 
         delete pRet; 
         pRet = nullptr; 
-        return nullptr; 
-    } 
+    }
+	return pRet;
 }
 
 cocos2d::Scene* FightScene::createScene(const std::string& aLevelID)
@@ -89,26 +86,46 @@ bool FightScene::init()
 			cocos2d::Node* bar = getChildByName("top_bar");
 			if (bar != nullptr)
 			{
-				cocos2d::Node* labelParent = bar->getChildByName("phys_damage");
+				const sDamage& passiveDamage = PLAYER->getPassiveDamage();
+				cocos2d::Node* labelParent = bar->getChildByName("passive_phys_damage");
 				if (labelParent != nullptr)
 				{
-					mPhysDamageLabel = labelParent->getChildByName<cocos2d::Label*>("text");
+					cocos2d::Label* passivePhysDmgLabel = labelParent->getChildByName<cocos2d::Label*>("text");
+					if (passivePhysDmgLabel != nullptr)
+					{
+						passivePhysDmgLabel->setString(std::to_string(passiveDamage.physical));
+					}
 				}
-				labelParent = bar->getChildByName("mag_damage");
+				labelParent = bar->getChildByName("passive_mag_damage");
 				if (labelParent != nullptr)
 				{
-					mMagDamageLabel = labelParent->getChildByName<cocos2d::Label*>("text");
+					cocos2d::Label* passiveMagDmgLabel = labelParent->getChildByName<cocos2d::Label*>("text");
+					if (passiveMagDmgLabel != nullptr)
+					{
+						passiveMagDmgLabel->setString(std::to_string(passiveDamage.magical));
+					}
 				}
-				labelParent = bar->getChildByName("phys_resist");
+
+				const sDamage& clickDamage = PLAYER->getClickDamage();
+				labelParent = bar->getChildByName("click_phys_damage");
 				if (labelParent != nullptr)
 				{
-					mPhysResistLabel = labelParent->getChildByName<cocos2d::Label*>("text");
+					cocos2d::Label* clickPhysDmgLabel = labelParent->getChildByName<cocos2d::Label*>("text");
+					if (clickPhysDmgLabel != nullptr)
+					{
+						clickPhysDmgLabel->setString(std::to_string(clickDamage.physical));
+					}
 				}
-				labelParent = bar->getChildByName("mag_resist");
+				labelParent = bar->getChildByName("click_mag_damage");
 				if (labelParent != nullptr)
 				{
-					mMagResistLabel = labelParent->getChildByName<cocos2d::Label*>("text");
+					cocos2d::Label* clickMagDmgLabel = labelParent->getChildByName<cocos2d::Label*>("text");
+					if (clickMagDmgLabel != nullptr)
+					{
+						clickMagDmgLabel->setString(std::to_string(clickDamage.magical));
+					}
 				}
+
 				labelParent = bar->getChildByName("kills");
 				if (labelParent != nullptr)
 				{
@@ -136,11 +153,16 @@ bool FightScene::init()
 					mMonsterHealthBar = healthBar->getChildByName<cocos2d::ui::LoadingBar*>("core");
 				}
 			}
+
+			bar = getChildByName("resist_bar");
+			if (bar != nullptr)
+			{
+				mPhysResistLabel = bar->getChildByName<cocos2d::Label*>("phys_resist_label");
+				mMagResistLabel = bar->getChildByName<cocos2d::Label*>("mag_resist_label");
+			}
+
 			updateKillsLabel();
 			updateGoldLabel();
-
-			mPhysDamageLabel->setString("0.5");
-			mMagDamageLabel->setString("0.5");
 		}
 	}
 
@@ -155,16 +177,24 @@ void FightScene::onEnter()
 	cocos2d::Node* topBar = getChildByName("top_bar");
 	if (topBar != nullptr)
 	{
-		float initialPositionY = topBar->getPosition().y;
-		float shiftSize = topBar->getContentSize().height;
+		const float initialPositionY = topBar->getPosition().y;
+		const float shiftSize = topBar->getBoundingBox().size.height;
 		topBar->setPositionY(initialPositionY + shiftSize);
 		topBar->runAction(cocos2d::MoveBy::create(appearingTime, cocos2d::Vec2(0.0f, -shiftSize)));
+
+		cocos2d::Node* resistBar = getChildByName("resist_bar");
+		if (resistBar != nullptr)
+		{
+			const cocos2d::Vec2 pos = resistBar->getPosition();
+			resistBar->setPositionY(initialPositionY);
+			resistBar->runAction(cocos2d::MoveTo::create(appearingTime, pos));
+		}
 	}
 	cocos2d::Node* bottomBar = getChildByName("bottom_bar");
 	if (bottomBar != nullptr)
 	{
-		float initialPositionY = bottomBar->getPosition().y;
-		float shiftSize = bottomBar->getContentSize().height;
+		const float initialPositionY = bottomBar->getPosition().y;
+		const float shiftSize = bottomBar->getBoundingBox().size.height;
 		bottomBar->setPositionY(initialPositionY - shiftSize);
 		bottomBar->runAction(cocos2d::MoveBy::create(appearingTime, cocos2d::Vec2(0.0f, +shiftSize)));
 	}
@@ -327,9 +357,9 @@ void FightScene::onMonsterDied(Monster* aMonster)
 
 void FightScene::onMonsterSpawned(const Monster* aMonster)
 {
-	const std::string& spawnedMonsterName = aMonster->getName();
 	if (mMonsterNameLabel != nullptr)
 	{
+		const std::string& spawnedMonsterName = aMonster->getName();
 		mMonsterNameLabel->setString(spawnedMonsterName);
 	}
 	if (mPhysResistLabel != nullptr)

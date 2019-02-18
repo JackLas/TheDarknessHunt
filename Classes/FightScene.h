@@ -18,8 +18,6 @@ private:
 	Spawner mSpawner;
 	Monster* mCurrentMonster;
 
-	cocos2d::Label* mPhysDamageLabel;
-	cocos2d::Label* mMagDamageLabel;
 	cocos2d::Label* mPhysResistLabel;
 	cocos2d::Label* mMagResistLabel;
 	cocos2d::Label* mKillsLabel;
