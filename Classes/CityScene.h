@@ -9,11 +9,26 @@ class CityScene : public BaseScene
 private:
 	typedef BaseScene Parent;
 
+	cocos2d::Label* mGoldLabel;
+	cocos2d::Label* mItemNameLabel;
+	cocos2d::Label* mPhysDmgLabel;
+	cocos2d::Label* mMagDmgLabel;
+	cocos2d::Label* mPrice;
+	cocos2d::Sprite* mItemPreview;
+
+	std::string mSelectedItemID;
+
 	CityScene();
+
 protected:
 	CREATE_FUNC(CityScene);
 	virtual bool init();
 
+	void updatePlayerGold();
+	void initItemList();
+	void onShopSlotTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent);
+	void setSelectedFrame(cocos2d::Node* aItemBtn);
+	void setSelectedItemInfo(const std::string& aSelectedItemID);
 	void onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent);
 
 public:

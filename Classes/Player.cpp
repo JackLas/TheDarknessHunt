@@ -42,8 +42,8 @@ Player::Player()
 
 	//--- for tests ---
 
-	//while(false)
-	for (int i = 0; i <= 26; ++i)
+	while(false)
+	//for (int i = 0; i <= 26; ++i)
 	{
 		int rand = cocos2d::RandomHelper::random_int<int>(0, 2);
 		switch (rand)
@@ -455,7 +455,17 @@ bool Player::spendGold(const unsigned int aAmount)
 	return result;
 }
 
+bool Player::isGoldEnough(const unsigned int aAmount)
+{
+	return mGold >= aAmount;
+}
+
 void Player::hireTeammate()
 {
 	mTeam.push_back(sTeammate());
+}
+
+void Player::addItem(const std::string& aItemID)
+{
+	mInventory.push_back(aItemID);
 }

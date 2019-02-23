@@ -71,7 +71,7 @@
 			"name": "item_frame",
 			"pos_x": 0.15,
 			"pos_y": 0.225,
-			"content":
+			"children":
 			{
 				"sprite":
 				{
@@ -139,11 +139,14 @@
 		{
 			"normal_image_frame_name": "BUTTON_WIDE",
 			"name": "btn_buy",
-			"title":
-			{
-				"font": "FONT_MIDDLE",
-				"text": "STID_BTN_BUY"
-			},
+			"pos_x": 0.32,
+			"pos_y": 0.05
+		},
+
+		"label":
+		{
+			"font": "FONT_MIDDLE",
+			"name": "price",
 			"pos_x": 0.32,
 			"pos_y": 0.05
 		}

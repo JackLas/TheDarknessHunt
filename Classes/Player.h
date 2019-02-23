@@ -78,7 +78,9 @@ public:
 	int getCurrentHirePriceMultiplier() const;
 	bool isNeedTeammate() const;
 	bool spendGold(const unsigned int aAmount);
+	bool isGoldEnough(const unsigned int aAmount);
 	void hireTeammate();
+	void addItem(const std::string& aItemID);
 };
 
 #define PLAYER Player::getInstance()
