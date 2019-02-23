@@ -13,6 +13,7 @@
 	"STID_BTN_EQUIP": "Экипировать",
 	"STID_BTN_CLEAR": "Очистить слот",
 	"STID_BTN_SELL": "Продать",
+	"STID_BTN_BUY": "Купить",
 	"STID_CLICK_DMG_LABEL": "Урон за клик",
 	"STID_PASSIVE_DMG_LABEL": "Пассивный урон",
 
@@ -58,5 +59,6 @@
 	"STID_TAVERN_POS_ANSWER": " - Понятно, спасибо",
 	"STID_TAVERN_NEG_ANSWER": " - Забудь",
 
-	"STID_NO_GOLD": "У меня недостаточно золота"
+	"STID_NO_GOLD": "У меня недостаточно золота",
+	"STID_VENDOR_HELLO": "У меня есть кое-что интересное для тебя"
 }

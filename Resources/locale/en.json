@@ -13,6 +13,7 @@
 	"STID_BTN_EQUIP": "Equip",
 	"STID_BTN_CLEAR": "Clear slot",
 	"STID_BTN_SELL": "Sell",
+	"STID_BTN_BUY": "Buy",
 	"STID_CLICK_DMG_LABEL": "Click damage",
 	"STID_PASSIVE_DMG_LABEL": "Passive damage",
 
@@ -63,5 +64,6 @@
 	"STID_TAVERN_POS_ANSWER": " - Got it, thanks",
 	"STID_TAVERN_NEG_ANSWER": " - Never mind",
 
-	"STID_NO_GOLD": "I don't have enough gold"
+	"STID_NO_GOLD": "I don't have enough gold",
+	"STID_VENDOR_HELLO": "I have something interesting for you"
 }

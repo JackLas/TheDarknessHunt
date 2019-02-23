@@ -1,25 +1,151 @@
 {
 	"children":
 	{
-		"button":
+		"sprite":
 		{
-			"normal_image_frame_name": "BUTTON",
-			"name": "back",
-			"title":
-			{
-				"font": "FONT_LARGE",
-				"text": "STID_BTN_BACK"
-			},
+			"frame_name": "SHOP_BG",
 			"pos_x": 0.5,
 			"pos_y": 0.5
 		},
 
 		"label":
 		{
-			"font": "FONT_LARGE",
-			"text": "STID_CITY",
+			"font": "FONT_MIDDLE",
+			"text": "STID_VENDOR_HELLO",
+			"anchor_x": 0.0,
+			"anchor_y": 1.0,
+			"pos_x": 0.63,
+			"pos_y": 0.28,
+			"width": 0.35,
+			"color": {"r": 40, "g": 34, "b": 31}
+		},
+
+		"button":
+		{
+			"normal_image_frame_name": "BUTTON_MAP",
+			"name": "back",
+			"pos_x": 0.9,
+			"pos_y": 0.958
+		},
+
+		"sprite":
+		{
+			"frame_name": "MAP_CURRENCY_BAR",
+			"name": "gold_bar",
+			"anchor_x": 1.0,
+			"anchor_y": 0.0,
+			"pos_x": 0.7,
+			"pos_y": 0.92,
+
+			"children": 
+			{
+				"sprite":
+				{
+					"frame_name": "ICON_COIN",
+					"pos_x": 0.4,
+					"pos_y": 0.5
+				},
+
+				"label":
+				{
+					"font": "FONT_LARGE",
+					"name": "text",
+					"pos_x": 0.51,
+					"pos_y": 0.5
+				}
+			}
+		},
+
+		"scrollview":
+		{
+			"name": "item_list",
+			"content_width": 0.9,
+			"content_height": 0.58,
 			"pos_x": 0.5,
-			"pos_y": 0.7
+			"pos_y": 0.61
+		},
+
+		"sprite":
+		{
+			"frame_name": "ITEM_FRAME",
+			"name": "item_frame",
+			"pos_x": 0.15,
+			"pos_y": 0.225,
+			"content":
+			{
+				"sprite":
+				{
+					"name": "content",
+					"pos_x": 0.5,
+					"pos_y": 0.5
+				}
+			}
+		},
+
+		"label":
+		{
+			"font": "FONT_MIDDLE",
+			"name": "item_name",
+			"width": 0.3,
+			"anchor_y": 1.0,
+			"anchor_x": 0.0,
+			"pos_x": 0.245,
+			"pos_y": 0.28,
+			"color": {"r": 40, "g": 34, "b": 31}
+		},
+
+		"sprite":
+		{
+			"frame_name": "ICON_PHYS_DAMAGE",
+			"pos_x": 0.1,
+			"pos_y": 0.15
+		},
+
+		"label":
+		{
+			"name": "phys_dmg_label",
+			"font": "FONT_MIDDLE",
+			"anchor_x": 0.0,
+			"pos_x": 0.15,
+			"pos_y": 0.15,
+			"color": {"r": 40, "g": 34, "b": 31}
+		},
+
+		"sprite":
+		{
+			"frame_name": "ICON_MAG_DAMAGE",
+			"pos_x": 0.1,
+			"pos_y": 0.1
+		},
+
+		"label":
+		{
+			"name": "mag_dmg_label",
+			"font": "FONT_MIDDLE",
+			"anchor_x": 0.0,
+			"pos_x": 0.15,
+			"pos_y": 0.1,
+			"color": {"r": 40, "g": 34, "b": 31}
+		},
+
+		"sprite":
+		{
+			"frame_name": "ICON_COIN",
+			"pos_x": 0.1,
+			"pos_y": 0.05
+		},
+
+		"button": 
+		{
+			"normal_image_frame_name": "BUTTON_WIDE",
+			"name": "btn_buy",
+			"title":
+			{
+				"font": "FONT_MIDDLE",
+				"text": "STID_BTN_BUY"
+			},
+			"pos_x": 0.32,
+			"pos_y": 0.05
 		}
 	}
 }
