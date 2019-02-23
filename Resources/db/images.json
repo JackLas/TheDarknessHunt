@@ -6,6 +6,7 @@
 	"LEVEL_BG_CASTLE": "locations/castle.png",
 	"CAMP_BG": "locations/camp.png",
 	"TAVERN_BG": "locations/tavern.png",
+	"SHOP_BG": "locations/city_shop.png",
 
 	"MAP_ICON_CITY": "map/map_icons/city.png",
 	"MAP_ICON_TAVERN": "map/map_icons/tavern.png",
@@ -14,6 +15,7 @@
 	"MAP_ICON_CANYON": "map/map_icons/canyon.png",
 	"MAP_ICON_FOREST": "map/map_icons/forest.png",
 	"MAP_ICON_CASTLE": "map/map_icons/castle.png",
+	"MAP_ICON_CITY_SHOP": "map/map_icons/city_shop_icon.png",
 	"MAP_PART_1": "map/part1.png",
 	"MAP_PART_2": "map/part2.png",
 	"MAP_PART_3": "map/part3.png",
