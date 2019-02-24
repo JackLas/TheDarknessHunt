@@ -271,7 +271,7 @@ void FightScene::givePlayerReward(const Monster* aMonster)
 
 		const int numOfAnimationCoins = 4;
 		unsigned int rewardByCoin = aMonster->getGoldReward() / numOfAnimationCoins;
-		for (int i = 0; i < 4; ++i)
+		for (int i = 0; i < numOfAnimationCoins; ++i)
 		{
 			cocos2d::Sprite* coin = cocos2d::Sprite::createWithSpriteFrameName(frameNameIt->second);
 			cocos2d::Vec2 jumpDestination;
