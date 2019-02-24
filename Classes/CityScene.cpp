@@ -235,7 +235,8 @@ void CityScene::showMessage(const std::string& aMsg, const cocos2d::Color3B& aCo
 					cocos2d::Sequence::create(
 						cocos2d::FadeIn::create(actionTime * 0.25f),
 						cocos2d::DelayTime::create(actionTime * 0.5f),
-						cocos2d::FadeOut::create(actionTime * 0.25f)
+						cocos2d::FadeOut::create(actionTime * 0.25f),
+						nullptr
 					),
 					cocos2d::MoveTo::create(actionTime, endPos)
 				),
