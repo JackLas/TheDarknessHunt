@@ -78,6 +78,20 @@ void MainMenuScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::
 		{
 			if (btnName == "btnPlay")
 			{
+
+#if defined(COCOS2D_DEBUG) || COCOS2D_DEBUG == 1
+				if (mEasterCounter == 3)
+				{
+					PLAYER->addGold(100000);
+					const float time = 0.2f;
+					btn->runAction(cocos2d::Sequence::createWithTwoActions(
+						cocos2d::TintTo::create(time, cocos2d::Color3B::YELLOW),
+						cocos2d::TintTo::create(time, cocos2d::Color3B::WHITE)
+					));
+					return;
+				}
+#endif
+
 				if (mEasterCounter == 5)
 				{
 					showEaster();
