@@ -206,6 +206,48 @@ void CityScene::setSelectedItemInfo(const std::string& aSelectedItemID)
 	}
 }
 
+void CityScene::showMessage(const std::string& aMsg, const cocos2d::Color3B& aColor)
+{
+	cocos2d::Vec2 beginPos;
+	cocos2d::Node* btn = getChildByName("btn_buy");
+	if (btn != nullptr)
+	{
+		beginPos = btn->getPosition();
+	}
+	
+	const auto& fonts = DM->getData().fonts;
+	auto fontIt = fonts.find("FONT_MIDDLE");
+	if (fontIt != fonts.end())
+	{
+		const std::string& msg = DM->getStringById(aMsg);
+		cocos2d::Label* msgLabel = cocos2d::Label::createWithBMFont(fontIt->second, msg);
+		msgLabel->setPosition(beginPos);
+		msgLabel->setColor(aColor);
+		msgLabel->setOpacity(0);
+
+		cocos2d::Vec2 endPos = beginPos;
+		endPos.x = getContentSize().width;
+		const float actionTime = 2.0f;
+
+		msgLabel->runAction(
+			cocos2d::Sequence::create(
+				cocos2d::Spawn::createWithTwoActions(
+					cocos2d::Sequence::create(
+						cocos2d::FadeIn::create(actionTime * 0.25f),
+						cocos2d::DelayTime::create(actionTime * 0.5f),
+						cocos2d::FadeOut::create(actionTime * 0.25f)
+					),
+					cocos2d::MoveTo::create(actionTime, endPos)
+				),
+				cocos2d::CallFunc::create([msgLabel]() {msgLabel->removeFromParent(); }),
+				nullptr
+			)
+		);
+
+		addChild(msgLabel);
+	}
+}
+
 void CityScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent)
 {
 	if (aEvent == cocos2d::ui::Widget::TouchEventType::ENDED)
@@ -227,6 +269,11 @@ void CityScene::onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::Touc
 				{
 					PLAYER->addItem(mSelectedItemID);
 					updatePlayerGold();
+					showMessage("STID_ADD_NEW_ITEM", cocos2d::Color3B::GREEN);
+				}
+				else
+				{
+					showMessage("STID_NO_GOLD", cocos2d::Color3B::RED);
 				}
 			}
 		}

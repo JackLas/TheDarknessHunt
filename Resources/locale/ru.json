@@ -59,6 +59,7 @@
 	"STID_TAVERN_POS_ANSWER": " - Понятно, спасибо",
 	"STID_TAVERN_NEG_ANSWER": " - Забудь",
 
-	"STID_NO_GOLD": "У меня недостаточно золота",
-	"STID_VENDOR_HELLO": "У меня есть кое-что интересное для тебя"
+	"STID_NO_GOLD": "У Вас недостаточно золота",
+	"STID_VENDOR_HELLO": "У меня есть кое-что интересное для тебя",
+	"STID_ADD_NEW_ITEM": "Вы получили новый предмет"
 }

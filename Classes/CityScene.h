@@ -29,6 +29,7 @@ protected:
 	void onShopSlotTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent);
 	void setSelectedFrame(cocos2d::Node* aItemBtn);
 	void setSelectedItemInfo(const std::string& aSelectedItemID);
+	void showMessage(const std::string& aMsg, const cocos2d::Color3B& aColor = cocos2d::Color3B::WHITE);
 	void onButtonTouched(cocos2d::Ref* aSender, cocos2d::ui::Widget::TouchEventType aEvent);
 
 public:
