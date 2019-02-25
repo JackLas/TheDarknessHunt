@@ -2,119 +2,158 @@
 	"AXE":
 	{
 		"sprite_frame_name": "ITEM_AXE",
-		"name": "STID_AXE_NAME"
+		"name": "STID_AXE_NAME",
+		"price": 2500,
+		"physical_damage": 25
 	},
 
 	"BOOK_OF_ELEMENTS":
 	{
 		"sprite_frame_name": "ITEM_BOOK_ELEMENTS",
-		"name": "STID_BOOK_ELEMENTS_NAME"
+		"name": "STID_BOOK_ELEMENTS_NAME",
+		"price": 25000,
+		"magical_damage": 4000
 	},
 
 	"BOOK_OF_NECROMANCY":
 	{
 		"sprite_frame_name": "ITEM_BOOK_NECRO",
-		"name": "STID_BOOK_NECROMANCY_NAME"
+		"name": "STID_BOOK_NECROMANCY_NAME",
+		"price": 45000,
+		"magical_damage": 7500
 	},
 
 	"BOW":
 	{
 		"sprite_frame_name": "ITEM_BOW",
-		"name": "STID_BOW_NAME"
+		"name": "STID_BOW_NAME",
+		"price": 1500,
+		"physical_damage": 15
 	},
 
 	"DOUBLE_AXE":
 	{
 		"sprite_frame_name": "ITEM_DOUBLE_AXE",
-		"name": "STID_DOUBLE_AXE_NAME"
+		"name": "STID_DOUBLE_AXE_NAME",
+		"price": 10000,
+		"physical_damage": 200
 	},
 
 	"EAST_SWORD":
 	{
 		"sprite_frame_name": "ITEM_EAST_SWORD",
-		"name": "STID_EAST_SWORD_NAME"
+		"name": "STID_EAST_SWORD_NAME",
+		"price": 7500,
+		"physical_damage": 90
 	},
 
 	"FLAMING_SWORD":
 	{
 		"sprite_frame_name": "ITEM_FLAMING_SWORD",
-		"name": "STID_FLAMING_SWORD_NAME"
+		"name": "STID_FLAMING_SWORD_NAME",
+		"price": 60000,
+		"magical_damage": 5000,
+		"physical_damage": 5000
 	},
 
 	"GLAIVE":
 	{
 		"sprite_frame_name": "ITEM_GLAIVE",
-		"name": "STID_GLAIVE_NAME"
+		"name": "STID_GLAIVE_NAME",
+		"price": 35000,
+		"physical_damage": 3000,
+		"magical_damage": 3000
 	},
 
 	"HALBERD":
 	{
 		"sprite_frame_name": "ITEM_HALBERD",
-		"name": "STID_HALBERD_NAME"
+		"name": "STID_HALBERD_NAME",
+		"price": 8000,
+		"physical_damage": 100
 	},
 
 	"IRON_CLUB":
 	{
 		"sprite_frame_name": "ITEM_IRON_CLUB",
-		"name": "STID_IRON_CLUB_NAME"
+		"name": "STID_IRON_CLUB_NAME",
+		"price": 5000,
+		"physical_damage": 60
 	},
 
 	"MAGIC_ROD":
 	{
 		"sprite_frame_name": "ITEM_MAGIC_ROD",
-		"name": "STID_MAGIC_ROD_NAME"
+		"name": "STID_MAGIC_ROD_NAME",
+		"price": 12000,
+		"magical_damage": 500
 	},
 
 	"MYSTICAL_ORB":
 	{
 		"sprite_frame_name": "ITEM_MYSTICAL_ORB",
-		"name": "STID_MYSTICAL_ORB_NAME"
+		"name": "STID_MYSTICAL_ORB_NAME",
+		"price": 20000,
+		"magical_damage": 2000
 	},
 
 	"PHILOSOPHER_STONE":
 	{
 		"sprite_frame_name": "ITEM_PHILOSOPHER_STONE",
-		"name": "STID_PHILOSOPER_STONE_NAME"
+		"name": "STID_PHILOSOPER_STONE_NAME",
+		"price": 1000000,
+		"magical_damage": 50000,
+		"physical_damage": 50000
 	},
 
 	"POISON_FLASK":
 	{
 		"sprite_frame_name": "ITEM_POISON_FLASK",
-		"name": "STID_POISON_FLASK_NAME"
+		"name": "STID_POISON_FLASK_NAME",
+		"price": 13000,
+		"magical_damage": 500,
+		"physical_damage": 100
 	},
 
 	"RAPIER":
 	{
 		"sprite_frame_name": "ITEM_RAPIER",
-		"name": "STID_RAPIER_NAME"
+		"name": "STID_RAPIER_NAME",
+		"price": 15000,
+		"physical_damage": 2500
 	},
 
 	"TANTO":
 	{
 		"sprite_frame_name": "ITEM_TANTO",
-		"name": "STID_TANTO_NAME"
+		"name": "STID_TANTO_NAME",
+		"price": 5000,
+		"physical_damage": 40,
+		"magical_damage": 10
 	},
 
 	"TWILIGHT_STAFF":
 	{
 		"sprite_frame_name": "ITEM_TWILIGHT_STAFF",
-		"name": "STID_TWILIGHT_STAFF_NAME"
+		"name": "STID_TWILIGHT_STAFF_NAME",
+		"price": 30000,
+		"magical_damage": 2500,
+		"physical_damage": 2500
 	},
 
 	"STRANGE_AMULET":
 	{
 		"sprite_frame_name": "ITEM_STRANGE_AMULET",
 		"name": "STID_STRANGE_AMULET_NAME",
-		"physical_damage": 100,
-		"magical_damage": 100,
-		"price": 25000
+		"magical_damage": 5000,
+		"price": 30000
 	},
 
 	"OLD_SWORD":
 	{
 		"sprite_frame_name": "ITEM_OLD_SWORD",
 		"name": "STID_OLD_SWORD_NAME",
-		"physical_damage": 25,
+		"physical_damage": 10,
 		"price": 1000
 	},
 
@@ -122,7 +161,7 @@
 	{
 		"sprite_frame_name": "ITEM_OLD_STAFF",
 		"name": "STID_OLD_STAFF_NAME",
-		"magical_damage": 25,
+		"magical_damage": 10,
 		"price": 1000
 	}
 }

@@ -9,7 +9,7 @@
 Player::Player()
 	: mIsNeedSaving(false)
 	, mTimeBetweenGameLaunchings(0)
-	, mGold(0)
+	, mGold(1000)
 {
 	mTimeFile = cocos2d::FileUtils::getInstance()->getWritablePath() + "/data.time";
 	mSaveFile = cocos2d::FileUtils::getInstance()->getWritablePath() + "/data.save";
@@ -149,7 +149,7 @@ void Player::saveData()
 
 void Player::resetProgress()
 {
-	mGold = 0;
+	mGold = 1000;
 	mKills.clear();
 	cocos2d::FileUtils::getInstance()->removeFile(mSaveFile);
 	cocos2d::FileUtils::getInstance()->removeFile(mHashFile);

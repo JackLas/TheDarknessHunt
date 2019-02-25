@@ -11,5 +11,6 @@
 		"SCORPIO",
 		"ASAEL"
 	],
+	"hire_price_multiplier": 50,
 	"additional_teammates": 1
 }

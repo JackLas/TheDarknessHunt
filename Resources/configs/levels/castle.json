@@ -11,6 +11,6 @@
 		"SHADOW",
 		"ASTAROTH"
 	],
-	"hire_price_multiplier": 25,
-	"additional_teammates": 2
+	"hire_price_multiplier": 4,
+	"additional_teammates": 4
 }

@@ -7,11 +7,7 @@
 		"appearing_time": 0.4,
 		"disappearing_time": 1.0,
 		"touch_action_time": 0.15,
-		"healing_time": 5.0,
-		"reward":
-		{
-			"gold": 24
-		}
+		"healing_time": 5.0
 	},
 
 	"FEROCIOUS_RAT":
@@ -20,7 +16,8 @@
 		"name": "STID_FEROCIOUS_RAT_NAME",
 		"HP": 100,
 		"phys_resist": 0,
-		"mag_resist": 0
+		"mag_resist": 0,
+		"reward": {"gold": 25}
 	},
 
 	"BASILISK":
@@ -29,7 +26,8 @@
 		"name": "STID_BASILISK_NAME",
 		"HP": 100,
 		"phys_resist": 0,
-		"mag_resist": 20
+		"mag_resist": 0,
+		"reward": {"gold": 25}
 	},
 
 	"SCORPIO":
@@ -37,8 +35,9 @@
 		"sprite": "MONSTER_SCORPIO",
 		"name": "STID_SCORPIO_NAME",
 		"HP": 100,
-		"phys_resist": 20,
-		"mag_resist": 0
+		"phys_resist": 0,
+		"mag_resist": 0,
+		"reward": {"gold": 25}
 	},
 
 	"ASAEL":
@@ -46,119 +45,132 @@
 		"sprite": "MONSTER_WASTELAND_SPRIRT",
 		"name": "STID_ASAEL_NAME",
 		"HP": 100,
-		"phys_resist": 20,
-		"mag_resist": 20
+		"phys_resist": 0,
+		"mag_resist": 0,
+		"reward": {"gold": 25}
 	},
 
 	"GIANT_BLACK_WIDOW":
 	{
 		"sprite": "MONSTER_SPIDER",
 		"name": "STID_GIANT_BLACK_WIDOW_NAME",
-		"HP": 6,
-		"phys_resist": 10,
-		"mag_resist": 10,
-		"anchor_y": 0.6
+		"HP": 1000,
+		"phys_resist": 0,
+		"mag_resist": 80,
+		"anchor_y": 0.6,
+		"reward": {"gold": 300}
 	},
 
 	"STONE_GOLEM":
 	{
 		"sprite": "MONSTER_STONE_GOLEM",
 		"name": "STID_STONE_GOLEM_NAME",
-		"HP": 6,
-		"phys_resist": 15,
-		"mag_resist": 10
+		"HP": 1000,
+		"phys_resist": 0,
+		"mag_resist": 80,
+		"reward": {"gold": 300}
 	},
 
 	"SASQUATCH":
 	{
 		"sprite": "MONSTER_BIGFOOT",
 		"name": "STID_SASQUATCH_NAME",
-		"HP": 6,
-		"phys_resist": 10,
-		"mag_resist": 15
+		"HP": 1000,
+		"phys_resist": 0,
+		"mag_resist": 80,
+		"reward": {"gold": 300}
 	},
 
 	"TROLL":
 	{
 		"sprite": "MONSTER_TROLL",
 		"name": "STID_TROLL_NAME",
-		"HP": 6,
-		"phys_resist": 20,
-		"mag_resist": 20
+		"HP": 1000,
+		"phys_resist": 0,
+		"mag_resist": 80,
+		"reward": {"gold": 300}
 	},
 
 	"FOREST_GOLEM":
 	{
 		"sprite": "MONSTER_FOREST_GOLEM",
 		"name": "STID_FOREST_GOLEM_NAME",
-		"HP": 8,
-		"phys_resist": 20,
-		"mag_resist": 20
+		"HP": 15000,
+		"phys_resist": 80,
+		"mag_resist": 5,
+		"reward": {"gold": 500}
 	},
 
 	"TREENT":
 	{
 		"sprite": "MONSTER_TREENT",
 		"name": "STID_TREENT_NAME",
-		"HP": 8,
-		"phys_resist": 5,
-		"mag_resist": 25,
-		"anchor_y": 0.55
+		"HP": 15000,
+		"phys_resist": 80,
+		"mag_resist": 5,
+		"anchor_y": 0.55,
+		"reward": {"gold": 500}
 	},
 
 	"SWAMP_MONSTER":
 	{
 		"sprite": "MONSTER_TENTACLER",
 		"name": "STID_SWAMP_MONSTER_NAME",
-		"HP": 8,
-		"phys_resist": 25,
-		"mag_resist": 0,
-		"anchor_y": 0.55
+		"HP": 15000,
+		"phys_resist": 80,
+		"mag_resist": 5,
+		"anchor_y": 0.55,
+		"reward": {"gold": 500}
 	},
 
 	"CHIMERA":
 	{
 		"sprite": "MONSTER_CHIMERA",
 		"name": "STID_CHIMERA_NAME",
-		"HP": 8,
-		"phys_resist": 30,
-		"mag_resist": 30
+		"HP": 15000,
+		"phys_resist": 80,
+		"mag_resist": 5,
+		"reward": {"gold": 500}
 	},
 
 	"SKELETON":
 	{
 		"sprite": "MONSTER_SKELETON",
 		"name": "STID_SKELETON_NAME",
-		"HP": 10,
-		"phys_resist": 20,
-		"mag_resist": 50
+		"HP": 230000,
+		"phys_resist": 50,
+		"mag_resist": 50,
+		"reward": {"gold": 1000}
 	},
 
 	"FOMORIAN":
 	{
 		"sprite": "MONSTER_SSGNAAR",
 		"name": "STID_FOMORIAN_NAME",
-		"HP": 10,
+		"HP": 130000,
 		"phys_resist": 50,
-		"mag_resist": 40
+		"mag_resist": 50,
+		"reward": {"gold": 1000}
 	},
 
 	"SHADOW":
 	{
 		"sprite": "MONSTER_SHADOW",
 		"name": "STID_SHADOW_NAME",
-		"HP": 10,
-		"phys_resist": 75,
-		"mag_resist": 10
+		"HP": 230000,
+		"phys_resist": 50,
+		"mag_resist": 50,
+		"reward": {"gold": 1000}
 	},
 
 	"ASTAROTH":
 	{
 		"sprite": "MONSTER_DEMON",
 		"name": "STID_ASTAROTH_NAME",
-		"HP": 10,
-		"phys_resist": 75,
-		"mag_resist": 75,
-		"anchor_y": 0.35
+		"HP": 230000,
+		"phys_resist": 50,
+		"mag_resist": 50,
+		"anchor_y": 0.35,
+		"reward": {"gold": 1000}
 	}
 }

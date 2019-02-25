@@ -11,6 +11,6 @@
 		"SASQUATCH",
 		"TROLL"
 	],
-	"hire_price_multiplier": 10,
+	"hire_price_multiplier": 3,
 	"additional_teammates": 1
 }
