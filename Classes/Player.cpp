@@ -80,6 +80,8 @@ void Player::loadData()
 		std::string timeData = cocos2d::FileUtils::getInstance()->getStringFromFile(mTimeFile);
 		mTimeBetweenGameLaunchings = clock::to_time_t(clock::now()) - std::stoll(timeData);
 	}
+	
+	/* FIXME
 
 	if (cocos2d::FileUtils::getInstance()->isFileExist(mSaveFile) &&
 		cocos2d::FileUtils::getInstance()->isFileExist(mHashFile))
@@ -117,10 +119,14 @@ void Player::loadData()
 			}
 		}
 	}
+
+	*/
 }
 
 void Player::saveData()
 {
+	/* FIXME 
+
 	rapidjson::Document saveData;
 	saveData.SetObject();
 	rapidjson::Value killsObject;
@@ -145,14 +151,23 @@ void Player::saveData()
 
 	std::string saveHash = cocos2d::utils::getFileMD5Hash(mSaveFile);
 	cocos2d::FileUtils::getInstance()->writeStringToFile(saveHash, mHashFile);
+
+	*/
 }
 
 void Player::resetProgress()
 {
 	mGold = 1000;
 	mKills.clear();
+	mEquipedItems.clear();
+	mTeam.clear();
+	mInventory.clear();
+	mClickDamage = sDamage();
+	mPassiveDamage = sDamage();
+
 	cocos2d::FileUtils::getInstance()->removeFile(mSaveFile);
 	cocos2d::FileUtils::getInstance()->removeFile(mHashFile);
+
 	mIsNeedSaving = false;
 }
 
