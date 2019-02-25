@@ -4,33 +4,48 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>UI/health_bar_core.png</key>
+            <key>UI/fight_bar_large.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{522,22}</string>
+                <string>{720,260}</string>
                 <key>spriteSourceSize</key>
-                <string>{550,50}</string>
+                <string>{720,260}</string>
                 <key>textureRect</key>
-                <string>{{725,1245},{522,22}}</string>
+                <string>{{1285,1285},{720,260}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>UI/selected_flag.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{260,220}</string>
+                <key>spriteSourceSize</key>
+                <string>{260,220}</string>
+                <key>textureRect</key>
+                <string>{{1549,1823},{260,220}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>UI/health_bar_front.png</key>
+            <key>locations/city_shop.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{532,32}</string>
+                <string>{720,1280}</string>
                 <key>spriteSourceSize</key>
-                <string>{550,50}</string>
+                <string>{720,1280}</string>
                 <key>textureRect</key>
-                <string>{{725,1209},{532,32}}</string>
+                <string>{{1,1},{720,1280}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -45,7 +60,7 @@
                 <key>spriteSourceSize</key>
                 <string>{720,1280}</string>
                 <key>textureRect</key>
-                <string>{{1,1},{720,1280}}</string>
+                <string>{{725,1},{720,1280}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -64,33 +79,18 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>locations/tavern.png</key>
+            <key>map/map_icons/camp.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{720,1280}</string>
+                <string>{210,200}</string>
                 <key>spriteSourceSize</key>
-                <string>{720,1280}</string>
+                <string>{210,200}</string>
                 <key>textureRect</key>
-                <string>{{725,1},{720,1280}}</string>
-                <key>textureRotated</key>
-                <true/>
-            </dict>
-            <key>locations/wasteland.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{720,1280}</string>
-                <key>spriteSourceSize</key>
-                <string>{720,1280}</string>
-                <key>textureRect</key>
-                <string>{{1285,725},{720,1280}}</string>
+                <string>{{1813,1823},{210,200}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -105,7 +105,37 @@
                 <key>spriteSourceSize</key>
                 <string>{550,480}</string>
                 <key>textureRect</key>
-                <string>{{725,725},{550,480}}</string>
+                <string>{{1549,1269},{550,480}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>monsters/monster4.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{660,520}</string>
+                <key>spriteSourceSize</key>
+                <string>{660,520}</string>
+                <key>textureRect</key>
+                <string>{{1449,1},{660,520}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>monsters/monster6.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{550,600}</string>
+                <key>spriteSourceSize</key>
+                <string>{550,600}</string>
+                <key>textureRect</key>
+                <string>{{1449,665},{550,600}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -121,9 +151,9 @@
             <key>realTextureFileName</key>
             <string>images-1.webp</string>
             <key>size</key>
-            <string>{2006,2006}</string>
+            <string>{2030,2044}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:f2fea098d1a72a9764a595364db8b19c:3937c7965abb9da60c6181e17aa2a389:bc0c1e1cbc1691dcfc01b9eebb129a40$</string>
+            <string>$TexturePacker:SmartUpdate:f2e7ad5ee2f24c39ba7d48303c722ac9:dde80f6179e1f4034ca7cd2645b1aa52:bc0c1e1cbc1691dcfc01b9eebb129a40$</string>
             <key>textureFileName</key>
             <string>images-1.webp</string>
         </dict>
