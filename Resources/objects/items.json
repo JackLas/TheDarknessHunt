@@ -1,7 +1,109 @@
 {
+	"AXE":
+	{
+		"sprite_frame_name": "ITEM_AXE",
+		"name": "STID_AXE_NAME"
+	},
+
+	"BOOK_OF_ELEMENTS":
+	{
+		"sprite_frame_name": "ITEM_BOOK_ELEMENTS",
+		"name": "STID_BOOK_ELEMENTS_NAME"
+	},
+
+	"BOOK_OF_NECROMANCY":
+	{
+		"sprite_frame_name": "ITEM_BOOK_NECRO",
+		"name": "STID_BOOK_NECROMANCY_NAME"
+	},
+
+	"BOW":
+	{
+		"sprite_frame_name": "ITEM_BOW",
+		"name": "STID_BOW_NAME"
+	},
+
+	"DOUBLE_AXE":
+	{
+		"sprite_frame_name": "ITEM_DOUBLE_AXE",
+		"name": "STID_DOUBLE_AXE_NAME"
+	},
+
+	"EAST_SWORD":
+	{
+		"sprite_frame_name": "ITEM_EAST_SWORD",
+		"name": "STID_EAST_SWORD_NAME"
+	},
+
+	"FLAMING_SWORD":
+	{
+		"sprite_frame_name": "ITEM_FLAMING_SWORD",
+		"name": "STID_FLAMING_SWORD_NAME"
+	},
+
+	"GLAIVE":
+	{
+		"sprite_frame_name": "ITEM_GLAIVE",
+		"name": "STID_GLAIVE_NAME"
+	},
+
+	"HALBERD":
+	{
+		"sprite_frame_name": "ITEM_HALBERD",
+		"name": "STID_HALBERD_NAME"
+	},
+
+	"IRON_CLUB":
+	{
+		"sprite_frame_name": "ITEM_IRON_CLUB",
+		"name": "STID_IRON_CLUB_NAME"
+	},
+
+	"MAGIC_ROD":
+	{
+		"sprite_frame_name": "ITEM_MAGIC_ROD",
+		"name": "STID_MAGIC_ROD_NAME"
+	},
+
+	"MYSTICAL_ORB":
+	{
+		"sprite_frame_name": "ITEM_MYSTICAL_ORB",
+		"name": "STID_MYSTICAL_ORB_NAME"
+	},
+
+	"PHILOSOPHER_STONE":
+	{
+		"sprite_frame_name": "ITEM_PHILOSOPHER_STONE",
+		"name": "STID_PHILOSOPER_STONE_NAME"
+	},
+
+	"POISON_FLASK":
+	{
+		"sprite_frame_name": "ITEM_POISON_FLASK",
+		"name": "STID_POISON_FLASK_NAME"
+	},
+
+	"RAPIER":
+	{
+		"sprite_frame_name": "ITEM_RAPIER",
+		"name": "STID_RAPIER_NAME"
+	},
+
+	"TANTO":
+	{
+		"sprite_frame_name": "ITEM_TANTO",
+		"name": "STID_TANTO_NAME"
+	},
+
+	"TWILIGHT_STAFF":
+	{
+		"sprite_frame_name": "ITEM_TWILIGHT_STAFF",
+		"name": "STID_TWILIGHT_STAFF_NAME"
+	},
+
 	"STRANGE_AMULET":
 	{
-		"sprite_frame_name": "ITEM_ART_AMULET",
+		"sprite_frame_name": "ITEM_STRANGE_AMULET",
 		"name": "STID_STRANGE_AMULET_NAME",
 		"physical_damage": 100,
 		"magical_damage": 100,
@@ -10,7 +112,7 @@
 
 	"OLD_SWORD":
 	{
-		"sprite_frame_name": "ITEM_WEAPON_SWORD",
+		"sprite_frame_name": "ITEM_OLD_SWORD",
 		"name": "STID_OLD_SWORD_NAME",
 		"physical_damage": 25,
 		"price": 1000
@@ -18,7 +120,7 @@
 
 	"OLD_STAFF":
 	{
-		"sprite_frame_name": "ITEM_WEAPON_STAFF",
+		"sprite_frame_name": "ITEM_OLD_STAFF",
 		"name": "STID_OLD_STAFF_NAME",
 		"magical_damage": 25,
 		"price": 1000
