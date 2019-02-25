@@ -132,15 +132,22 @@ unsigned int Monster::getGoldReward() const
 	return mData.goldReward;
 }
 
-void Monster::takeDamage(const sDamage& aDealtDamage)
+void Monster::takeDamage(const sDamage& aDealtDamage, bool aIsAnimate)
 {
-	const float& actionTime = mData.touchActionTime;
-	cocos2d::TintTo* action = cocos2d::TintTo::create(actionTime, cocos2d::Color3B::RED);
-	cocos2d::TintTo* actionReverse = cocos2d::TintTo::create(actionTime, cocos2d::Color3B::WHITE);
-	runAction(cocos2d::Sequence::create(action, actionReverse, nullptr));
+	if (aIsAnimate)
+	{
+		const float& actionTime = mData.touchActionTime;
+		cocos2d::TintTo* action = cocos2d::TintTo::create(actionTime, cocos2d::Color3B::RED);
+		cocos2d::TintTo* actionReverse = cocos2d::TintTo::create(actionTime, cocos2d::Color3B::WHITE);
+		runAction(cocos2d::Sequence::create(action, actionReverse, nullptr));
+	}
 
 	const sDamage realDealtDamage = aDealtDamage * mData.resistance;
 	mCurrentHP -= realDealtDamage;
+	if (mActionListener != nullptr)
+	{
+		mActionListener->onDamageDealt(this);
+	}
 
 	if (mCurrentHP <= 0)
 	{

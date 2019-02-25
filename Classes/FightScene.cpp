@@ -163,6 +163,17 @@ bool FightScene::init()
 
 			updateKillsLabel();
 			updateGoldLabel();
+
+			const float autoAttackTime = 0.5f;
+			auto scheduler = cocos2d::Director::getInstance()->getScheduler();
+			scheduler->schedule([this](float aDt)
+			{
+				if (mCurrentMonster != nullptr)
+				{
+					const sDamage& dmg = PLAYER->getPassiveDamage();
+					mCurrentMonster->takeDamage(dmg, false);
+				}
+			}, this, autoAttackTime, CC_REPEAT_FOREVER, 0.0f, false, "autoattack");
 		}
 	}
 
@@ -239,11 +250,6 @@ void FightScene::onTouchEnded(cocos2d::Touch* aTouch, cocos2d::Event* aEvent)
 		if (mCurrentMonster->getBoundingBox().containsPoint(touchPosition))
 		{
 			mCurrentMonster->takeDamage(PLAYER->getClickDamage());
-			if (mMonsterHealthBar != nullptr)
-			{
-				const float percent = mCurrentMonster->getCurrentHealthInPercent();
-				mMonsterHealthBar->setPercent(percent);
-			}
 		}
 	}
 }
@@ -393,5 +399,14 @@ void FightScene::onHealingTimerUpdated(const Monster* aMonster, const float& aTi
 		std::stringstream str;
 		str << std::fixed << std::setprecision(1) << aTimeLeft;
 		mTimeToHealLabel->setString(str.str());
+	}
+}
+
+void FightScene::onDamageDealt(const Monster* aMonster)
+{
+	if (mMonsterHealthBar != nullptr)
+	{
+		const float percent = aMonster->getCurrentHealthInPercent();
+		mMonsterHealthBar->setPercent(percent);
 	}
 }

@@ -52,6 +52,7 @@ public:
 	virtual void onMonsterSpawned(const Monster* aMonster) override;
 	virtual void onHealthRestored(const Monster* aMonster) override;
 	virtual void onHealingTimerUpdated(const Monster* aMonster, const float& aTimeLeft) override;
+	virtual void onDamageDealt(const Monster* aMonster) override;
 
 };
 

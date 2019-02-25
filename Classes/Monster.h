@@ -37,7 +37,7 @@ public:
 	const sResistance& getResistance() const;
 	unsigned int getGoldReward() const;
 
-	void takeDamage(const sDamage& aDealtDamage);
+	void takeDamage(const sDamage& aDealtDamage, bool aIsAnimate = true);
 	void startDeathAnimation(cocos2d::FiniteTimeAction* aAnimation, bool aDirection);
 };
 
